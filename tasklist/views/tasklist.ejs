@@ -9,54 +9,44 @@
 </head>
 <body>
 <h2><%= title %></h2>
-<form name="userForm">
+<form name="userForm" action="/input.js" >
     <input type="hidden" name="id" value="0" />
     <div class="form-group">
-        <label for="name">TaskName:</label>
+        <label for="name"><%= name %></label>
         <input class="form-control" name="taskName" />
     </div>
     <div class="form-group">
-        <label for="age">Date:</label>
-        <input class="form-control" name="date" />
+        <label for="date"><%= date %></label>
+        <input class="form-control" type="datetime-local" name="date" />
     </div>
-    <div class="form-group">
-        <label for="age">Attachment:</label>
-        <input class="form-control" name="attachment" />
+    <div >
+        <label for="attachment"><%= attachment %></label>
+        <input class="form-control" type="file" name="attachment" />
+    </div>
+    <div>
+        <label for="isCompleted"><%= isCompleted %>:</label>
+        <input class="form-control" type="checkbox" name="attachment" />
     </div>
     <div class="panel-body">
-        <button type="submit" class="btn btn-sm btn-primary">Save</button>
-        <a id="reset" class="btn btn-sm btn-primary">Reset</a>
+        <button type="submit" class="btn btn-sm btn-primary"><%= save %></button>
+        <input type="reset" class="btn btn-sm btn-primary" value="<%= reset %>">
     </div>
 </form>
 <table class="table table-condensed table-striped table-bordered">
-    <thead><tr><th>TaskName</th><th>Date</th><th>State</th><th></th></tr></thead>
+    <thead><tr><th><%= id %></th><th><%= name %></th><th><%= date %></th><th><%= attachment %></th><th></th></tr></thead>
     <tbody>
-    <% for(let i=0; i<content.length;i++) {%>
-        <!--<tr>-->
-            <!--<form action="/action_page.js">-->
-                <!--<%= content[i].title %>-->
-                <!--<input type="text" name="title" value="">-->
-                <!--<%= content[i].state %>-->
-                <!--<%= content[i].date %>-->
-                <!--<input type="datetime-local" name="date">-->
-                <!--<%= content[i].loadedFile %>-->
-                <!--<input type="file" name="loadedFile">-->
-                <!--<input type="submit" value="Submit">-->
-                <!--<input type="reset">-->
-            <!--</form>-->
-        <!--</tr>-->
+    <% for (let i = 0; i < content.length; i++) {%>
+        <tr data-rowid='<%= content[i].id.toString() %>'>
+        <td><%= content[i].id.toString() %></td>
+        <td><%= content[i].name %></td>
+        <td><%= content[i].date %></td>
+        <td><%= content[i].attachment %></td>
+        <td>
+            <input type="button" class='editLink' data-id='<%= content[i].id.toString() %>' value="<%= edit %>">
+            <input type="button" class='removeLink' data-id='<%= content[i].id.toString() %>' value="<%= remove %>">
+        </td>
+        </tr>
     <%} %>
-
-
-    <!--<tr data-rowid='user.id'>-->
-        <!--<td>user.id</td>-->
-        <!--<td>user.name </td>-->
-        <!--<td>user.age</td>-->
-        <!--<td><a class='editLink' data-id='user.id'>Изменить</a>-->
-            <!--<a class='removeLink' data-id='user.id'>Удалить</a>-->
-        <!--</td>-->
-    <!--</tr>-->
-
     </tbody>
 </table>
 

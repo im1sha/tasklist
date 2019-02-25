@@ -3,14 +3,16 @@ const router = express.Router();
 
 const totalTasks = 5;
 const content  = [
-  { title : "Task1",
-    state : "Completed",
+  { id: 1,
+    name : "Task1",
+    completed : true,
     date : "Date",
-    loadedFile : "File1",} ,
-  { title : "Task2",
-    state : "Not Completed",
+    attachment : "File1",} ,
+  { id: 2,
+    name : "Task2",
+    completed : false,
     date : "Date2",
-    loadedFile : "File2",} ,
+    attachment : "File2",} ,
 ];
 
 
@@ -21,7 +23,17 @@ const content  = [
 router.get('/', function(req, res, next) {
   res.render('tasklist', {
     title: "TITLE",
-    content: content
+    id: "id",
+    name: "task",
+    date: "date",
+    attachment: "attachment",
+    edit: "edit",
+    isCompleted: "completed",
+    remove: "remove",
+    save: "save",
+    reset: "reset",
+    changeState: "change state",
+    content: content,
   });
 });
 
