@@ -1,15 +1,17 @@
-var express = require('express');
-
-
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const totalTasks = 5;
-const newText  = {
-  title : "Task",
-  state : "Completed",
-  date : "Date",
-  loadedFile : "",
-};
+const content  = [
+  { title : "Task1",
+    state : "Completed",
+    date : "Date",
+    loadedFile : "File1",} ,
+  { title : "Task2",
+    state : "Not Completed",
+    date : "Date2",
+    loadedFile : "File2",} ,
+];
 
 
 
@@ -17,14 +19,9 @@ const newText  = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('task', {
-    title: newText.title,
-    state: newText.state,
-    date: newText.date,
-    loadedFile : newText.loadedFile,
-    emailsVisible: true,
-    emails: ["1@gmail.com", "2@gmail.com"],
-    phone: "+1234567890",
+  res.render('tasklist', {
+    title: "TITLE",
+    content: content
   });
 });
 
