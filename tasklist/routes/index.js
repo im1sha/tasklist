@@ -7,6 +7,7 @@ const content  = [
     name : "Task1",
     completed : true,
     date : "Date",
+
     attachment : "File1",} ,
   { id: 2,
     name : "Task2",
@@ -16,7 +17,11 @@ const content  = [
 ];
 
 
-
+// router.get(
+//   '/public/stylesheets/style.css', function (req, res) {
+//     res.send(/public/stylesheets/style.css);
+//   }
+// );
 
 
 /* GET home page. */
@@ -24,7 +29,7 @@ router.get('/', function(req, res, next) {
   res.render('tasklist', {
     title: "TITLE",
     id: "id",
-    name: "task",
+    name: "task name",
     date: "date",
     attachment: "attachment",
     edit: "edit",
