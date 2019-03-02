@@ -1,12 +1,10 @@
 body {
-  padding: 50px;
+  padding: 1%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+body * {
+  color: #555555;
 }
 
 
-.maindiv {
-  margin: 2%; }

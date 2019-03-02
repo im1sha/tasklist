@@ -17,27 +17,25 @@ const content  = [
 ];
 
 
-// router.get(
-//   '/public/stylesheets/style.css', function (req, res) {
-//     res.send(/public/stylesheets/style.css);
-//   }
-// );
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('tasklist', {
-    title: "TITLE",
-    id: "id",
-    name: "task name",
-    date: "date",
-    attachment: "attachment",
-    edit: "edit",
+    title: "Task List",
+    taskId: "id",
+    currentId: "0",
+    taskName: "task name",
+    actions: "",
+    dateText: "date",
+    attachmentText: "attachment",
+    editText: "edit",
     isCompleted: "completed",
-    remove: "remove",
-    save: "save",
-    reset: "reset",
-    changeState: "change state",
+    removeText: "remove",
+    saveText: "save",
+    resetText: "reset",
+    completeText: "complete",
+    completeButtonName: "completeButton",
+    editButtonName: "editButton",
+    removeButtonName: "removeButton",
     content: content,
   });
 });

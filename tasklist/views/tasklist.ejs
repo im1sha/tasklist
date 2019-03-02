@@ -3,39 +3,55 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title> <%= title %></title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <link rel="stylesheet" href="../public/stylesheets/style.css"></head>
-<body >
-<!--<div class="maindiv">-->
-<div class="maindiv" >
+    <title><%= title %></title>
+    <link href='/stylesheets/style.css' rel='stylesheet'/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
+</head>
+<body>
 <h2><%= title %></h2>
 <form name="userForm" action="/input.js" >
-    <input type="hidden" name="id" value="0" />
+
+    <input type="hidden" name="id" value="<%= currentId %>" />
+
     <div class="form-group">
-        <label for="name"><%= name %></label>
-        <input class="form-control" name="taskName" />
+        <label for="taskName"><%= taskName %></label>
+        <input maxlength="50" required tabindex="1"
+               placeholder="Enter task name. * Required."
+               class="form-control" name="taskName" >
     </div>
+
     <div class="form-group">
-        <label for="date"><%= date %></label>
-        <input class="form-control" type="datetime-local" name="date" />
+        <label for="date"><%= dateText %></label>
+        <input required tabindex="2" class="form-control"
+               type="datetime-local" name="date" >
     </div>
-    <div >
-        <label for="attachment"><%= attachment %></label>
-        <input class="form-control" type="file" name="attachment" />
+
+    <div class="form-group">
+        <label for="attachment"><%= attachmentText %></label>
+        <input tabindex="3" class="form-control" type="file" name="attachment" />
     </div>
-    <!--<div>-->
-        <!--<label for="isCompleted"><%= isCompleted %>:</label>-->
-        <!--<input class="form-control" type="checkbox" name="attachment" />-->
-    <!--</div>-->
+
     <div class="panel-body">
-        <button type="submit" class="btn btn-sm btn-primary"><%= save %></button>
-        <input type="reset" class="btn btn-sm btn-primary" value="<%= reset %>">
+        <button tabindex="4" type="submit" class="btn btn-primary">
+            <%= saveText %></button>
+        <input tabindex="5" type="reset" class="btn btn-danger"
+               value="<%= resetText %>">
     </div>
+
 </form>
-<table class="table table-condensed table-striped table-bordered">
-    <thead><tr><th><%= id %></th><th><%= name %></th><th><%= date %></th><th><%= isCompleted %></th><th><%= attachment %></th><th></th></tr></thead>
+<table class="table table-condensed table-striped">
+    <thead>
+    <tr>
+        <th><%= taskId %></th>
+        <th><%= taskName %></th>
+        <th><%= dateText %></th>
+        <th><%= isCompleted %></th>
+        <th><%= attachmentText %></th>
+        <th><%= actions %></th>
+    </tr>
+    </thead>
     <tbody>
     <% for (let i = 0; i < content.length; i++) {%>
         <tr data-rowid='<%= content[i].id.toString() %>'>
@@ -45,13 +61,16 @@
         <td><%= content[i].completed %></td>
         <td><%= content[i].attachment %></td>
         <td>
-            <input type="button" class='editLink' data-id='<%= content[i].id.toString() %>' value="<%= edit %>">
-            <input type="button" class='removeLink' data-id='<%= content[i].id.toString() %>' value="<%= remove %>">
+            <input type="button" class="btn btn-success btn-xs"
+                   data-button='<%= completeButtonName %>' value="<%= completeText %>">
+            <input type="button" class="btn btn-default btn-xs"
+                   data-button='<%= editButtonName %>' value="<%= editText %>">
+            <input type="button" class="btn btn-danger btn-xs"
+                   data-button='<%= removeButtonName %>' value="<%= removeText %>">
         </td>
         </tr>
     <%} %>
     </tbody>
 </table>
-</div>
 </body>
 </html>
