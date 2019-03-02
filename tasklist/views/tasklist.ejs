@@ -11,20 +11,22 @@
 </head>
 <body>
 <h2><%= title %></h2>
-<form name="userForm" action="/input.js" >
+<form name="userForm" action="/">
 
     <input type="hidden" name="id" value="<%= currentId %>" />
 
     <div class="form-group">
         <label for="taskName"><%= taskName %></label>
-        <input maxlength="50" required tabindex="1"
+        <!--required-->
+        <input maxlength="50"  tabindex="1"
                placeholder="Enter task name. * Required."
                class="form-control" name="taskName" >
     </div>
 
     <div class="form-group">
         <label for="date"><%= dateText %></label>
-        <input required tabindex="2" class="form-control"
+        <!--required-->
+        <input  tabindex="2" class="form-control"
                type="datetime-local" name="date" >
     </div>
 

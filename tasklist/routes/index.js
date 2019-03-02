@@ -1,13 +1,14 @@
 const express = require('express');
+const bodyParser = require("body-parser");
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+const app = express();
 const router = express.Router();
 
-const totalTasks = 5;
 const content  = [
   { id: 1,
     name : "Task1",
     completed : true,
     date : "Date",
-
     attachment : "File1",} ,
   { id: 2,
     name : "Task2",
@@ -15,7 +16,6 @@ const content  = [
     date : "Date2",
     attachment : "File2",} ,
 ];
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -39,5 +39,6 @@ router.get('/', function(req, res, next) {
     content: content,
   });
 });
+
 
 module.exports = router;
