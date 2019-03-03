@@ -1,0 +1,27 @@
+<tr>
+    <td><%= id %></td>
+    <td><%= name %></td>
+    <td><%= date %></td>
+    <td><%= completed %></td>
+    <td>
+        <input type="button" class="btn btn-primary btn-xs"
+               data-button='<%= completeButtonName %>'
+               value="<%= completeText %>">
+    </td>
+    <td><%= attachment %></td>
+
+    <td>
+        <form method="get" action="/download">
+            <input type="button" class="btn btn-default btn-xs" disabled
+                data-button='<%= downloadButtonName %>'
+                value="<%= downloadText %>">
+        </form>
+    </td>
+    <td> <input type="button" class="btn btn-default btn-xs"
+                data-button='<%= editButtonName %>'
+                value="<%= editText %>">
+         <input type="button" class="btn btn-danger btn-xs"
+               data-button='<%= removeButtonName %>'
+               value="<%= removeText %>">
+    </td>
+</tr>
