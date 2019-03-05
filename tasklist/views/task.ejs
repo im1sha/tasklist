@@ -1,27 +1,41 @@
-<tr>
-    <td><%= id %></td>
-    <td><%= name %></td>
-    <td><%= date %></td>
-    <td><%= completed %></td>
+<tr <%= expiredClass %> >
+    <td><%= taskId %></td>
+    <td><%= taskName %></td>
+    <td><%= taskDate %></td>
+    <td><%= taskCompletedText %></td>
     <td>
-        <input type="button" class="btn btn-primary btn-xs"
-               data-button='<%= completeButtonName %>'
+        <form method="post" >
+            <input type="button" class="btn btn-primary btn-xs"
+                <%= taskCompletedDisabled %>
+               data-button='completeButton'
                value="<%= completeText %>">
-    </td>
-    <td><%= attachment %></td>
-
-    <td>
-        <form method="get" action="/download">
-            <input type="button" class="btn btn-default btn-xs" disabled
-                data-button='<%= downloadButtonName %>'
-                value="<%= downloadText %>">
+            <input type="hidden" name="taskId" value="<%= taskId %>">
         </form>
     </td>
-    <td> <input type="button" class="btn btn-default btn-xs"
-                data-button='<%= editButtonName %>'
+    <td><%= taskAttachmentFileName %></td>
+    <td>
+        <form method="get" action="/download">
+            <input type="submit" class="btn btn-default btn-xs"
+                    <%= taskAttachmentDisabled %>
+                   data-button='downloadButton'
+                   value="<%= downloadText %>">
+            <input type="hidden" name="taskId" value="<%= taskId %>">
+        </form>
+    </td>
+    <td>
+        <form method="post">
+            <input type="submit" class="btn btn-default btn-xs"
+                data-button='editButton'
                 value="<%= editText %>">
-         <input type="button" class="btn btn-danger btn-xs"
-               data-button='<%= removeButtonName %>'
+            <input type="hidden" name="taskId" value="<%= taskId %>">
+        </form>
+    </td>
+    <td>
+        <form method="post">
+            <input type="submit" class="btn btn-danger btn-xs"
+               data-button='removeButton'
                value="<%= removeText %>">
+            <input type="hidden" name="taskId" value="<%= taskId %>">
+        </form>
     </td>
 </tr>

@@ -1,39 +1,44 @@
 let fs = require('fs');
 
 class Task {
-    constructor(name, completeDate, attachmentFileName = null) {
-        this.attachmentFileName = attachmentFileName;
-        this.completeDate = completeDate;
-        this.name = name;
-        this.completed = false;
+    constructor(taskName, taskDate, taskAttachmentPath = null, taskAttachmentFileName = null) {
+        this.taskAttachmentFileName = taskAttachmentFileName;
+        this.taskAttachmentPath = taskAttachmentPath;
+        this.taskDate = taskDate;
+        this.taskName = taskName;
+        this.taskCompleted = false;
     }
 
     isCompleted() {
-        return this.completed;
+        return this.taskCompleted;
     }
 
     isExpired() {
-        return (!this.isCompleted() && (this.completeDate < new Date()));
+        return (!this.isCompleted() && (this.taskDate < new Date()));
     }
 
     complete() {
-        this.completed = true;
+        this.taskCompleted = true;
     }
 
     static transformToTask(obj) {
-        if (!obj.hasOwnProperty('name')
-            || !obj.hasOwnProperty('completeDate')
-            || !obj.hasOwnProperty('completed')
-            || !obj.hasOwnProperty('attachmentFileName')
-            || isNaN(Date.parse(obj.completeDate))
-            || ((obj.attachmentFileName !== null)
-                && !fs.existsSync(obj.attachmentFileName))) {
+        if (!obj.hasOwnProperty('taskName')
+            || !obj.hasOwnProperty('taskDate')
+            || !obj.hasOwnProperty('taskCompleted')
+            || !obj.hasOwnProperty('taskAttachmentFileName')
+            || !obj.hasOwnProperty('taskAttachmentPath')
+            || isNaN(Date.parse(obj.taskDate))
+            || ((obj.taskAttachmentPath !== null)
+                && !fs.existsSync(obj.taskAttachmentPath))) {
             return null;
         } else {
-            const task = new Task(obj.name,
-                new Date(obj.completeDate),
-                obj.attachmentFileName);
-            task.completed = obj.completed;
+            const task = new Task(
+                obj.taskName,
+                new Date(obj.taskDate),
+                obj.taskAttachmentPath,
+                obj.taskAttachmentFileName
+            );
+            task.taskCompleted = obj.taskCompleted;
             return task;
         }
     }
