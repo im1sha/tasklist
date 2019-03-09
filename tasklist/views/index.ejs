@@ -13,12 +13,19 @@
 <body>
     <h2><%= titleText %></h2>
     <form method="post" encType="multipart/form-data">
-        <input type="hidden" name="taskId" />
+
+        <!-- Input Values of isMainFormEdited   -->
+        <!-- 1 Created  | ""  -->
+        <!-- 2 Edited   | "true"  -->
+        <input type="hidden" name="isMainFormEdited"  value="<%= isMainFormEdited %>" />
+        <input type="hidden" name="isMainForm"  value="true" />
+        <input type="hidden" name="taskId"  value="<%= mainFormTaskId %>" />
 
         <div class="form-group">
             <label for="taskName"><%= nameText %></label>
+            <!--placeholder="* Required."-->
             <input required maxlength="50"  tabindex="1"
-                   placeholder="* Required."
+                   placeholder="<%= taskNameValue %>"
                    class="form-control" name="taskName" >
         </div>
 
@@ -26,13 +33,16 @@
             <label for="taskDate"><%= dateText %></label>
             <!--add required-->
             <input required tabindex="2" class="form-control"
-                   type="datetime-local" name="taskDate" >
+                   type="datetime-local" name="taskDate"
+                   value="<%= taskDateValue %>"
+            >
         </div>
 
         <div class="form-group">
             <label for="taskAttachmentFileName"><%= attachmentText %></label>
             <input tabindex="3" class="form-control"
-                   type="file" name="taskAttachmentFileName" >
+                   type="file" name="taskAttachmentFileName"
+                   value="<%= taskAttachmentValue %>" >
         </div>
 
         <div class="panel-body">

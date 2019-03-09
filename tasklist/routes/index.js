@@ -12,6 +12,15 @@ const Task = require('../task');
 // attachment : "File1",
 // }
 
+const hiddenInputFields = {
+    isMainFormEdited : 'isMainFormEdited',
+    isMainForm : 'isMainForm',
+    taskId : 'taskId',
+    complete : 'complete',
+    edit : 'edit',
+    remove : 'remove',
+};
+
 const localization = {
     titleText: "Task list",
 
@@ -19,7 +28,7 @@ const localization = {
     idText: "",
     nameText: "Task",
     dateText: "Date",
-    completedText: "Completed",
+    completedText: "",
     attachmentText: "",
 
     // Buttons content
@@ -43,6 +52,14 @@ const taskProperties = {
     taskDate: "taskDate",
 };
 
+const defaultPlaceholders = {
+    taskDateValue:"",
+    taskAttachmentValue:"",
+    taskNameValue : "* required",
+};
+
+const NEW_ITEM_INDEX = -1;
+
 //
 // <div id="user" data-id="1234567890"
 // data-user="Вася Пупкин"
@@ -58,18 +75,96 @@ const taskProperties = {
 // </script>
 //
 
-router.get('/', renderIndex);
+router.get('/', renderPage);
+
 
 router.post('/', (req, res) => {
-    if (req.body[taskProperties.taskId] === "") {
-        addTask(req, res);
-    } else {
-        completeTask(req, res);
+    let currentTaskNumber = NEW_ITEM_INDEX;
+    let isMainFormEdited = false;
+
+    if ((req.body[hiddenInputFields.isMainForm] === "true") &&
+        (req.body[hiddenInputFields.isMainFormEdited] === "true")) {
+        //
+        // Working with main form
+        //
+        // main form & editing existing task
+        editTask(req);
+
+    } else if ((req.body[hiddenInputFields.isMainForm] === "true") &&
+        (req.body[hiddenInputFields.isMainFormEdited] !== "true")) {
+        // main form & creating new task
+        addTask(req);
+
+    } else if ((req.body[hiddenInputFields.isMainForm] !== "true") &&
+        (req.body[hiddenInputFields.edit] === "true")) {
+        //
+        // Working with another form
+        //
+        // request to edit existing task
+        currentTaskNumber = getIndexOfRequestedItem(req);
+        isMainFormEdited = true;
+
+    } else if ((req.body[hiddenInputFields.isMainForm] !== "true") &&
+        (req.body[hiddenInputFields.remove] === "true")) {
+        // delete existing task
+        deleteTask(req);
+
+    } else if ((req.body[hiddenInputFields.isMainForm] !== "true") &&
+        (req.body[hiddenInputFields.complete] === "true")) {
+        // complete existing task
+        completeTask(req);
     }
+
+
+    let placeholders;
+    if  (isMainFormEdited !== true){
+        placeholders = {
+            taskDateValue:defaultPlaceholders.taskDateValue,
+            taskAttachmentValue:defaultPlaceholders.taskAttachmentValue,
+            taskNameValue : defaultPlaceholders.taskNameValue,
+        };
+    } else {
+        placeholders = getPlaceholders(req);
+    }
+
+    renderPage(req, res, isMainFormEdited,
+        currentTaskNumber, placeholders);
     updateStorage();
 });
 
-function renderIndex(req, res) {
+
+function getPlaceholders(req){
+    let index = getIndexOfRequestedItem(req);
+    const requiredLength = 2;
+
+    let year = tasks[index].taskDate.getFullYear().toString();
+    let month = tasks[index].taskDate.getMonth().toString();
+    let date = tasks[index].taskDate.getDate().toString();
+
+    const pad = "00";
+    const padYear = "0000";
+    month = pad.substring(0, pad.length - month.length) + month;
+    date = pad.substring(0, pad.length - date.length) + date;
+    year = padYear.substring(0, padYear.length - year.length) + year;
+
+    let formattedDateTime = year + '-' + month + '-' + date + 'T00:00';
+
+    //"2017-06-01T08:30"
+
+    return {
+        taskDateValue:
+            formattedDateTime,
+        taskAttachmentValue:
+            tasks[index].taskAttachmentFileName,
+        taskNameValue:
+            tasks[index].taskName,
+    };
+}
+
+function renderPage(req, res,
+                    edit = false,
+                    mainFormTaskNumber = NEW_ITEM_INDEX,
+                    mainFormPlaceholders = defaultPlaceholders) {
     const renderTasks = [];
 
     if (isObjectEmpty(req.query)) {
@@ -111,29 +206,56 @@ function renderIndex(req, res) {
         editText: localization.editText,
         removeText: localization.removeText,
         saveText: localization.saveText,
-        resetText: localization.removeText,
+        resetText: localization.resetText,
         downloadText: localization.downloadText,
         completeText: localization.completeText,
 
         completedStatus: localization.completedStatus,
         nonCompletedStatus: localization.nonCompletedStatus,
+
+        taskAttachmentValue:mainFormPlaceholders.taskAttachmentValue,
+        taskDateValue:mainFormPlaceholders.taskDateValue,
+        taskNameValue:mainFormPlaceholders.taskNameValue,
+
+        isMainFormEdited: edit
+            ? "true"
+            : "",
+        mainFormTaskId: mainFormTaskNumber.toString(),
     });
 }
 
-function completeTask(req, res) {
-    tasks[parseInt(req.body[taskProperties.taskId])].complete();
-    renderIndex(req, res);
+function editTask(req) {
+    addTask(req, parseInt(req.body[hiddenInputFields.taskId]));
 }
 
-function addTask(req, res) {
+// Returns index of task to edit
+function getIndexOfRequestedItem(req) {
+    return parseInt(req.body[hiddenInputFields.taskId]);
+}
+
+function deleteTask(req) {
+    tasks.splice(parseInt(req.body[taskProperties.taskId]), 1);
+}
+
+function completeTask(req) {
+    tasks[parseInt(req.body[taskProperties.taskId])].complete();
+}
+
+function addTask(req, id = NEW_ITEM_INDEX) {
     let attachmentPath = null;
+    let attachmentName = "No file";
 
     const attachment =
         (req.files === undefined)
         ? undefined
         : req.files[taskProperties.taskAttachmentFileName];
 
-    const newTaskId = tasks.length;
+
+    if ((id > tasks.length || id < 0) && (id !== NEW_ITEM_INDEX)) {
+        throw new Error();
+    }
+    const newTaskId = (id === NEW_ITEM_INDEX) ? tasks.length : id;
+
 
     if (attachment !== undefined) {
         const attachmentDir =
@@ -144,8 +266,8 @@ function addTask(req, res) {
         if (!fs.existsSync(attachmentDir)){
             fs.mkdirSync(attachmentDir);
         }
-
-        attachmentPath = attachmentDir + attachment.name;
+        attachmentName =  attachment.name;
+        attachmentPath = attachmentDir + attachmentName;
 
         // mv() - A function to move the file elsewhere on your server
         attachment.mv(attachmentPath);
@@ -156,10 +278,8 @@ function addTask(req, res) {
         req.body[taskProperties.taskName],
         new Date(req.body[taskProperties.taskDate]),
         attachmentPath,
-        attachment.name
+        attachmentName
     );
-
-    renderIndex(req, res);
 }
 
 function isObjectEmpty(obj) {
@@ -191,14 +311,14 @@ function createTaskEntry(task, taskId) {
         taskEntry.taskCompletedDisabled = '';
     }
 
-    if (task.taskAttachmentFileName === null) {
+    if (task.taskAttachmentPath === null) {
         taskEntry.taskAttachmentDisabled = 'disabled';
     } else {
         taskEntry.taskAttachmentDisabled = '';
     }
 
     if (taskEntry.taskExpired === true) {
-        taskEntry.expiredClass = 'class="expired"';
+        taskEntry.expiredClass = 'class=expired';
     } else {
         taskEntry.expiredClass = '';
     }

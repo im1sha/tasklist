@@ -5,11 +5,13 @@
     <td><%= taskCompletedText %></td>
     <td>
         <form method="post" >
-            <input type="button" class="btn btn-primary btn-xs"
+            <input type="submit" class="btn btn-primary btn-xs"
                 <%= taskCompletedDisabled %>
                data-button='completeButton'
                value="<%= completeText %>">
             <input type="hidden" name="taskId" value="<%= taskId %>">
+            <input type="hidden" name="complete" value="true">
+            <input type="hidden" name="isMainForm"  value="" />
         </form>
     </td>
     <td><%= taskAttachmentFileName %></td>
@@ -28,6 +30,8 @@
                 data-button='editButton'
                 value="<%= editText %>">
             <input type="hidden" name="taskId" value="<%= taskId %>">
+            <input type="hidden" name="edit" value="true">
+            <input type="hidden" name="isMainForm"  value="" />
         </form>
     </td>
     <td>
@@ -36,6 +40,8 @@
                data-button='removeButton'
                value="<%= removeText %>">
             <input type="hidden" name="taskId" value="<%= taskId %>">
+            <input type="hidden" name="remove" value="true">
+            <input type="hidden" name="isMainForm"  value="" />
         </form>
     </td>
 </tr>
