@@ -24,9 +24,11 @@
         <div class="form-group">
             <label for="taskName"><%= nameText %></label>
             <!--placeholder="* Required."-->
-            <input required maxlength="50"  tabindex="1"
-                   placeholder="<%= taskNameValue %>"
-                   class="form-control" name="taskName" >
+            <input required maxlength="500"  tabindex="1"
+                   placeholder="<%= taskNameBackValue %>"
+                   class="form-control" name="taskName"
+                   value="<%= taskNameValue %>"
+            >
         </div>
 
         <div class="form-group">
@@ -34,6 +36,7 @@
             <!--add required-->
             <input required tabindex="2" class="form-control"
                    type="datetime-local" name="taskDate"
+                   max="9999-12-31T23:59"
                    value="<%= taskDateValue %>"
             >
         </div>
@@ -45,10 +48,17 @@
                    value="<%= taskAttachmentValue %>" >
         </div>
 
+        <div class="form-group">
+            <input tabindex="4"
+                   type="checkbox" name="dontChangeFile"
+                    <%= checkboxHiddenValue %> >
+            <label for="dontChangeFile">Don't change if file was loaded</label>
+        </div>
+
         <div class="panel-body">
-            <button tabindex="4" type="submit" class="btn btn-primary">
+            <button tabindex="5" type="submit" class="btn btn-primary">
                 <%= saveText %></button>
-            <input tabindex="5" type="reset" class="btn btn-danger"
+            <input tabindex="6" type="reset" class="btn btn-danger"
                    value="<%= resetText %>">
         </div>
     </form>

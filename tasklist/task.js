@@ -1,6 +1,7 @@
 let fs = require('fs');
 
 class Task {
+
     constructor(taskName, taskDate, taskAttachmentPath = null, taskAttachmentFileName = null) {
         this.taskAttachmentFileName = taskAttachmentFileName;
         this.taskAttachmentPath = taskAttachmentPath;
@@ -8,6 +9,31 @@ class Task {
         this.taskName = taskName;
         this.taskCompleted = false;
     }
+
+    static getPropertiesNamesAsObjectOfStrings() {
+        return {
+            taskId: Task.getTaskIdPropertyName(),
+            taskCompleted: Task.getTaskCompletedPropertyName(),
+            taskAttachmentFileName: Task.getTaskAttachmentFileNamePropertyName(),
+            taskAttachmentPath: Task.getTaskAttachmentPathPropertyName(),
+            taskName: Task.getTaskNamePropertyName(),
+            taskDate: Task.getTaskDatePropertyName(),
+        };
+    }
+
+    static getNewItemIndex() { return -1; }
+
+    static getTaskIdPropertyName() { return "taskId"; }
+
+    static getTaskCompletedPropertyName() { return "taskCompleted"; }
+
+    static getTaskAttachmentFileNamePropertyName() { return "taskAttachmentFileName"; }
+
+    static getTaskAttachmentPathPropertyName() { return "taskAttachmentPath"; }
+
+    static getTaskNamePropertyName() { return "taskName"; }
+
+    static getTaskDatePropertyName() { return "taskDate"; }
 
     isCompleted() {
         return this.taskCompleted;
@@ -22,14 +48,13 @@ class Task {
     }
 
     static transformToTask(obj) {
-        if (!obj.hasOwnProperty('taskName')
-            || !obj.hasOwnProperty('taskDate')
-            || !obj.hasOwnProperty('taskCompleted')
-            || !obj.hasOwnProperty('taskAttachmentFileName')
-            || !obj.hasOwnProperty('taskAttachmentPath')
-            || isNaN(Date.parse(obj.taskDate))
-            || ((obj.taskAttachmentPath !== null)
-                && !fs.existsSync(obj.taskAttachmentPath))) {
+        if (!obj.hasOwnProperty(Task.getTaskNamePropertyName()) ||
+            !obj.hasOwnProperty(Task.getTaskDatePropertyName()) ||
+            !obj.hasOwnProperty(Task.getTaskCompletedPropertyName()) ||
+            !obj.hasOwnProperty(Task.getTaskAttachmentFileNamePropertyName()) ||
+            !obj.hasOwnProperty(Task.getTaskAttachmentPathPropertyName()) ||
+            isNaN(Date.parse(obj.taskDate)) ||
+            ((obj.taskAttachmentPath !== null) && !fs.existsSync(obj.taskAttachmentPath))) {
             return null;
         } else {
             const task = new Task(

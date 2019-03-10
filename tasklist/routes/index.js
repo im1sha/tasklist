@@ -2,16 +2,15 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const fs = require('fs');
+
+
 const Task = require('../task');
+const TaskWorker = require('../task-worker');
 
-// {
-// id: 1,
-// name : "Task1",
-// completed : true,
-// date : "Date",
-// attachment : "File1",
-// }
 
+const worker = new TaskWorker();
+
+// transferred by post method
 const hiddenInputFields = {
     isMainFormEdited : 'isMainFormEdited',
     isMainForm : 'isMainForm',
@@ -21,7 +20,15 @@ const hiddenInputFields = {
     remove : 'remove',
 };
 
-const localization = {
+const defaultInputPlaceholders = {
+    taskDateValue : "",
+    taskAttachmentValue: "",
+    taskNameBackValue: "* required",
+    taskNameValue: "",
+    checkboxHiddenValue: "disabled",
+};
+
+const defaultPlaceholders = {
     titleText: "Task list",
 
     // LABELS
@@ -31,7 +38,7 @@ const localization = {
     completedText: "",
     attachmentText: "",
 
-    // Buttons content
+    // Submit buttons content
     editText: "edit",
     removeText: "remove",
     saveText: "save",
@@ -39,44 +46,19 @@ const localization = {
     downloadText: "download",
     completeText: "complete",
 
+    // Current task status
     completed: 'Completed',
     incomplete: 'Incomplete',
 };
 
-const taskProperties = {
-    taskId: "taskId",
-    taskCompleted: "taskCompleted",
-    taskAttachmentFileName: "taskAttachmentFileName",
-    taskAttachmentPath: "taskAttachmentPath",
-    taskName: "taskName",
-    taskDate: "taskDate",
-};
+const taskProperties = Task.getPropertiesNamesAsObjectOfStrings();
 
-const defaultPlaceholders = {
-    taskDateValue:"",
-    taskAttachmentValue:"",
-    taskNameValue : "* required",
-};
+const NEW_ITEM_INDEX = Task.getNewItemIndex();
+const MAX_DISPLAYED_LENGTH = 30;
 
-const NEW_ITEM_INDEX = -1;
-
-//
-// <div id="user" data-id="1234567890"
-// data-user="Вася Пупкин"
-// data-date-of-birth="01.04.1990">Пользователь</div>
-// <script>
-// var el = document.getElementById('user');
-// id = el.dataset.id; // Получаем значение атрибута data-id
-// user = el.dataset.user;
-// dob = el.dataset.dateOfBirth; // Получаем значение атрибута data-date-of-birth
-// el.dataset.ban = 'Нет'; // Назначаем новый атрибут data-ban и его значение
-// console.log(user); // Выводим в консоль значение переменной user
-// console.log(dob); // Выводим в консоль значение переменной dob
-// </script>
-//
+worker.initializeStorage();
 
 router.get('/', renderPage);
-
 
 router.post('/', (req, res) => {
     let currentTaskNumber = NEW_ITEM_INDEX;
@@ -115,60 +97,58 @@ router.post('/', (req, res) => {
         completeTask(req);
     }
 
-
     let placeholders;
     if  (isMainFormEdited !== true){
         placeholders = {
-            taskDateValue:defaultPlaceholders.taskDateValue,
-            taskAttachmentValue:defaultPlaceholders.taskAttachmentValue,
-            taskNameValue : defaultPlaceholders.taskNameValue,
+            taskDateValue: defaultInputPlaceholders.taskDateValue,
+            taskAttachmentValue: defaultInputPlaceholders.taskAttachmentValue,
+            taskNameValue : defaultInputPlaceholders.taskNameValue,
+            taskNameBackValue : defaultInputPlaceholders.taskNameBackValue,
+            checkboxHiddenValue: defaultInputPlaceholders.checkboxHiddenValue,
         };
     } else {
-        placeholders = getPlaceholders(req);
+        placeholders = getPlaceholdersByRequest(req);
     }
 
-    renderPage(req, res, isMainFormEdited,
-        currentTaskNumber, placeholders);
-    updateStorage();
+    renderPage(req, res, isMainFormEdited, currentTaskNumber, placeholders);
+
+    worker.updateStorage();
+
 });
 
+function getPlaceholdersByRequest(req) {
 
-function getPlaceholders(req){
     let index = getIndexOfRequestedItem(req);
-    const requiredLength = 2;
 
-    let year = tasks[index].taskDate.getFullYear().toString();
-    let month = tasks[index].taskDate.getMonth().toString();
-    let date = tasks[index].taskDate.getDate().toString();
-
-    const pad = "00";
-    const padYear = "0000";
-    month = pad.substring(0, pad.length - month.length) + month;
-    date = pad.substring(0, pad.length - date.length) + date;
-    year = padYear.substring(0, padYear.length - year.length) + year;
-
-    let formattedDateTime = year + '-' + month + '-' + date + 'T00:00';
+    let date = getDateAsObjectOfStrings(worker.tasks[index].taskDate);
 
     //"2017-06-01T08:30"
+    let formattedDateTime = date.year + '-' +
+        date.month + '-' + date.day +
+        'T' + date.hours + ':' + date.minutes;
 
     return {
         taskDateValue:
             formattedDateTime,
         taskAttachmentValue:
-            tasks[index].taskAttachmentFileName,
+            "",
         taskNameValue:
-            tasks[index].taskName,
+            worker.tasks[index].taskName,
+        taskNameBackValue:
+            worker.tasks[index].taskName,
+        checkboxHiddenValue:
+            "checked",
     };
 }
 
 function renderPage(req, res,
                     edit = false,
                     mainFormTaskNumber = NEW_ITEM_INDEX,
-                    mainFormPlaceholders = defaultPlaceholders) {
+                    mainFormPlaceholders = defaultInputPlaceholders) {
     const renderTasks = [];
 
     if (isObjectEmpty(req.query)) {
-        tasks.forEach((value, index) =>
+        worker.tasks.forEach((value, index) =>
             renderTasks.push(createTaskEntry(value, index))
         );
     // } else {
@@ -182,7 +162,7 @@ function renderPage(req, res,
     //         filters.push(statuses);
     //     }
     //
-    //     let filteredTasks = tasks.filter(task =>
+    //     let filteredTasks = taskWorker.tasks.filter(task =>
     //         filters.includes(task.isCompleted().toString())
     //     );
     //     for (let i = 0; i < filteredTasks.length; i++) {
@@ -194,28 +174,30 @@ function renderPage(req, res,
         taskProperties: taskProperties,
         content: renderTasks,
 
-        titleText: localization.titleText,
+        titleText: defaultPlaceholders.titleText,
         // LABELS
-        idText: localization.idText,
-        nameText: localization.nameText,
-        dateText: localization.dateText,
-        completedText: localization.completedText,
-        attachmentText: localization.attachmentText,
+        idText: defaultPlaceholders.idText,
+        nameText: defaultPlaceholders.nameText,
+        dateText: defaultPlaceholders.dateText,
+        completedText: defaultPlaceholders.completedText,
+        attachmentText: defaultPlaceholders.attachmentText,
 
         // Buttons content
-        editText: localization.editText,
-        removeText: localization.removeText,
-        saveText: localization.saveText,
-        resetText: localization.resetText,
-        downloadText: localization.downloadText,
-        completeText: localization.completeText,
+        editText: defaultPlaceholders.editText,
+        removeText: defaultPlaceholders.removeText,
+        saveText: defaultPlaceholders.saveText,
+        resetText: defaultPlaceholders.resetText,
+        downloadText: defaultPlaceholders.downloadText,
+        completeText: defaultPlaceholders.completeText,
 
-        completedStatus: localization.completedStatus,
-        nonCompletedStatus: localization.nonCompletedStatus,
+        completedStatus: defaultPlaceholders.completedStatus,
+        nonCompletedStatus: defaultPlaceholders.nonCompletedStatus,
 
         taskAttachmentValue:mainFormPlaceholders.taskAttachmentValue,
         taskDateValue:mainFormPlaceholders.taskDateValue,
         taskNameValue:mainFormPlaceholders.taskNameValue,
+        taskNameBackValue: mainFormPlaceholders.taskNameBackValue,
+        checkboxHiddenValue: mainFormPlaceholders.checkboxHiddenValue,
 
         isMainFormEdited: edit
             ? "true"
@@ -234,11 +216,11 @@ function getIndexOfRequestedItem(req) {
 }
 
 function deleteTask(req) {
-    tasks.splice(parseInt(req.body[taskProperties.taskId]), 1);
+    worker.tasks.splice(parseInt(req.body[taskProperties.taskId]), 1);
 }
 
 function completeTask(req) {
-    tasks[parseInt(req.body[taskProperties.taskId])].complete();
+    worker.tasks[parseInt(req.body[taskProperties.taskId])].complete();
 }
 
 function addTask(req, id = NEW_ITEM_INDEX) {
@@ -251,15 +233,15 @@ function addTask(req, id = NEW_ITEM_INDEX) {
         : req.files[taskProperties.taskAttachmentFileName];
 
 
-    if ((id > tasks.length || id < 0) && (id !== NEW_ITEM_INDEX)) {
+    if ((id > worker.tasks.length || id < 0) && (id !== NEW_ITEM_INDEX)) {
         throw new Error();
     }
-    const newTaskId = (id === NEW_ITEM_INDEX) ? tasks.length : id;
+    const newTaskId = (id === NEW_ITEM_INDEX) ? worker.tasks.length : id;
 
 
     if (attachment !== undefined) {
         const attachmentDir =
-            attachmentsDirectory +
+            worker.getAttachmentsDirectory() +
             newTaskId +
             path.sep;
 
@@ -274,7 +256,7 @@ function addTask(req, id = NEW_ITEM_INDEX) {
     }
 
     //taskName, taskDate, taskAttachmentPath = null, taskAttachmentFileName = null
-    tasks[newTaskId] = new Task(
+    worker.tasks[newTaskId] = new Task(
         req.body[taskProperties.taskName],
         new Date(req.body[taskProperties.taskDate]),
         attachmentPath,
@@ -287,27 +269,61 @@ function isObjectEmpty(obj) {
         (obj.constructor === Object);
 }
 
+// expected Date instance as parameter
+function formatDateForOutput(date) {
+
+    const dateObject = getDateAsObjectOfStrings(date);
+
+    return dateObject.day + "-" +
+        dateObject.month + "-" +
+        dateObject.year + " " +
+        dateObject.hours + ":" +
+        dateObject.minutes;
+}
+
+function getDateAsObjectOfStrings(date) {
+    const pad = "00";
+    const padYear = "0000";
+
+    let day = date.getDate().toString();
+    let month = (date.getMonth() + 1).toString();
+    let year = date.getFullYear().toString();
+    let hours = date.getHours().toString();
+    let minutes = date.getMinutes().toString();
+
+    day = pad.substring(0, pad.length - day.length) + day;
+    month = pad.substring(0, pad.length - month.length) + month;
+    minutes = pad.substring(0, pad.length - minutes.length) + minutes;
+    hours = pad.substring(0, pad.length - hours.length) + hours;
+    year = padYear.substring(0, padYear.length - year.length) + year;
+
+    return {
+        day : day,
+        month: month,
+        minutes : minutes,
+        hours: hours,
+        year: year,
+    };
+}
+
 function createTaskEntry(task, taskId) {
     const taskEntry = {
         taskId: taskId,
-        taskName: task.taskName,
-        taskAttachmentFileName: task.taskAttachmentFileName,
+        taskName: task.taskName.substr(0, MAX_DISPLAYED_LENGTH),
+        taskAttachmentFileName: task.taskAttachmentFileName.substr(0, MAX_DISPLAYED_LENGTH),
         taskAttachmentPath: task.taskAttachmentPath,
         taskExpired: !!task.isExpired()
     };
 
-    taskEntry.taskDate =
-        (task.taskDate.getDate()) + '/' +
-        (task.taskDate.getMonth() + 1) + '/' +
-        (task.taskDate.getFullYear());
+    taskEntry.taskDate = formatDateForOutput(task.taskDate);
 
     if (task.isCompleted()) {
         taskEntry.taskCompleted = true;
-        taskEntry.taskCompletedText = localization.completed;
+        taskEntry.taskCompletedText = defaultPlaceholders.completed;
         taskEntry.taskCompletedDisabled = 'disabled';
     } else {
         taskEntry.taskCompleted = false;
-        taskEntry.taskCompletedText = localization.incomplete;
+        taskEntry.taskCompletedText = defaultPlaceholders.incomplete;
         taskEntry.taskCompletedDisabled = '';
     }
 
@@ -327,6 +343,6 @@ function createTaskEntry(task, taskId) {
 }
 
 
-module.exports = router;
+module.exports = {router:router, taskWorker:worker};
 
 
