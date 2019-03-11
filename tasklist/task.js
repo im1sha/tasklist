@@ -1,13 +1,54 @@
-let fs = require('fs');
+const fs = require('fs');
 
 class Task {
 
-    constructor(taskName, taskDate, taskAttachmentPath = null, taskAttachmentFileName = null) {
-        this.taskAttachmentFileName = taskAttachmentFileName;
-        this.taskAttachmentPath = taskAttachmentPath;
-        this.taskDate = taskDate;
-        this.taskName = taskName;
-        this.taskCompleted = false;
+    constructor(taskName,
+                taskDate,
+                taskAttachmentPath = null,
+                taskAttachmentFileName = null,
+                completed = false) {
+        this.#taskAttachmentFileName = taskAttachmentFileName;
+        this.#taskAttachmentPath = taskAttachmentPath;
+        this.#taskDate = taskDate;
+        this.#taskName = taskName;
+        this.#taskCompleted = completed;
+    }
+
+    #taskAttachmentFileName;
+    #taskAttachmentPath;
+    #taskDate;
+    #taskName;
+    #taskCompleted;
+
+    getAttachmentFileName(){
+        return String(this.#taskAttachmentFileName);
+    }
+
+    getAttachmentPath(){
+        return String(this.#taskAttachmentPath);
+    }
+
+    getExpireDate(){
+        return new Date(this.#taskDate);
+    }
+
+    getName(){
+        return String(this.#taskName);
+    }
+
+    isCompleted() {
+        return this.#taskCompleted;
+    }
+
+    isExpired() {
+        return (!this.isCompleted() && (this.#taskDate < new Date()));
+    }
+
+    complete() {
+        this.#taskCompleted = true;
+    }
+    continue() {
+        this.#taskCompleted = false;
     }
 
     static getPropertiesNamesAsObjectOfStrings() {
@@ -24,28 +65,11 @@ class Task {
     static getNewItemIndex() { return -1; }
 
     static getTaskIdPropertyName() { return "taskId"; }
-
     static getTaskCompletedPropertyName() { return "taskCompleted"; }
-
     static getTaskAttachmentFileNamePropertyName() { return "taskAttachmentFileName"; }
-
     static getTaskAttachmentPathPropertyName() { return "taskAttachmentPath"; }
-
     static getTaskNamePropertyName() { return "taskName"; }
-
     static getTaskDatePropertyName() { return "taskDate"; }
-
-    isCompleted() {
-        return this.taskCompleted;
-    }
-
-    isExpired() {
-        return (!this.isCompleted() && (this.taskDate < new Date()));
-    }
-
-    complete() {
-        this.taskCompleted = true;
-    }
 
     static transformToTask(obj) {
         if (!obj.hasOwnProperty(Task.getTaskNamePropertyName()) ||
@@ -57,16 +81,18 @@ class Task {
             ((obj.taskAttachmentPath !== null) && !fs.existsSync(obj.taskAttachmentPath))) {
             return null;
         } else {
-            const task = new Task(
+            return new Task(
                 obj.taskName,
                 new Date(obj.taskDate),
                 obj.taskAttachmentPath,
-                obj.taskAttachmentFileName
+                obj.taskAttachmentFileName,
+                obj.taskCompleted
             );
-            task.taskCompleted = obj.taskCompleted;
-            return task;
         }
     }
 }
 
+
 module.exports = Task;
+
+
