@@ -1,29 +1,42 @@
-<tr <%= expiredClass %> >
+<!-- expiredClass-->
+<tr <%= entryStyle %> >
+
     <td><%= idText %></td>
+
     <td><%= taskName %></td>
+
     <td><%= taskDate %></td>
-    <td><%= taskCompletedText %></td>
+
+    <!-- taskCompletedText-->
+    <td><%= taskCompletedAsString %></td>
+
     <td>
+        <!-- taskCompletedDisabled -->
         <form method="post" >
-            <input type="submit" class="btn btn-primary btn-xs"
-                <%= taskCompletedDisabled %>
-               data-button='completeButton'
-               value="<%= completeText %>">
+            <input type="submit"
+                   class="btn btn-primary btn-xs"
+                   <%= completeButtonStyle %>
+                   data-button='completeButton'
+                   value="<%= completeText %>">
             <input type="hidden" name="taskId" value="<%= taskId %>">
             <input type="hidden" name="complete" value="true">
             <input type="hidden" name="isMainForm"  value="" />
         </form>
     </td>
+
     <td><%= taskAttachmentFileName %></td>
+
     <td>
+        <!-- taskAttachmentDisabled -->
         <form method="get" action="/download">
             <input type="submit" class="btn btn-default btn-xs"
-                    <%= taskAttachmentDisabled %>
+                   <%= downloadButtonStyle %>
                    data-button='downloadButton'
                    value="<%= downloadText %>">
             <input type="hidden" name="taskId" value="<%= taskId %>">
         </form>
     </td>
+
     <td>
         <form method="post">
             <input type="submit" class="btn btn-default btn-xs"
@@ -34,6 +47,7 @@
             <input type="hidden" name="isMainForm"  value="" />
         </form>
     </td>
+
     <td>
         <form method="post">
             <input type="submit" class="btn btn-danger btn-xs"
@@ -41,7 +55,8 @@
                value="<%= removeText %>">
             <input type="hidden" name="taskId" value="<%= taskId %>">
             <input type="hidden" name="remove" value="true">
-            <input type="hidden" name="isMainForm"  value="" />
+            <input type="hidden" name="isMainForm"  value="" >
         </form>
     </td>
+
 </tr>

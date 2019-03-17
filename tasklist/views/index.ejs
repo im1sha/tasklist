@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -10,13 +11,14 @@
           rel="stylesheet" />
     <!--<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>-->
 </head>
+
 <body>
     <h2><%= titleText %></h2>
     <form method="post" encType="multipart/form-data">
 
         <!-- Input Values of isMainFormEdited   -->
-        <!-- 1) Created  | ""  -->
-        <!-- 2) Edited   | "true"  -->
+        <!-- 1) Created | ""  -->
+        <!-- 2) Edited  | "true"  -->
         <input type="hidden" name="isMainFormEdited"  value="<%= isMainFormEdited %>" />
         <input type="hidden" name="isMainForm"  value="true" />
         <input type="hidden" name="taskId"  value="<%= mainFormTaskId %>" />
@@ -27,8 +29,7 @@
             <input required maxlength="500"  tabindex="1"
                    placeholder="<%= taskNameBackValue %>"
                    class="form-control" name="taskName"
-                   value="<%= taskNameValue %>"
-            >
+                   value="<%= taskNameValue %>" >
         </div>
 
         <div class="form-group">
@@ -37,24 +38,21 @@
             <input required tabindex="2" class="form-control"
                    type="datetime-local" name="taskDate"
                    max="9999-12-31T23:59"
-                   value="<%= taskDateValue %>"
-            >
+                   value="<%= taskDateValue %>"  >
         </div>
 
         <div class="form-group">
-            <label for="taskAttachmentFileName"><%= attachmentText %></label>
+            <label for="taskAttachment"><%= attachmentText %></label>
             <input tabindex="3" class="form-control"
-                   type="file" name="taskAttachmentFileName"
-                   value="<%= taskAttachmentValue %>" >
+                   type="file" name="taskAttachment" >
         </div>
 
         <div class="form-group">
             <input tabindex="4"
-                   type="checkbox" name="dontChangeFile"
+                   type="checkbox" name="dontChangeFileCheckbox"
                     <%= checkboxDontChangeValue %> >
-            <label for="dontChangeFile">Don't change if file was loaded</label>
+            <label for="dontChangeFileCheckbox">Don't change if file was loaded</label>
         </div>
-
 
         <div class="form-group">
             <input tabindex="5"
@@ -72,24 +70,26 @@
     </form>
 
     <table class="table table-condensed table-striped">
-    <thead>
-    <tr>
-        <th><%= idText %></th>
-        <th><%= nameText %></th>
-        <th><%= dateText %></th>
-        <th><%= completedText %></th>
-        <th></th>
-        <th><%= attachmentText %></th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-        <% content.forEach(function(task) {%>
-            <%- include('task', task); %>
-        <% }); %>
-    </tbody>
+        <thead>
+            <tr>
+                <th></th>
+                <th><%= nameText %></th>
+                <th><%= dateText %></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% content.forEach(function(task) {%>
+                <%- include('task', task); %>
+            <% }); %>
+        </tbody>`
     </table>
 </body>
+
 </html>

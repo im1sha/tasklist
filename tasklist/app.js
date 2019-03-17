@@ -6,7 +6,6 @@ const fileUpload = require('express-fileupload');
 
 
 const index = require('./routes/index');
-const indexRouter = index.router;
 const downloadRouter = require('./routes/download');
 
 
@@ -23,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', indexRouter);
+app.use('/', index);
 app.use('/download', downloadRouter);
 
 

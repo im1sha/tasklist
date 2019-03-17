@@ -1,6 +1,13 @@
 const fs = require('fs');
+const Utils = require("Utils");
 
 class Task {
+
+    #taskAttachmentFileName; // string
+    #taskAttachmentPath; // string
+    #taskDate; // date
+    #taskName; // string
+    #taskCompleted; // boolean
 
     constructor(taskName,
                 taskDate,
@@ -14,28 +21,32 @@ class Task {
         this.#taskCompleted = completed;
     }
 
-    #taskAttachmentFileName;
-    #taskAttachmentPath;
-    #taskDate;
-    #taskName;
-    #taskCompleted;
 
-    getAttachmentFileName(){
-        return String(this.#taskAttachmentFileName);
+
+    // doesnt return path
+    getRenderedData() {
+        return {
+            taskName: this.getName(),
+            taskDate: this.getExpireDate(),
+            taskAttachmentFileName: this.getAttachmentFileName(),
+            taskAttachmentExists: !!this.#taskAttachmentPath,
+            taskCompleted: this.isCompleted(),
+            taskExpired: this.isExpired(),
+        };
     }
 
     getAttachmentPath(){
-        return String(this.#taskAttachmentPath);
+        return this.#taskAttachmentPath;
     }
-
-    getExpireDate(){
-        return new Date(this.#taskDate);
+    getAttachmentFileName(){
+        return this.#taskAttachmentFileName;
     }
-
     getName(){
-        return String(this.#taskName);
+        return this.#taskName;
     }
-
+    getExpireDate(){
+        return new Date(this.#taskDate.getTime());
+    }
     isCompleted() {
         return this.#taskCompleted;
     }
@@ -44,34 +55,45 @@ class Task {
         return (!this.isCompleted() && (this.#taskDate < new Date()));
     }
 
-    complete() {
-        this.#taskCompleted = true;
+    changeCompleteness(state) {
+        this.#taskCompleted = state;
     }
-    continue() {
-        this.#taskCompleted = false;
+    changeDate(date){
+        if (!Utils.isDate(date)){
+            throw new Error('invalid date');
+        }
+
+        this.#taskDate = date;
+    }
+    changeName(name){
+        #taskName = name;
     }
 
-    static getPropertiesNamesAsObjectOfStrings() {
-        return {
-            taskId: Task.getTaskIdPropertyName(),
-            taskCompleted: Task.getTaskCompletedPropertyName(),
-            taskAttachmentFileName: Task.getTaskAttachmentFileNamePropertyName(),
-            taskAttachmentPath: Task.getTaskAttachmentPathPropertyName(),
-            taskName: Task.getTaskNamePropertyName(),
-            taskDate: Task.getTaskDatePropertyName(),
-        };
+    changeAttachment(path, name){
+        #taskAttachmentPath = path;
+        #taskAttachmentFileName = name;
     }
+
 
     static getNewItemIndex() { return -1; }
 
-    static getTaskIdPropertyName() { return "taskId"; }
+    static getRenderedPropertiesNamesAsList() {
+        return {
+            taskCompleted: Task.getTaskCompletedPropertyName(),
+            taskAttachmentFileName: Task.getTaskAttachmentFileNamePropertyName(),
+            taskAttachmentExists: "taskAttachmentExists",
+            taskName: Task.getTaskNamePropertyName(),
+            taskDate: Task.getTaskDatePropertyName(),
+            taskExpired: 'taskExpired', //
+        };
+    }
     static getTaskCompletedPropertyName() { return "taskCompleted"; }
     static getTaskAttachmentFileNamePropertyName() { return "taskAttachmentFileName"; }
     static getTaskAttachmentPathPropertyName() { return "taskAttachmentPath"; }
     static getTaskNamePropertyName() { return "taskName"; }
     static getTaskDatePropertyName() { return "taskDate"; }
 
-    static transformToTask(obj) {
+    static fromObject(obj) {
         if (!obj.hasOwnProperty(Task.getTaskNamePropertyName()) ||
             !obj.hasOwnProperty(Task.getTaskDatePropertyName()) ||
             !obj.hasOwnProperty(Task.getTaskCompletedPropertyName()) ||

@@ -9,8 +9,7 @@ const worker = new TaskWorker();
 worker.initializeStorage();
 
 const Constructor = require('../page-constructor');
-let pageConstructor = new Constructor(worker);
-
+const pageConstructor = new Constructor(worker);
 
 router.get('/', renderPage);
 
@@ -19,25 +18,25 @@ router.post('/', (req, res) => {
     //
     // process state-changing actions here
     //
-    if (pageConstructor.isEditAtMainForm(req.body)) {
+    if (Constructor.isEditAtMainForm(req.body)) {
         //
         // Working with main form
         // editing existing task
         //
         editTask(req);
 
-    } else if (pageConstructor.isCreateAtMainForm(req.body)) {
+    } else if (Constructor.isCreateAtMainForm(req.body)) {
         //
         // Working with main form
         // creating new task
         //
         addTask(req);
 
-    } else if (pageConstructor.isDeleteRequest(req.body)) {
+    } else if (Constructor.isDeleteRequest(req.body)) {
         // delete existing task
         deleteTask(req.body);
 
-    } else if (pageConstructor.isCompleteRequest(req.body)) {
+    } else if (Constructor.isCompleteRequest(req.body)) {
         // complete existing task
         completeTask(req.body);
     }
@@ -56,13 +55,14 @@ function renderPage(req, res) {
     let isEditRequest = false;
     let mainFormTaskNumber = NEW_ITEM_INDEX;
 
-    if (pageConstructor.isEditRequest(req.body)) {
-        mainFormTaskNumber = getIndexOfRequestedItem(req.body);
+    if (Constructor.isEditRequest(req.body)) {
         isEditRequest = true;
+        mainFormTaskNumber = getIndexOfRequestedItem(req.body);
     }
 
     const placeholders =
-        pageConstructor.getPlaceholders(req, isEditRequest, mainFormTaskNumber);
+        pageConstructor.getPlaceholders(req,
+            isEditRequest, mainFormTaskNumber);
 
     res.render('index', placeholders);
 }
@@ -72,8 +72,10 @@ function editTask(req) {
 }
 
 function addTask(req, id = NEW_ITEM_INDEX) {
-    pageConstructor.retrieveValues(req, id);
-   // worker.insertTask();
+    worker.insertTask(
+        Constructor.retrieveTaskProperties(req.body),
+        Constructor.retrieveAttachment(req.files),
+        id);
 }
 
 function deleteTask(body) {
@@ -86,9 +88,9 @@ function completeTask(body) {
 
 // Returns index of task to edit
 function getIndexOfRequestedItem(body) {
-    return pageConstructor.getPassedId(body);
+    return Constructor.getPassedId(body);
 }
 
-module.exports = { router:router, taskWorker:worker };
+module.exports = router;
 
 
