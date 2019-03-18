@@ -56,8 +56,10 @@ class Utils {
     }
 
     static deleteFolderWithAttachment(directory){
-        Utils.deleteFilesInFolder(directory);
-        fs.rmdirSync(directory);
+        if (fs.existsSync(directory)) {
+            Utils.deleteFilesInFolder(directory);
+            fs.rmdirSync(directory);
+        }
     }
 
     static getDateAsObjectOfStrings(date) {
