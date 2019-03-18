@@ -5,7 +5,8 @@ const logger = require('morgan');
 const fileUpload = require('express-fileupload');
 
 
-const index = require('./routes/index');
+const indexModule = require('./routes/index');
+const index = indexModule.router;
 const downloadRouter = require('./routes/download');
 
 

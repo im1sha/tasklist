@@ -5,14 +5,20 @@ const path = require('path');
 
 class Utils {
 
-    static moveFileInNewDirectory(parentDir, newDir, file) {
+    static rewriteFolderWithAttachment(parentDir, newDir, file) {
         let result = null;
+
         if (file) {
-            const attachmentDir = path.join(parentDir, newDir);
+
+            const attachmentDir = path.join(String(parentDir), String(newDir));
+
             if (!fs.existsSync(attachmentDir)){
                 fs.mkdirSync(attachmentDir);
             }
-            result = this.moveFileInDir(file, attachmentDir);
+
+            Utils.deleteFilesInFolder(attachmentDir);
+
+            result = Utils.moveFileInFolder(file, attachmentDir);
         }
 
         return {
@@ -21,7 +27,7 @@ class Utils {
         };
     }
 
-    static moveFileInDir(file, attachmentDir){
+    static moveFileInFolder(file, attachmentDir){
         const attachmentName = file.name;
         const attachmentPath = path.join(attachmentDir, attachmentName);
 
@@ -34,21 +40,24 @@ class Utils {
         };
     }
 
-    static emptyDirectory(directory) {
-        fs.readdir(directory, (err, files) => {
-            if (err) { return false; }
-            for (const file of files) {
-                fs.unlink(path.join(directory, file), err => {
-                    if (err) { return false; }
-                });
-            }
-        });
+    static deleteFilesInFolder(directory) {
+
+        if (!fs.existsSync(directory)){
+            return false;
+        }
+
+        let files = fs.readdirSync(directory);
+
+        for (const file of files) {
+            fs.unlinkSync(path.join(directory, file));
+        }
+
         return true;
     }
 
-    static isObjectEmpty(obj) {
-        return (Object.entries(obj).length === 0)
-            && (obj.constructor === Object);
+    static deleteFolderWithAttachment(directory){
+        Utils.deleteFilesInFolder(directory);
+        fs.rmdirSync(directory);
     }
 
     static getDateAsObjectOfStrings(date) {

@@ -2,8 +2,9 @@ const Task = require("./task");
 const Utils = require('./utils');
 
 
-const MAX_DISPLAYED_LENGTH = 30;
+const MAX_DISPLAYED_LENGTH = 15;
 const NEW_ITEM_INDEX = Task.getNewItemIndex();
+const ATTACHMENT_PAGE_ID = "taskAttachment";
 
 const styles = {
     checked: 'checked',
@@ -23,7 +24,7 @@ const inputFields = {
 const staticPlaceholders = {
     // LABELS
     titleText: "Task list",
-    idText: "&#9679;",
+    idText: String.fromCharCode(9679) ,
     nameText: "Task",
     dateText: "Date",
 
@@ -37,6 +38,13 @@ const staticPlaceholders = {
 };
 
 
+const filters = {
+    completenessFilter: "completeness",
+    dateFilter: 'date',
+    completeness: { all: "all", incomplete: 'incomplete', completed: 'completed'},
+    date : { all: 'all',  upcoming: 'upcoming', expired: 'expired'}
+};
+
 // main form placeholders
 const defaultMainFormPlaceholders = {
     taskDateValue : "",
@@ -47,11 +55,11 @@ const defaultMainFormPlaceholders = {
 };
 
 const editCheckboxStyles = {
-    checkboxDontChangeValue: styles.checked,
+    checkboxUpdateValue: styles.checked,
     checkboxCompleteValue: styles.empty,
 };
 const defaultCheckboxesStyles = {
-    checkboxDontChangeValue: styles.disabled,
+    checkboxUpdateValue: styles.disabled,
     checkboxCompleteValue: styles.empty,
 };
 
@@ -70,28 +78,35 @@ const tasksProperties = Task.getRenderedPropertiesNamesAsList();
 
 const checkboxesNames = {
     completeCheckbox: "completeCheckbox",
-    dontChangeFileCheckbox:'dontChangeFileCheckbox',
+    updateCheckbox:'updateCheckbox',
 };
+
+const radiosPlaceholdersNames = {
+    completenessAllStyle: 'completenessAllStyle',
+    completenessIncompleteStyle: 'completenessIncompleteStyle',
+    completenessCompletedStyle:'completenessCompletedStyle',
+    dateAllStyle:'dateAllStyle',
+    dateUpcomingStyle:'dateUpcomingStyle',
+    dateExpiredStyle:'dateExpiredStyle',
+}
 
 //taskCompletedAsString
 
 
 class PageConstructor{
 
-    #worker;
-
     constructor(worker) {
-        this.#worker = worker;
+        this.worker = worker;
     }
 
     static isCreateAtMainForm(body){
         return (body[inputFields.isMainForm] === "true") &&
-            (body[inputFields.isMainFormEdited] === "true");
+            (body[inputFields.isMainFormEdited] !== "true");
     }
 
     static isEditAtMainForm(body) {
         return (body[inputFields.isMainForm] === "true") &&
-            (body[inputFields.isMainFormEdited] !== "true");
+            (body[inputFields.isMainFormEdited] === "true");
     }
 
     static isDeleteRequest(body) {
@@ -109,6 +124,10 @@ class PageConstructor{
             (body[inputFields.edit] === "true");
     }
 
+    static shouldRewriteAttachment(body){
+        return PageConstructor.isCheckboxOn(body[checkboxesNames.updateCheckbox]);
+    }
+
     static getPassedId(body){
         return parseInt(body[inputFields.taskId]);
     }
@@ -116,7 +135,7 @@ class PageConstructor{
     static retrieveAttachment(files) {
         return (files === undefined)
                 ? undefined
-                : files[tasksProperties.taskAttachmentFileName];
+                : files[ATTACHMENT_PAGE_ID];// CORRECT
     }
 
     static retrieveTaskProperties(body){
@@ -126,7 +145,7 @@ class PageConstructor{
             = body[tasksProperties.taskDate];
 
         result[tasksProperties.taskCompleted]
-            = body[checkboxesNames.completeCheckbox];
+            = PageConstructor.isCheckboxOn(body[checkboxesNames.completeCheckbox]);
 
         result[tasksProperties.taskName]
             = body[tasksProperties.taskName];
@@ -134,51 +153,99 @@ class PageConstructor{
         return result;
     }
 
+    static isCheckboxOn(checkboxText){
+        return checkboxText === 'on';
+    }
+
     getPlaceholders(req, isMainFormEdited, mainFormTaskNumber) {
 
         const tasksToShow = [];
+        let mainFormTask = null;
 
-        if (Utils.isObjectEmpty(req.query)) {
-            this.#worker.getTasksAsRenderedData()
-                .forEach((value, index) =>
-                    tasksToShow.push(PageConstructor.#createTaskEntry(value, index))
-            );
-        }
+        this.worker.getTasksAsRenderedData().forEach((value) => {
+            if (value && PageConstructor.shouldItemToShow(value, req.query)) {
+                const entry = PageConstructor.createTaskEntry(value);
+                tasksToShow.push(entry);
+                if (entry.taskId === mainFormTaskNumber) {
+                    mainFormTask = entry;
+                }
+            }
+        });
 
-        // else {
-        //     const statuses = req.query[tasksProperties.taskCompleted];
-        //     let filters;
-        //
-        //     if (Array.isArray(statuses)) {
-        //         filters = statuses;
-        //     } else {
-        //         filters = [];
-        //         filters.push(statuses);
-        //     }
-        //
-        //     let filteredTasks = taskWorker.tasks.filter(task =>
-        //         filters.includes(task.isCompleted().toString())
-        //     );
-        //     for (let i = 0; i < filteredTasks.length; i++) {
-        //         tasksToShow.push(createTaskEntry(filteredTasks[i], i));
-        //     }
-        // }
+        let placeholdersForRadioButtons = PageConstructor.getPlaceholdersForRadioButtons(req.query);
 
         const mainFormPlaceholders =
-            PageConstructor.#getMainFormPlaceholders(isMainFormEdited,
-                mainFormTaskNumber,
-                tasksToShow[mainFormTaskNumber]);
+            PageConstructor.getMainFormPlaceholders(isMainFormEdited, mainFormTaskNumber, mainFormTask);
 
 
         return  {
             content : tasksToShow,
             ...staticPlaceholders,
             ...mainFormPlaceholders,
+            ...placeholdersForRadioButtons,
         };
     }
 
+    static getPlaceholdersForRadioButtons(query){
 
-    static #getMainFormPlaceholders(isMainFormEdited, mainFormTaskNumber, task) {
+        let result = {};
+
+        // default values
+        result[radiosPlaceholdersNames.completenessAllStyle] = '';
+        result[radiosPlaceholdersNames.completenessIncompleteStyle] = '';
+        result[radiosPlaceholdersNames.completenessCompletedStyle] = '';
+        result[radiosPlaceholdersNames.dateAllStyle] = '';
+        result[radiosPlaceholdersNames.dateExpiredStyle] = '';
+        result[radiosPlaceholdersNames.dateUpcomingStyle] = '';
+
+
+        if (query[filters.completenessFilter] === filters.completeness.completed){
+            result[radiosPlaceholdersNames.completenessCompletedStyle] = styles.checked;
+        }else if (query[filters.completenessFilter] === filters.completeness.incomplete){
+            result[radiosPlaceholdersNames.completenessIncompleteStyle] = styles.checked;
+        }else{
+            result[radiosPlaceholdersNames.completenessAllStyle] = styles.checked;
+        }
+
+        if (query[filters.dateFilter] === filters.date.expired){
+            result[radiosPlaceholdersNames.dateExpiredStyle] = styles.checked;
+        }else if (query[filters.dateFilter] === filters.date.upcoming){
+            result[radiosPlaceholdersNames.dateUpcomingStyle] = styles.checked;
+        }else{
+            result[radiosPlaceholdersNames.dateAllStyle] = styles.checked;
+        }
+
+        return result;
+    }
+
+    static shouldItemToShow(item, query) {
+
+        let result = true;
+
+        if (query[filters.completenessFilter] === filters.completeness.completed){
+            if (!item[tasksProperties.taskCompleted]){
+                result &= false;
+            }
+        } else if (query[filters.completenessFilter] === filters.completeness.incomplete){
+            if (item[tasksProperties.taskCompleted]){
+                result &= false;
+            }
+        }
+
+        if (query[filters.dateFilter] === filters.date.expired){
+            if (!item[tasksProperties.taskExpired]){
+                result &= false;
+            }
+        } else if (query[filters.dateFilter] === filters.date.upcoming){
+            if (item[tasksProperties.taskExpired]){
+                result &= false;
+            }
+        }
+
+        return result;
+    }
+
+    static getMainFormPlaceholders(isMainFormEdited, mainFormTaskNumber, task) {
 
         let checkboxValues = defaultCheckboxesStyles;
         let placeholders = defaultMainFormPlaceholders;
@@ -186,15 +253,12 @@ class PageConstructor{
         if (isMainFormEdited === true) {
             checkboxValues = editCheckboxStyles;
 
-
-
-
             placeholders = {
                 isMainFormEdited: "true",
                 mainFormTaskId: mainFormTaskNumber.toString(),
                 taskNameBackValue: task[tasksProperties.taskName],
                 taskNameValue: task[tasksProperties.taskName],
-                taskDateValue: Utils.createDateInStandardFormat(task[tasksProperties.taskDate]),
+                taskDateValue: Utils.createDateInStandardFormat(task.taskDateValue), // CORRECT
             };
         }
 
@@ -204,12 +268,12 @@ class PageConstructor{
         }
     }
 
-
-    static #createTaskEntry(task, taskId) {
+    static createTaskEntry(task) {
         return {
-            taskId: taskId,
+            taskId: task[tasksProperties.taskId],
             taskName: task[tasksProperties.taskName].substr(0, MAX_DISPLAYED_LENGTH),
             taskDate: Utils.formatDateForOutput(task[tasksProperties.taskDate]),
+            taskDateValue: task[tasksProperties.taskDate],
             taskAttachmentFileName: task[tasksProperties.taskAttachmentFileName].substr(0, MAX_DISPLAYED_LENGTH),
             taskCompletedAsString: task[tasksProperties.taskCompleted]
                 ? taskStatuses.completed

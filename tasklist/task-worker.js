@@ -1,5 +1,5 @@
 const Task = require('./task');
-const Utils  = require('utils');
+const Utils  = require('./utils');
 
 const taskProperties = Task.getRenderedPropertiesNamesAsList();
 const NEW_ITEM_INDEX = Task.getNewItemIndex();
@@ -9,106 +9,108 @@ const fs = require('fs');
 
 class TaskWorker {
 
-    #tasks = [];
+    constructor() {
+        this.tasks = [];
+        this.initializeJsonStorage();
+        this.initializeAttachmentsStorage()
+    }
 
-    constructor() { }
+    getTasksDirectory() {
+        return './tasks';
+    }
+    getTasksPath() {
+        return path.join(this.getTasksDirectory(),'tasks.dat');
+    }
+    getAttachmentsDirectory() {
+        return path.join(this.getTasksDirectory(), 'attachments');
+    }
 
-    #serialize(taskArray) {
+    serialize(taskArray) {
         return JSON.stringify(taskArray);
     }
-    #deserialize(jsonString) {
+    deserialize(jsonString) {
         const deserialized = JSON.parse(jsonString);
         const taskArray = [];
 
         if (Array.isArray(deserialized)) {
-            deserialized.forEach(function (element) {
-                let task = Task.fromObject(element);
-                if (task != null) {
-                    taskArray.push(task);
-                }
-            });
+            deserialized.forEach(e => taskArray.push(Task.fromObject(e)));
         }
 
         return taskArray;
     }
 
-    #getTasksDirectory() {
-        return './tasks';
+    updateJsonStorage() {
+       fs.writeFileSync(this.getTasksPath(), this.serialize(this.tasks));
     }
-    #getTasksPath() {
-        return path.join(this.#getTasksDirectory(),'tasks.dat');
-    }
-    #getAttachmentsDirectory() {
-        return path.join(#getTasksDirectory(), 'attachments');
-    }
-
-    updateStorage() {
-
-        // TODO : delete files of removed items
-
-        fs.writeFileSync(this.#getTasksPath(), this.#serialize(this.#tasks));
-    }
-    initializeStorage() {
-
-        if (!fs.existsSync(#getTasksDirectory())) {
-            fs.mkdirSync(#getTasksDirectory());
+    initializeJsonStorage() {
+        if (!fs.existsSync(this.getTasksDirectory())) {
+            fs.mkdirSync(this.getTasksDirectory());
         }
-        if (!fs.existsSync(#getAttachmentsDirectory())) {
-            fs.mkdirSync(#getAttachmentsDirectory());
+        if (fs.existsSync(this.getTasksPath())) {
+            this.tasks = this.deserialize(fs.readFileSync(this.getTasksPath()));
         }
-
-        if (fs.existsSync(#getTasksPath())) {
-            this.#tasks = #deserialize(fs.readFileSync(#getTasksPath()));
+        this.updateJsonStorage();
+    }
+    initializeAttachmentsStorage() {
+        if (!fs.existsSync(this.getAttachmentsDirectory())) {
+            fs.mkdirSync(this.getAttachmentsDirectory());
         }
-
-        this.updateStorage();
     }
 
-    #getTasksCount() {
-        return (this.#tasks === null)
+    getTasksCount() {
+        return (this.tasks === null)
             ? 0
-            : this.#tasks.length;
+            : this.tasks.length;
     }
     isIndexValid(id) {
-        return !((id > this.#getTasksCount() || id < 0) && (id !== NEW_ITEM_INDEX));
+        return !((id > this.getTasksCount() || id < 0) && (id !== NEW_ITEM_INDEX));
     }
     getNewItemIndex(){
-        return this.#getTasksCount();
+        return this.getTasksCount();
     }
 
     getTasksAsRenderedData() {
-        const copy = [];
-        for (let value of this.#tasks) {
+        const tasks = [];
+        for (let value of this.tasks) {
             if (value) {
-                copy.push(value.getRenderedData());
+                tasks.push(value.getRenderedData());
             }
         }
-        return copy;
+        return tasks;
     }
 
-    deleteTask(id) {
-        this.#tasks.splice(id, 1);
-    }
     completeTask(id) {
-        this.#tasks[id].complete();
+        this.tasks[id].changeCompleteness(true);
     }
-    #changeTask(properties, attachment, taskId) {
-        const task = this.#tasks[taskId];
+
+    //
+    // deleteTask() / changeTask() / createTask() affects filesystem
+    //
+
+    deleteTask(id) {
+        this.tasks[id] = null;
+        Utils.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(id)));
+    }
+    changeTask(properties, attachment, rewriteAttachment, taskId) {
+        const task = this.tasks[taskId];
         task.changeDate(new Date(properties[taskProperties.taskDate]));
         task.changeName(properties[taskProperties.taskName]);
         task.changeCompleteness(properties[taskProperties.taskCompleted]);
-        if (attachment) {
-            const pathOfAttachmentDir = path.join(#getAttachmentsDirectory(), taskId);
-            const pathOfAttachmentFile = path.join(pathOfAttachmentDir, attachment.name);
-            Utils.emptyDirectory(pathOfAttachmentDir);
-            Utils.moveFileInDir(attachment, pathOfAttachmentDir);
-            task.changeAttachment(pathOfAttachmentFile, attachment.name);
+        if (rewriteAttachment) {
+            let result;
+            if (attachment) {
+                result = Utils.rewriteFolderWithAttachment(this.getAttachmentsDirectory(), String(taskId), attachment);
+            } else {
+                Utils.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(taskId)));
+            }
+            task.changeAttachment(result ? result.attachmentPath : null, result ? result.attachmentName : "No file");
         }
     }
-    #createTask(properties, attachment, taskId) {
-        const createResult =  Utils.moveFileInNewDirectory(this.#getAttachmentsDirectory(), taskId, attachment);
+    createTask(properties, attachment, rewriteAttachment, taskId) {
+        const createResult = Utils.rewriteFolderWithAttachment(this.getAttachmentsDirectory(), taskId, attachment);
 
-        this.#tasks[taskId] = new Task(
+        this.tasks[taskId] = new Task(
+            taskId,
             properties[taskProperties.taskName],
             new Date(properties[taskProperties.taskDate]),
             createResult.attachmentPath,
@@ -119,6 +121,7 @@ class TaskWorker {
         );
     }
 
+
     // properties is { },
     // following properties of this object are defined:
     // properties[taskProperties.taskDate]
@@ -126,7 +129,7 @@ class TaskWorker {
     // properties[taskProperties.taskName]
 
     // attachment is undefined or file
-    insertTask(properties, attachment, id = NEW_ITEM_INDEX) {
+    insertTask(properties, attachment, rewriteAttachment, id = NEW_ITEM_INDEX) {
 
         if (!this.isIndexValid(id)) {
             throw new Error("invalid index passed");
@@ -135,9 +138,9 @@ class TaskWorker {
         const taskId = isTaskNew ? this.getNewItemIndex() : id;
 
         if (isTaskNew)  {
-            #createTask(properties, attachment, taskId);
+            this.createTask(properties, attachment, rewriteAttachment, taskId);
         } else {
-            #changeTask(properties, attachment, taskId);
+            this.changeTask(properties, attachment, rewriteAttachment, taskId);
         }
     }
 }

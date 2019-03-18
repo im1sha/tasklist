@@ -1,89 +1,83 @@
 const fs = require('fs');
-const Utils = require("Utils");
+const Utils = require("./utils");
 
 class Task {
-
-    #taskAttachmentFileName; // string
-    #taskAttachmentPath; // string
-    #taskDate; // date
-    #taskName; // string
-    #taskCompleted; // boolean
-
-    constructor(taskName,
+    constructor(taskId,
+                taskName,
                 taskDate,
-                taskAttachmentPath = null,
-                taskAttachmentFileName = null,
-                completed = false) {
-        this.#taskAttachmentFileName = taskAttachmentFileName;
-        this.#taskAttachmentPath = taskAttachmentPath;
-        this.#taskDate = taskDate;
-        this.#taskName = taskName;
-        this.#taskCompleted = completed;
+                taskAttachmentPath,
+                taskAttachmentFileName,
+                taskCompleted) {
+        this.taskId = taskId;
+        this.taskAttachmentFileName = taskAttachmentFileName;
+        this.taskAttachmentPath = taskAttachmentPath;
+        this.taskDate = taskDate;
+        this.taskName = taskName;
+        this.taskCompleted = taskCompleted;
     }
 
-
-
-    // doesnt return path
-    getRenderedData() {
-        return {
-            taskName: this.getName(),
-            taskDate: this.getExpireDate(),
-            taskAttachmentFileName: this.getAttachmentFileName(),
-            taskAttachmentExists: !!this.#taskAttachmentPath,
-            taskCompleted: this.isCompleted(),
-            taskExpired: this.isExpired(),
-        };
+    getId(){
+        return this.taskId;
     }
-
     getAttachmentPath(){
-        return this.#taskAttachmentPath;
+        return this.taskAttachmentPath;
     }
     getAttachmentFileName(){
-        return this.#taskAttachmentFileName;
+        return this.taskAttachmentFileName;
     }
     getName(){
-        return this.#taskName;
+        return this.taskName;
     }
     getExpireDate(){
-        return new Date(this.#taskDate.getTime());
+        return new Date(this.taskDate.getTime());
     }
     isCompleted() {
-        return this.#taskCompleted;
+        return this.taskCompleted;
     }
-
     isExpired() {
-        return (!this.isCompleted() && (this.#taskDate < new Date()));
+        return (!this.isCompleted() && (this.taskDate < new Date()));
     }
 
     changeCompleteness(state) {
-        this.#taskCompleted = state;
+        this.taskCompleted = state;
     }
     changeDate(date){
         if (!Utils.isDate(date)){
             throw new Error('invalid date');
         }
 
-        this.#taskDate = date;
+        this.taskDate = date;
     }
     changeName(name){
-        #taskName = name;
+        this.taskName = name;
     }
-
     changeAttachment(path, name){
-        #taskAttachmentPath = path;
-        #taskAttachmentFileName = name;
+        this.taskAttachmentPath = path;
+        this.taskAttachmentFileName = name;
     }
-
 
     static getNewItemIndex() { return -1; }
 
+    // doesnt return path
+    getRenderedData() {
+        return {
+            taskId: this.getId(),
+            taskName: this.getName(),
+            taskDate: this.getExpireDate(),
+            taskAttachmentFileName: this.getAttachmentFileName(),
+            taskAttachmentExists: !!this.getAttachmentPath(),
+            taskCompleted: this.isCompleted(),
+            taskExpired: this.isExpired(),
+        };
+    }
     static getRenderedPropertiesNamesAsList() {
         return {
-            taskCompleted: Task.getTaskCompletedPropertyName(),
-            taskAttachmentFileName: Task.getTaskAttachmentFileNamePropertyName(),
-            taskAttachmentExists: "taskAttachmentExists",
+            taskId: this.getTaskIdPropertyName(),
             taskName: Task.getTaskNamePropertyName(),
             taskDate: Task.getTaskDatePropertyName(),
+            taskAttachmentFileName: Task.getTaskAttachmentFileNamePropertyName(),
+            taskAttachmentExists: "taskAttachmentExists",
+            taskCompleted: Task.getTaskCompletedPropertyName(),
             taskExpired: 'taskExpired', //
         };
     }
@@ -92,23 +86,31 @@ class Task {
     static getTaskAttachmentPathPropertyName() { return "taskAttachmentPath"; }
     static getTaskNamePropertyName() { return "taskName"; }
     static getTaskDatePropertyName() { return "taskDate"; }
+    static getTaskIdPropertyName() { return "taskId"; }
 
     static fromObject(obj) {
-        if (!obj.hasOwnProperty(Task.getTaskNamePropertyName()) ||
+        if (!obj ||
+            // has all the properties
+            !obj.hasOwnProperty(Task.getTaskIdPropertyName()) ||
+            !obj.hasOwnProperty(Task.getTaskNamePropertyName()) ||
             !obj.hasOwnProperty(Task.getTaskDatePropertyName()) ||
-            !obj.hasOwnProperty(Task.getTaskCompletedPropertyName()) ||
             !obj.hasOwnProperty(Task.getTaskAttachmentFileNamePropertyName()) ||
             !obj.hasOwnProperty(Task.getTaskAttachmentPathPropertyName()) ||
-            isNaN(Date.parse(obj.taskDate)) ||
-            ((obj.taskAttachmentPath !== null) && !fs.existsSync(obj.taskAttachmentPath))) {
+            !obj.hasOwnProperty(Task.getTaskCompletedPropertyName()) ||
+            // date is valid
+            isNaN(Date.parse(obj[Task.getTaskDatePropertyName()])) ||
+            // if Attachment isn't null => Attachment exists
+            ((obj[Task.getTaskAttachmentPathPropertyName()] !== null) &&
+                !fs.existsSync(obj[Task.getTaskAttachmentPathPropertyName()]))) {
             return null;
         } else {
             return new Task(
-                obj.taskName,
-                new Date(obj.taskDate),
-                obj.taskAttachmentPath,
-                obj.taskAttachmentFileName,
-                obj.taskCompleted
+                obj[Task.getTaskIdPropertyName()],
+                obj[Task.getTaskNamePropertyName()],
+                new Date(obj[Task.getTaskDatePropertyName()]),
+                obj[Task.getTaskAttachmentPathPropertyName()],
+                obj[Task.getTaskAttachmentFileNamePropertyName()],
+                obj[Task.getTaskCompletedPropertyName()]
             );
         }
     }
