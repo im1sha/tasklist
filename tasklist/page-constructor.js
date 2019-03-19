@@ -237,7 +237,7 @@ class PageConstructor{
                 result &= false;
             }
         } else if (query[filters.dateFilter] === filters.date.upcoming){
-            if (item[tasksProperties.taskExpired]){
+            if (item[tasksProperties.taskExpired] || item[tasksProperties.taskDate] < new Date()){
                 result &= false;
             }
         }
@@ -271,7 +271,8 @@ class PageConstructor{
     static createTaskEntry(task) {
         return {
             taskId: task[tasksProperties.taskId],
-            taskName: task[tasksProperties.taskName].substr(0, MAX_DISPLAYED_LENGTH),
+            taskName: task[tasksProperties.taskName],
+            taskDisplayedName: task[tasksProperties.taskName].substr(0, MAX_DISPLAYED_LENGTH),
             taskDate: Utils.formatDateForOutput(task[tasksProperties.taskDate]),
             taskDateValue: task[tasksProperties.taskDate],
             taskAttachmentFileName: task[tasksProperties.taskAttachmentFileName].substr(0, MAX_DISPLAYED_LENGTH),
