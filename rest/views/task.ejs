@@ -1,0 +1,62 @@
+<!-- expiredClass-->
+<tr <%= entryStyle %> >
+
+    <td><%= idText %></td>
+
+    <td><%= taskDisplayedName %></td>
+
+    <td><%= taskDate %></td>
+
+    <!-- taskCompletedText-->
+    <td><%= taskCompletedAsString %></td>
+
+    <td>
+        <!-- taskCompletedDisabled -->
+        <form method="post" >
+            <input type="submit"
+                   class="btn btn-primary btn-xs"
+                   <%= completeButtonStyle %>
+                   data-button='completeButton'
+                   value="<%= completeText %>">
+            <input type="hidden" name="taskId" value="<%= taskId %>">
+            <input type="hidden" name="complete" value="true">
+            <input type="hidden" name="isMainForm"  value="" />
+        </form>
+    </td>
+
+    <td><%= taskAttachmentFileName %></td>
+
+    <td>
+        <!-- taskAttachmentDisabled -->
+        <form method="get" action="/download">
+            <input type="submit" class="btn btn-default btn-xs"
+                   <%= downloadButtonStyle %>
+                   data-button='downloadButton'
+                   value="<%= downloadText %>">
+            <input type="hidden" name="taskId" value="<%= taskId %>">
+        </form>
+    </td>
+
+    <td>
+        <form method="post">
+            <input type="submit" class="btn btn-default btn-xs"
+                data-button='editButton'
+                value="<%= editText %>">
+            <input type="hidden" name="taskId" value="<%= taskId %>">
+            <input type="hidden" name="edit" value="true">
+            <input type="hidden" name="isMainForm"  value="" />
+        </form>
+    </td>
+
+    <td>
+        <form method="post">
+            <input type="submit" class="btn btn-danger btn-xs"
+               data-button='removeButton'
+               value="<%= removeText %>">
+            <input type="hidden" name="taskId" value="<%= taskId %>">
+            <input type="hidden" name="remove" value="true">
+            <input type="hidden" name="isMainForm"  value="" >
+        </form>
+    </td>
+
+</tr>

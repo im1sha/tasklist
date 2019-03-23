@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title><%= titleText %></title>
+    <link href='/stylesheets/style.css'
+          rel='stylesheet' />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</head>
+
+<body>
+
+    <h2><%= titleText %></h2>
+
+    <!-- MAIN FORM -->
+
+    <form method="post" encType="multipart/form-data">
+
+        <!-- Input Values of isMainFormEdited   -->
+        <!-- 1) Created | ""  -->
+        <!-- 2) Edited  | "true"  -->
+        <input type="hidden" name="isMainFormEdited"  value="<%= isMainFormEdited %>" />
+        <input type="hidden" name="isMainForm"  value="true" />
+        <input type="hidden" name="taskId"  value="<%= mainFormTaskId %>" />
+
+        <div class="form-group">
+            <label for="taskName"><%= nameText %></label>
+            <!--placeholder="* Required."-->
+            <input required maxlength="500"  tabindex="1"
+                   placeholder="<%= taskNameBackValue %>"
+                   class="form-control" name="taskName"
+                   value="<%= taskNameValue %>" >
+        </div>
+
+        <div class="form-group">
+            <label for="taskDate"><%= dateText %></label>
+            <!--add required-->
+            <input required tabindex="2" class="form-control"
+                   type="datetime-local" name="taskDate"
+                   max="9999-12-31T23:59"
+                   value="<%= taskDateValue %>"  >
+        </div>
+
+        <div class="form-group">
+            <label for="taskAttachment">Attachment</label>
+            <input tabindex="3" class="form-control"
+                   type="file" name="taskAttachment" >
+        </div>
+
+        <div class="form-group">
+            <input tabindex="4"
+                   type="checkbox" name="updateCheckbox"
+                    <%= checkboxUpdateValue %> >
+            <label for="updateCheckbox">Update attachment</label>
+        </div>
+
+        <div>
+            <input tabindex="5"
+                   type="checkbox" name="completeCheckbox"
+                    <%= checkboxCompleteValue %> >
+            <label for="completeCheckbox">Completed</label>
+        </div>
+
+        <div class="panel-body">
+            <button tabindex="6" type="submit" class="btn btn-primary">
+                <%= saveText %></button>
+            <input tabindex="7" type="reset" class="btn btn-danger"
+                   value="<%= resetText %>">
+        </div>
+    </form>
+
+    <!-- FILTERS -->
+
+   <form method="get" class="form-group" >
+       <span>
+           <label>Completeness</label>
+           <div>
+               <span>
+                   <input type="radio" name="completeness" value="all" <%= completenessAllStyle %> >
+                   <label>All</label>
+               </span>
+               <span >
+                   <input type="radio" name="completeness" value="incomplete" <%= completenessIncompleteStyle %> >
+                   <label>Incomplete</label>
+               </span>
+               <span >
+                   <input type="radio" name="completeness" value="completed"   <%= completenessCompletedStyle %> >
+                   <label>Completed</label>
+               </span>
+           </div>
+       </span>
+       <span>
+           <label>Date</label>
+           <div>
+               <span >
+                   <input type="radio" name="date" value="all" <%= dateAllStyle %>  >
+                   <label>All</label>
+               </span>
+               <span>
+                   <input type="radio" name="date" value="upcoming" <%= dateUpcomingStyle %> >
+                   <label>Upcoming</label>
+               </span>
+                 <span>
+                   <input type="radio" name="date" value="expired"  <%= dateExpiredStyle %>  >
+                   <label>Expired</label>
+               </span>
+           </div>
+       </span>
+       <div class="panel-body">
+           <button type="submit" class="btn btn-primary">filter</button>
+       </div>
+   </form>
+
+    <!-- TASKS LIST -->
+
+    <table class="table table-condensed table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th><%= nameText %></th>
+                <th><%= dateText %></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% content.forEach(function(task) {%>
+                <%- include('task', task); %>
+            <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
