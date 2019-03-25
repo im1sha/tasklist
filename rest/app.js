@@ -4,28 +4,35 @@ const express = require('express');
 const logger = require('morgan');
 const fileUpload = require('express-fileupload');
 
+//
+// "mongodb": "^3.0.15",
+// "monk": "^6.0.5"
+//const mongo = require('mongodb');
+// const monk = require('monk');
+// const db = monk('localhost:27017/tasklist');
 
 const indexModule = require('./routes/index');
 const index = indexModule.router;
-const downloadRouter = require('./routes/download');
-
 
 const app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(fileUpload());
 app.use(logger('dev'));
+
+app.use(fileUpload());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(function(req, res, next){
+//     req.db = db;
+//     next();
+// });
 
 app.use('/', index);
-app.use('/download', downloadRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

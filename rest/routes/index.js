@@ -1,88 +1,105 @@
 const express = require('express');
 const router = express.Router();
 
-const Task = require('../task');
-const NEW_ITEM_INDEX = Task.getNewItemIndex();
-
-const TaskWorker = require('../task-worker');
+const TaskWorker = require('../scripts/task-worker');
 const worker = new TaskWorker();
 
-const Constructor = require('../page-constructor');
+const Constructor = require('../scripts/page-constructor');
 const pageConstructor = new Constructor(worker);
 
-router.get('/', renderPage);
-router.post('/', renderPage);
+// todo
+//      if (!isEditRequest) worker.updateJsonStorage();
 
-function renderPage(req,res) {
 
-    let isEditRequest = false;
-    let mainFormTaskNumber = NEW_ITEM_INDEX;
+//201 Created
+//204 No Content
+//400 Bad Request
+//404 Not Found
 
-    //
-    // process state-changing actions here
-    //
-    if (Constructor.isEditAtMainForm(req.body)) {
-        //
-        // Working with main form
-        // editing existing task
-        //
-        editTask(req, Constructor.shouldRewriteAttachment(req.body));
 
-    } else if (Constructor.isCreateAtMainForm(req.body)) {
-        //
-        // Working with main form
-        // creating new task
-        //
-        addTask(req);
+// todo check query content here ? OR on single router?
+//  router.all();
 
-    } else if (Constructor.isDeleteRequest(req.body)) {
-        // delete existing task
-        deleteTask(req.body);
-
-    } else if (Constructor.isCompleteRequest(req.body)) {
-        // complete existing task
-        completeTask(req.body);
-
-    } else if (Constructor.isEditRequest(req.body)) {
-
-        isEditRequest = true;
-        mainFormTaskNumber = getIndexOfRequestedItem(req.body);
+router.param('id', function (req, res, next, id) {
+    if(Constructor.retrieveIndexOfRequestedElement(id) === null){
+        res.sendStatus(400).end();
+    } else {
+        next();
     }
+});
 
-    const placeholders = pageConstructor.getPlaceholders(req, isEditRequest, mainFormTaskNumber);
+router.get('/favicon.ico', (req, res) => res.sendStatus(204).end());
 
-    res.render('index', placeholders);
 
-    if (!isEditRequest) {
-        worker.updateJsonStorage();
+// downloads 1 attachment
+router.get('/api/attachments/:id', (req, res) => {
+    const pathToAttachment = worker.getAttachmentPathById(req.params);
+    if (pathToAttachment) {
+        res.status(200).download(pathToAttachment);
+    } else {
+        res.sendStatus(404).end();
     }
-}
+});
 
-function editTask(req, rewriteAttachment) {
-    addTask(req, rewriteAttachment, getIndexOfRequestedItem(req.body));
-}
+//
+// returns default page
+// client should ask for all the content if DOM is ready
+//
+router.get('/', (req, res) => {
+    res.status(200).render('index', Constructor.getPlaceholders());
+});
 
-function addTask(req, rewriteAttachment = true, id = NEW_ITEM_INDEX) {
-    worker.insertTask(
-        Constructor.retrieveTaskProperties(req.body),
-        Constructor.retrieveAttachment(req.files),
-        rewriteAttachment,
-        id);
-}
+// gets all the tasks
+router.get('/api/tasks', (req, res) => {
+    const tasksToSend
+        = pageConstructor.getFilteredTask(req.query);
 
-function deleteTask(body) {
-    worker.deleteTask(getIndexOfRequestedItem(body));
-}
+    if (tasksToSend) {
+        res.status(200).json(tasksToSend);
+    } else {
+        res.sendStatus(404).end();
+    }
+});
 
-function completeTask(body) {
-    worker.completeTask(getIndexOfRequestedItem(body));
-}
+// gets 1 task
+router.get('/api/tasks/:id', (req, res) => {
 
-// Returns index of task to edit
-function getIndexOfRequestedItem(body) {
-    return Constructor.getPassedId(body);
-}
+    const task = worker.getTaskDataById(req.params.id);
+    if (task !== null) {
+        res.status(200).json(task)
+    } else {
+        res.sendStatus(404).end();
+    }
+});
 
-module.exports = {router:router, worker:worker};
+// removes 1 task
+router.delete('/api/tasks/:id', (req, res) => {
+    const status = pageConstructor.deleteTask(id);
+    res.sendStatus(status).end();
+});
+
+// partial update of 1 task.
+// it should process complete request here
+router.patch('/api/tasks/:id', (req, res) => {
+    const status = pageConstructor.patchTask(req.body, req.files, req.params.id);
+    res.sendStatus(status).end();
+});
+
+// creates 1 task
+router.post('/api/tasks', (req, res) => {
+    const status = pageConstructor.createTask(req.body, req.files);
+    res.sendStatus(status).end();
+});
+
+// changes 1 task
+router.put('/api/tasks/:id', (req, res) => {
+    const status = pageConstructor.updateTask(req.body,
+        req.files, req.params.id);
+    res.sendStatus(status).end();
+});
+
+
+
+module.exports = { router:router };
 
 

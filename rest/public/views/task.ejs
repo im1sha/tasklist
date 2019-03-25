@@ -1,0 +1,33 @@
+<tr <%= entryStyle %> >
+    <td><%= idText %></td>
+    <td><%= taskDisplayedName %></td>
+    <td><%= taskDate %></td>
+    <td><%= taskCompletedAsString %></td>
+    <td>
+        <button class="btn btn-primary btn-xs"
+                <%= completeButtonStyle %>
+                data-button='completeButton'
+                data-id='<%= taskId %>'
+                value="complete"></button>
+    </td>
+    <td><%= taskAttachmentFileDisplayedName %></td>
+    <td>
+        <button class="btn btn-default btn-xs"
+                <%= downloadButtonStyle %>
+                data-button='downloadButton'
+                data-id="<%= taskId %>"
+                value="download"></button>
+    </td>
+    <td>
+        <button class="btn btn-default btn-xs"
+                data-button='editButton'
+                data-id="<%= taskId %>"
+                value="edit"></button>
+    </td>
+    <td>
+        <button type="submit" class="btn btn-danger btn-xs"
+                data-button='removeButton'
+                data-id="<%= taskId %>"
+                value="remove"></button>
+    </td>
+</tr>

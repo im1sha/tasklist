@@ -58,8 +58,7 @@ class Task {
 
     static getNewItemIndex() { return -1; }
 
-    // doesnt return path
-    getRenderedData() {
+    getData() {
         return {
             taskId: this.getId(),
             taskName: this.getName(),
@@ -70,7 +69,7 @@ class Task {
             taskExpired: this.isExpired(),
         };
     }
-    static getRenderedPropertiesNamesAsList() {
+    static getPropertiesNamesAsList() {
         return {
             taskId: this.getTaskIdPropertyName(),
             taskName: Task.getTaskNamePropertyName(),
@@ -88,20 +87,60 @@ class Task {
     static getTaskDatePropertyName() { return "taskDate"; }
     static getTaskIdPropertyName() { return "taskId"; }
 
-    static fromObject(obj) {
-        if (!obj ||
-            // has all the properties
-            !obj.hasOwnProperty(Task.getTaskIdPropertyName()) ||
-            !obj.hasOwnProperty(Task.getTaskNamePropertyName()) ||
-            !obj.hasOwnProperty(Task.getTaskDatePropertyName()) ||
-            !obj.hasOwnProperty(Task.getTaskAttachmentFileNamePropertyName()) ||
-            !obj.hasOwnProperty(Task.getTaskAttachmentPathPropertyName()) ||
-            !obj.hasOwnProperty(Task.getTaskCompletedPropertyName()) ||
-            // date is valid
-            isNaN(Date.parse(obj[Task.getTaskDatePropertyName()])) ||
-            // if Attachment isn't null => Attachment exists
-            ((obj[Task.getTaskAttachmentPathPropertyName()] !== null) &&
-                !fs.existsSync(obj[Task.getTaskAttachmentPathPropertyName()]))) {
+    // used when task was sent externally.
+    // It is NOT stored in local object, but in an external one.
+    static getTaskShouldUpdateAttachmentPropertyName() {
+        return "taskShouldUpdateAttachment";
+    }
+
+    //
+    static hasValidGeneralProperties(obj){
+        return obj.hasOwnProperty(Task.getTaskIdPropertyName())
+            && obj.hasOwnProperty(Task.getTaskNamePropertyName())
+            && obj.hasOwnProperty(Task.getTaskDatePropertyName())
+            && obj.hasOwnProperty(Task.getTaskAttachmentFileNamePropertyName())
+            && obj.hasOwnProperty(Task.getTaskCompletedPropertyName())
+            && !isNaN(Date.parse(obj[Task.getTaskDatePropertyName()]));
+    }
+
+    // serialized objects only
+    static hasValidLocalProperties(obj){
+        return obj.hasOwnProperty(Task.getTaskAttachmentPathPropertyName())
+            && ((obj[Task.getTaskAttachmentPathPropertyName()] === null)
+                || fs.existsSync(obj[Task.getTaskAttachmentPathPropertyName()]));
+    }
+
+    // external property
+    static hasValidExternalProperties(obj) {
+        return obj.hasOwnProperty(
+            Task.getTaskShouldUpdateAttachmentPropertyName());
+    }
+
+    static isValidObject(obj, isLocal = true) {
+        let isLocalPropertiesAppropriate = true;
+        let isExternalPropertiesAppropriate = true;
+
+        if (obj) {
+            if (isLocal === true) {
+                isLocalPropertiesAppropriate
+                    = Task.hasValidLocalProperties(obj);
+            } else {
+                isExternalPropertiesAppropriate
+                    = Task.hasValidExternalProperties(obj);
+            }
+        }
+
+        return obj
+            && isLocalPropertiesAppropriate
+            && isExternalPropertiesAppropriate
+            && Task.hasValidGeneralProperties(obj);
+    }
+
+    // isLocal === true : attachment is on server
+    // isLocal !== true : attachment is delivered with separated file
+    static fromObject(obj, isLocal = true) {
+
+        if (!Task.isValidObject(obj, isLocal)) {
             return null;
         } else {
             return new Task(
@@ -114,6 +153,8 @@ class Task {
             );
         }
     }
+
+
 }
 
 
