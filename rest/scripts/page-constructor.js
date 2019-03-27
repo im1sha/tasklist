@@ -1,5 +1,7 @@
 const Task = require("./task");
 const Utils = require('./utils');
+const ClientPageStructure = require('../public/scripts/client-page-structure');
+const ClientUtils = require( "../public/scripts/client-utils");
 
 const radiosPlaceholdersNames = {
     completenessAllStyle: 'completenessAllStyle',
@@ -9,44 +11,16 @@ const radiosPlaceholdersNames = {
     dateUpcomingStyle:'dateUpcomingStyle',
     dateExpiredStyle:'dateExpiredStyle',
 };
-
-const styles = {
-    checked: 'checked',
-    empty: '',
-    disabled: 'disabled',
-};
-
-const filters = {
-    completenessFilter: "completeness",
-    dateFilter: 'date',
-    completeness: { all: "all", incomplete: 'incomplete', completed: 'completed' },
-    date: { all: 'all', upcoming: 'upcoming', expired: 'expired' },
-};
-
+const styles = ClientPageStructure.getStyles();
+const filters = ClientPageStructure.getFilters();
 const staticPlaceholders = {
     titleText: "[tasklist]",
     nameText: "Task",
     dateText: "Date",
 };
-
-const defaultMainFormPlaceholders = {
-    taskDateValue : "",
-    taskNameBackValue: "* required",
-    taskNameValue: "",
-    mainFormTaskId: Task.getNewItemIndex().toString(),
-};
-
-const defaultCheckboxesStyles = {
-    checkboxUpdateValue: styles.disabled,
-    checkboxCompleteValue: styles.empty,
-};
-
-const parameters = {
-    id: 'id',
-};
-
+const defaultMainFormPlaceholders = ClientPageStructure.getDefaultMainFormPlaceholders();
+const defaultCheckboxesStyles = ClientPageStructure.getDefaultCheckboxesStyles();
 const attachmentProperty = 'Attachment';
-
 const tasksProperties = Task.getPropertiesNamesAsList(); // use when forming table header
 
 class PageConstructor {
@@ -153,12 +127,12 @@ class PageConstructor {
 
         // check whether complete request 've been passed
         if ((Object.keys(body).length === 1)
-            && body.hasOwnProperty(Task.getTaskCompletedPropertyName())
-            && (body[Task.getTaskCompletedPropertyName()] === 'true')) {
+            && body.hasOwnProperty(ClientUtils.getTaskCompletedPropertyName())
+            && (body[ClientUtils.getTaskCompletedPropertyName()] === true)) {
             return this.completeTask(id);
         }
 
-        return this.worker.getImplementedStatuses().unprocessableEntity;
+        return ClientUtils.getStatusCodes().unprocessableEntity;
     }
 
     completeTask(id) {

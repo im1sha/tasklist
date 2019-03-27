@@ -1,161 +1,188 @@
+class ClientInteraction {
 
-class ClientInteraction{
+    constructor(pageConstructor) {
+        this.pageConstructor = pageConstructor;
+    }
 
-    static GetUsers() {
-        let result = '';
+    startInteraction(){
+        this.renderTable();
+        ClientInteraction.registerHandlers();
+    }
 
-        $.ajax({
-            url: "/api/users",
-            type: "GET",
-            contentType: "application/json",
-            success: function (users) {
-                let rows = "";
-                $.each(users, function (index, user) {
-                    // добавляем полученные элементы в таблицу
-                    rows += row(user);
-                });
-                $("table tbody").append(rows);
+    static registerHandlers() {
+
+        $("#mainForm").submit(event => {
+            event.preventDefault(event);
+
+            // const id = this.elements["id"].value;
+
+            if ($("[taskId='-1']")  ) {
+
+            } else {
+
             }
+            
+            $("[href='default.htm']")
+
+            alert("OGO");
+            // todo
+            //  handle it
+        });
+
+        // $(document).on("click", "*",  () => {
+        //     // const id = $(this).data("id");
+        //     // GetUser(id);
+        // });
+        //JSON.stringify
+
+       // $("p").filter(".intro").css("background-color", "yellow");
+       // $("tr[data-rowid='" + user.id + "']").remove();
+        //$("table tbody").append(row(user));
+    }
+
+    // gets tasks and updates table
+    renderTable() {
+        const pageConstructor = this.pageConstructor;
+        $.ajax({
+            method: "GET",
+            url: "/api/tasks",
+            dataType: 'JSON',
+            success: function (data, textStatus, jqXHR) {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
+                    pageConstructor.renderTable(data);
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
         });
     }
 
+    // gets task and updates main form
+    renderMainForm(id) {
+        const pageConstructor = this.pageConstructor;
+
+        $.ajax({
+            method: "GET",
+            url: "api/tasks/" + String(id),
+            dataType: 'JSON',
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
+                    pageConstructor.renderForm(false, data);
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error:(jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
+
+    // deletes task from table
+    deleteTask(id) {
+        const pageConstructor = this.pageConstructor;
+
+        $.ajax({
+            method: "DELETE",
+            url: "api/tasks/" + String(id),
+            dataType: 'JSON',
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
+                    pageConstructor.deleteTaskFromTable(id);
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
+
+
+    completeTask(id) {
+        const pageConstructor = this.pageConstructor;
+
+        $.ajax({
+            method: "PATCH",
+            url: "api/tasks/" + String(id),
+            contentType: "application/json",
+            data: JSON.stringify({ taskCompleted: true }),
+            dataType: "JSON",
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
+                    pageConstructor.completeTaskAtTable(id);
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
+
+    // empties form and updates table
+    createTask() {
+        const pageConstructor = this.pageConstructor;
+
+        const formData = new FormData($('form')[0]);
+
+        // posts multipart/form-data content
+        $.ajax({
+            method: "POST",
+            url: "api/tasks",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "JSON",
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().created) {
+                    pageConstructor.renderForm(true);
+                    pageConstructor.addTaskToTable(formData);
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
+
+    // empties form and updates table
+    updateTask(taskObject) {
+        const pageConstructor = this.pageConstructor;
+
+        const formData = new FormData($('form')[0]);
+
+        // puts multipart/form-data content
+        $.ajax({
+            method: "PUT",
+            url: "api/tasks/" + String(id),
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "JSON",
+
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
+                    pageConstructor.renderForm(true);
+                    pageConstructor.changeTaskAtTable(formData);
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
 }
-
-// function  getId(element) {
-//    alert(element.parentNode.parentNode.rowIndex);
-// }
-// document.getElementById('IDIDIDIDIDIDID').innerHTML = html;
-//$('#output').html(row);
-
-// var userListData = [];
-// DOM Ready =====
-// $(document).ready(function() {
-//     //populateTable();
-//     //$('#userList table tbody').on('click',...., func);
-// });
-// ==============================================================
-//     $('#userList table tbody').html(tableContent);
-//////////////////////////
-//  // Prevent Link from Firing
-//     event.preventDefault();
-////////////////////////
-//Populate Info Box
-// $('#userInfoName').text(thisUserObject.fullname);
-//////////////////////////
-// //  basic validation
-// let errorCount = 0;
-// $('#addUser input').each(function(index, val) {
-//     if($(this).val() === '') { errorCount++; }
-// });
-// $.ajax({
-//     type: 'POST',
-//     data: newUser,
-//     url: '/users/adduser',
-//     dataType: 'JSON'
-// }).done(function( response ) {
-//
-//     // Check for successful (blank) response
-//     if (response.msg === '') {
-//
-//         // Clear the form inputs
-//         $('#addUser fieldset input').val('');
-//
-//         // Update the table
-//         populateTable();
-//
-//     }
-//     else {
-//
-//         // If something goes wrong, alert the error message that our service returned
-//         alert('Error: ' + response.msg);
-//
-//     }
-// });
-//    if(errorCount === 0) {}else{
-//          alert('Please fill in all fields');
-//    }
-//
-//
-//     let confirmation = confirm('Are you sure you want to delete this user?');
-//
-//     // Check and make sure the user confirmed
-//     if (confirmation === true) {}
-
-
-
-// Получение одного пользователя
-function GetUser(id) {
-    $.ajax({
-        url: "/api/users/"+id,
-        type: "GET",
-        contentType: "application/json",
-        success: function (user) {
-            let form = document.forms["userForm"];
-            form.elements["id"].value = user.id;
-            form.elements["name"].value = user.name;
-            form.elements["age"].value = user.age;
-        }
-    });
-}
-
-// Добавление пользователя
-function CreateUser(userName, userAge) {
-    $.ajax({
-        url: "api/users",
-        contentType: "application/json",
-        method: "POST",
-        data: JSON.stringify({
-            name: userName,
-            age: userAge
-        }),
-        success: function (user) {
-            reset();
-            $("table tbody").append(row(user));
-        }
-    })
-}
-// Изменение пользователя
-function EditUser(userId, userName, userAge) {
-    $.ajax({
-        url: "api/users",
-        contentType: "application/json",
-        method: "PUT",
-        data: JSON.stringify({
-            id: userId,
-            name: userName,
-            age: userAge
-        }),
-        success: function (user) {
-            reset();
-            $("tr[data-rowid='" + user.id + "']").replaceWith(row(user));
-        }
-    })
-}
-
-// function reset() {
-//     let form = document.forms["userForm"];
-//     form.reset();
-//     form.elements["id"].value = 0;
-// }
-
-// Удаление пользователя
-function DeleteUser(id) {
-    $.ajax({
-        url: "api/users/"+id,
-        contentType: "application/json",
-        method: "DELETE",
-        success: function (user) {
-            console.log(user);
-            $("tr[data-rowid='" + user.id + "']").remove();
-        }
-    })
-}
-
-// $("#reset").click(function (e) {
-//     e.preventDefault();
-//     reset();
-// });
-
-
 
 

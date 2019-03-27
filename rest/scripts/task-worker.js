@@ -2,15 +2,10 @@ const path = require('path');
 const fs = require('fs');
 const Task = require('./task');
 const Utils  = require('./utils');
+const ClientUtils = require('../public/scripts/client-utils');
 
 const taskProperties = Task.getPropertiesNamesAsList();
-const NEW_ITEM_INDEX = Task.getNewItemIndex();
-
-const statuses = {
-    successNoContent: 204,
-    notFound: 404,
-    unprocessableEntity: 422,
-};
+const statuses = ClientUtils.getStatusCodes();
 
 //
 // code that uses this class should call updateJsonStorage()
@@ -25,10 +20,6 @@ class TaskWorker {
         this.tasks = [];
         this.initializeJsonStorage();
         this.initializeAttachmentsStorage()
-    }
-
-    getImplementedStatuses(){
-        return {...statuses};
     }
 
     getTasksDirectory() {
@@ -150,7 +141,7 @@ class TaskWorker {
         task.changeName(properties[taskProperties.taskName]);
         task.changeCompleteness(properties[taskProperties.taskCompleted]);
 
-        if (properties[Task.getTaskShouldUpdateAttachmentPropertyName()] === true) {
+        if (properties[ClientUtils.getTaskShouldUpdateAttachmentPropertyName()] === true) {
             let result;
             if (attachment) {
                 result = Utils.rewriteFolderWithAttachment(this.getAttachmentsDirectory(), String(taskId), attachment);
@@ -188,7 +179,7 @@ class TaskWorker {
             properties[taskProperties.taskCompleted]
         );
 
-        return statuses.successNoContent;
+        return statuses.created;
     }
 }
 

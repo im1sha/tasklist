@@ -5,22 +5,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title><%= titleText %></title>
-    <link href='/stylesheets/style.css' rel='stylesheet' />
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
-    <script src="/scripts/jquery-3.3.1.min.js" defer></script>
-    <script src='/scripts/ejs.min.js' defer></script>
-    <script src='/scripts/client-page-constructor.js' defer></script>
-    <script src='/scripts/client-utils.js' defer></script>
-    <script src='/scripts/client-main.js' defer></script>
+    <link href='http://localhost:3000/stylesheets/style.css' rel='stylesheet' />
+    <link href="http://localhost:3000/stylesheets/bootstrap.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body id="body">
 
     <h2><%= titleText %></h2>
 
     <!-- MAIN FORM -->
     <!--encType="multipart/form-data"-->
-    <form>
+    <form id="mainForm">
         <input type="hidden" name="taskId" value="<%= mainFormTaskId %>" />
 
         <div class="form-group">
@@ -121,6 +116,10 @@
         <tbody>
         </tbody>
     </table>
+
+    <script defer src="http://localhost:3000/scripts/jquery-3.3.1.min.js"></script>
+    <script defer src='http://localhost:3000/scripts/client-core.js'></script>
+    <script defer src='http://localhost:3000/scripts/client-main.js'></script>
 
 </body>
 

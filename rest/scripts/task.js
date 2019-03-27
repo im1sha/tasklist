@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Utils = require("./utils");
+const ClientUtils =require('../public/scripts/client-utils');
 
 class Task {
     constructor(taskId,
@@ -69,38 +70,22 @@ class Task {
             taskExpired: this.isExpired(),
         };
     }
+
     static getPropertiesNamesAsList() {
-        return {
-            taskId: this.getTaskIdPropertyName(),
-            taskName: Task.getTaskNamePropertyName(),
-            taskDate: Task.getTaskDatePropertyName(),
-            taskAttachmentFileName: Task.getTaskAttachmentFileNamePropertyName(),
-            taskAttachmentExists: "taskAttachmentExists",
-            taskCompleted: Task.getTaskCompletedPropertyName(),
-            taskExpired: 'taskExpired', //
-        };
+        return ClientUtils.getTaskPropertiesNamesAsList();
     }
-    static getTaskCompletedPropertyName() { return "taskCompleted"; }
-    static getTaskAttachmentFileNamePropertyName() { return "taskAttachmentFileName"; }
+
+
     static getTaskAttachmentPathPropertyName() { return "taskAttachmentPath"; }
-    static getTaskNamePropertyName() { return "taskName"; }
-    static getTaskDatePropertyName() { return "taskDate"; }
-    static getTaskIdPropertyName() { return "taskId"; }
 
-    // used when task was sent externally.
-    // It is NOT stored in local object, but in an external one.
-    static getTaskShouldUpdateAttachmentPropertyName() {
-        return "taskShouldUpdateAttachment";
-    }
 
-    //
     static hasValidGeneralProperties(obj){
-        return obj.hasOwnProperty(Task.getTaskIdPropertyName())
-            && obj.hasOwnProperty(Task.getTaskNamePropertyName())
-            && obj.hasOwnProperty(Task.getTaskDatePropertyName())
-            && obj.hasOwnProperty(Task.getTaskAttachmentFileNamePropertyName())
-            && obj.hasOwnProperty(Task.getTaskCompletedPropertyName())
-            && !isNaN(Date.parse(obj[Task.getTaskDatePropertyName()]));
+        return obj.hasOwnProperty(ClientUtils.getTaskIdPropertyName())
+            && obj.hasOwnProperty(ClientUtils.getTaskNamePropertyName())
+            && obj.hasOwnProperty(ClientUtils.getTaskDatePropertyName())
+            && obj.hasOwnProperty(ClientUtils.getTaskAttachmentFileNamePropertyName())
+            && obj.hasOwnProperty(ClientUtils.getTaskCompletedPropertyName())
+            && !isNaN(Date.parse(obj[ClientUtils.getTaskDatePropertyName()]));
     }
 
     // serialized objects only
@@ -113,7 +98,7 @@ class Task {
     // external property
     static hasValidExternalProperties(obj) {
         return obj.hasOwnProperty(
-            Task.getTaskShouldUpdateAttachmentPropertyName());
+            ClientUtils.getTaskShouldUpdateAttachmentPropertyName());
     }
 
     static isValidObject(obj, isLocal = true) {
@@ -144,17 +129,15 @@ class Task {
             return null;
         } else {
             return new Task(
-                obj[Task.getTaskIdPropertyName()],
-                obj[Task.getTaskNamePropertyName()],
-                new Date(obj[Task.getTaskDatePropertyName()]),
+                obj[ClientUtils.getTaskIdPropertyName()],
+                obj[ClientUtils.getTaskNamePropertyName()],
+                new Date(obj[ClientUtils.getTaskDatePropertyName()]),
                 obj[Task.getTaskAttachmentPathPropertyName()],
-                obj[Task.getTaskAttachmentFileNamePropertyName()],
-                obj[Task.getTaskCompletedPropertyName()]
+                obj[ClientUtils.getTaskAttachmentFileNamePropertyName()],
+                obj[ClientUtils.getTaskCompletedPropertyName()]
             );
         }
     }
-
-
 }
 
 
