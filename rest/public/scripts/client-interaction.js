@@ -2,50 +2,124 @@ class ClientInteraction {
 
     constructor(pageConstructor) {
         this.pageConstructor = pageConstructor;
+        this.filters = ClientPageStructure.getFilters();
     }
 
-    startInteraction(){
-        this.renderTable();
-        ClientInteraction.registerHandlers();
+    startInteraction() {
+        this.renderTable(ClientPageStructure.getDefaultFilters());
+        this.registerHandlers(this);
     }
 
-    static registerHandlers() {
-
-        $("#mainForm").submit(event => {
+    registerHandlers(thisInstance) {
+        $("form").submit(event => {
             event.preventDefault(event);
 
-            // const id = this.elements["id"].value;
-
-            if ($("[taskId='-1']")  ) {
-
+            if ($("[name='taskId'], [type='hidden']").attr('value') === '-1') {
+                thisInstance.createTask();
             } else {
-
+                thisInstance.updateTask();
             }
-            
-            $("[href='default.htm']")
-
-            alert("OGO");
-            // todo
-            //  handle it
         });
 
-        // $(document).on("click", "*",  () => {
-        //     // const id = $(this).data("id");
-        //     // GetUser(id);
-        // });
-        //JSON.stringify
+        // filters
+        $("input, [type='radio']").click(function() {
 
-       // $("p").filter(".intro").css("background-color", "yellow");
-       // $("tr[data-rowid='" + user.id + "']").remove();
-        //$("table tbody").append(row(user));
+            let usedFilters = ClientPageStructure.getDefaultFilters();
+
+            if (this.filters.completenessFilter === this.getAttribute('name')) {
+                switch (this.getAttribute('value')) {
+                    case this.filters.completeness.completed:
+                        usedFilters.completeness
+                            = this.filters.completeness.completed;
+                        break;
+                    case this.filters.completeness.incomplete:
+                        usedFilters.completeness
+                            = this.filters.completeness.incomplete;
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                switch (this.getAttribute('value')) {
+                    case this.filters.date.expired:
+                        usedFilters.date
+                            = this.filters.date.expired;
+                        break;
+                    case this.filters.date.upcoming:
+                        usedFilters.date
+                            = this.filters.date.upcoming;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            thisInstance.renderTable(usedFilters);
+        });
+
+        // working with task
+        $("td button").click(function() {
+            const id = this.getAttribute("data-id");
+
+            switch (this.getAttribute('value')) {
+                case 'complete':
+                    thisInstance.completeTask(id);
+                    break;
+                case 'download':
+                    thisInstance.downloadAttachment(id);
+                    break;
+                case 'edit':
+                    thisInstance.renderMainForm(id);
+                    break;
+                case 'remove':
+                    thisInstance.deleteTask(id);
+                    break;
+            }
+        });
+    }
+
+    static getFilteredTasksPath(allFilters, requiredFilters) {
+
+        // required format /api/tasks/?completeness=incomplete&date=expired
+
+        let path = "http://localhost:3000/api/tasks";
+        let appliedFilters = 0;
+
+        switch(requiredFilters.completeness) {
+            case allFilters.completeness.completed:
+                path += '/?completeness=completed';
+                appliedFilters++;
+                break;
+            case allFilters.completeness.incomplete:
+                path += '/?completeness=incomplete';
+                appliedFilters++;
+                break;
+        }
+        switch(requiredFilters.date) {
+            case allFilters.date.expired:
+                if (appliedFilters !== 0) {
+                    path += '&date=expired';
+                } else {
+                    path += '/?date=expired';
+                }
+                break;
+            case allFilters.date.upcoming:
+                if (appliedFilters !== 0) {
+                    path += '&date=upcoming';
+                } else {
+                    path += '/?date=upcoming';
+                }
+                break;
+        }
+        return path;
     }
 
     // gets tasks and updates table
-    renderTable() {
+    renderTable(filters) {
         const pageConstructor = this.pageConstructor;
         $.ajax({
             method: "GET",
-            url: "/api/tasks",
+            url: ClientInteraction.getFilteredTasksPath(this.filters, filters),
             dataType: 'JSON',
             success: function (data, textStatus, jqXHR) {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
@@ -66,7 +140,7 @@ class ClientInteraction {
 
         $.ajax({
             method: "GET",
-            url: "api/tasks/" + String(id),
+            url: "http://localhost:3000/api/tasks/" + String(id),
             dataType: 'JSON',
             success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
@@ -87,7 +161,7 @@ class ClientInteraction {
 
         $.ajax({
             method: "DELETE",
-            url: "api/tasks/" + String(id),
+            url: "http://localhost:3000/api/tasks/" + String(id),
             dataType: 'JSON',
             success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
@@ -108,7 +182,7 @@ class ClientInteraction {
 
         $.ajax({
             method: "PATCH",
-            url: "api/tasks/" + String(id),
+            url: "http://localhost:3000/api/tasks/" + String(id),
             contentType: "application/json",
             data: JSON.stringify({ taskCompleted: true }),
             dataType: "JSON",
@@ -128,13 +202,12 @@ class ClientInteraction {
     // empties form and updates table
     createTask() {
         const pageConstructor = this.pageConstructor;
-
         const formData = new FormData($('form')[0]);
 
         // posts multipart/form-data content
         $.ajax({
             method: "POST",
-            url: "api/tasks",
+            url: "http://localhost:3000/api/tasks",
             data: formData,
             cache: false,
             contentType: false,
@@ -155,15 +228,14 @@ class ClientInteraction {
     }
 
     // empties form and updates table
-    updateTask(taskObject) {
+    updateTask() {
         const pageConstructor = this.pageConstructor;
-
         const formData = new FormData($('form')[0]);
 
         // puts multipart/form-data content
         $.ajax({
             method: "PUT",
-            url: "api/tasks/" + String(id),
+            url: "http://localhost:3000/api/tasks/" + String(id),
             data: formData,
             cache: false,
             contentType: false,
@@ -183,6 +255,24 @@ class ClientInteraction {
             },
         });
     }
+
+    downloadAttachment(id) {
+        const pageConstructor = this.pageConstructor;
+
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:3000/api/attachments/" + String(id),
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status !==  ClientUtils.getStatusCodes().ok) {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error:(jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
 }
+
 
 

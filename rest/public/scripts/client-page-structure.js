@@ -8,6 +8,13 @@ class ClientPageStructure {
         };
     }
 
+    static getDefaultFilters() {
+        return {
+            completeness: 'all',
+            date: 'all',
+        }
+    }
+
     static getCheckboxesStyles() {
         return {
             defaultCheckboxesStyles: {

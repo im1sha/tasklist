@@ -17,6 +17,9 @@ class ClientPageConstructor {
 
     // fills table with tasks
     renderTable(jsonData) {
+    // <% tasks.forEach(function(task) {%>
+    //     <%- include('task', task); %>
+    //     <% }); %>
 
         //let row = ejs.render( taskTemplate , ????);
     }
@@ -40,6 +43,17 @@ class ClientPageConstructor {
     addTaskToTable(multipartFormData) {
 
     }
+
+
+    // $(document).on("click", "*",  () => {
+    //     // const id = $(this).data("id");
+    //     // GetUser(id);
+    // });
+    //JSON.stringify
+
+    // $("p").filter(".intro").css("background-color", "yellow");
+    // $("tr[data-rowid='" + user.id + "']").remove();
+    //$("table tbody").append(row(user));
 
 
     // onEdit() {

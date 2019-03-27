@@ -2,25 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../rest/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/.idea/tasklist.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/.idea/tasklist.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../rest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/page-constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/scripts/page-constructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/public/stylesheets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/routes/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rest/public/scripts/client-interaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/public/scripts/client-interaction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rest/public/scripts/client-page-structure.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/public/scripts/client-page-structure.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rest/public/views/task.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/public/views/task.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../rest/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/task-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/scripts/task-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/task.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/scripts/task.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/tasks/attachments/12/capcha_wave.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/tasks/attachments/9/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/tasks/tasks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/tasks/tasks.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/scripts/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../rest/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rest/views/task.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../rest/public/views/task.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -248,7 +235,7 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
+    <option name="x" value="-10" />
     <option name="width" value="1135" />
     <option name="height" value="1050" />
   </component>
@@ -260,7 +247,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -299,6 +285,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -392,11 +379,12 @@
       <workItem from="1553326007343" duration="137000" />
       <workItem from="1553326243804" duration="46000" />
       <workItem from="1553417042223" duration="179000" />
+      <workItem from="1553714026951" duration="30000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201412000" />
+    <option name="totallyTimeSpent" value="201442000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -429,7 +417,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37709498" visible="true" weight="0.11342282" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37709498" visible="true" weight="0.1147651" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">

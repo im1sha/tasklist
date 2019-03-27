@@ -15,7 +15,7 @@
 
     <!-- MAIN FORM -->
     <!--encType="multipart/form-data"-->
-    <form id="mainForm">
+    <form >
         <input type="hidden" name="taskId" value="<%= mainFormTaskId %>" />
 
         <div class="form-group">
@@ -63,8 +63,8 @@
     </form>
 
     <!-- FILTERS -->
-
-   <div>
+    <form method="get">
+    <div>
        <label>Completeness</label>
        <div>
            <span>
@@ -95,7 +95,8 @@
                <label>Expired</label>
            </span>
        </div>
-   </div>
+    </div>
+    </form>
 
     <!-- TASKS LIST -->
 

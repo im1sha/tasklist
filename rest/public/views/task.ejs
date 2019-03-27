@@ -4,26 +4,26 @@
     <td><%= taskDate %></td>
     <td><%= taskCompletedAsString %></td>
     <td>
-        <button class="btn btn-primary btn-xs completeButtonLink"
+        <input class="btn btn-primary btn-xs"
                 <%= completeButtonStyle %>
                 data-id='<%= taskId %>'
-                value="complete"></button>
+                value="complete">
     </td>
     <td><%= taskAttachmentFileDisplayedName %></td>
     <td>
-        <button class="btn btn-default btn-xs downloadButtonLink"
+        <input class="btn btn-default btn-xs"
                 <%= downloadButtonStyle %>
                 data-id="<%= taskId %>"
-                value="download"></button>
+                value="download">
     </td>
     <td>
-        <button class="btn btn-default btn-xs editButtonLink"
+        <input class="btn btn-default btn-xs"
                 data-id="<%= taskId %>"
-                value="edit"></button>
+                value="edit">
     </td>
     <td>
-        <button type="submit" class="btn btn-danger btn-xs removeButtonLink"
+        <input type="submit" class="btn btn-danger btn-xs"
                 data-id="<%= taskId %>"
-                value="remove"></button>
+                value="remove">
     </td>
 </tr>
