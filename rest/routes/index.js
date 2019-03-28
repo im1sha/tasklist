@@ -73,8 +73,10 @@ router.get('/api/tasks/:id', (req, res) => {
 router.delete('/api/tasks/:id', (req, res) => {
     const status = pageConstructor.deleteTask(req.params.id);
     res.sendStatus(status).end();
-    // todo check code
-    worker.updateJsonStorage();
+
+    if (statuses.successNoContent === status) {
+        worker.updateJsonStorage();
+    }
 });
 
 // partial update of 1 task.
@@ -82,8 +84,10 @@ router.delete('/api/tasks/:id', (req, res) => {
 router.patch('/api/tasks/:id', (req, res) => {
     const status = pageConstructor.patchTask(req.body, req.files, req.params.id);
     res.sendStatus(status).end();
-    // todo check code
-    worker.updateJsonStorage();
+
+    if (statuses.successNoContent === status) {
+        worker.updateJsonStorage();
+    }
 });
 
 // creates 1 task
@@ -101,8 +105,10 @@ router.post('/api/tasks', (req, res) => {
 router.put('/api/tasks/:id', (req, res) => {
     const status = pageConstructor.updateTask(req.body, req.files, req.params.id);
     res.sendStatus(status).end();
-    // todo check code
-    worker.updateJsonStorage();
+
+    if (statuses.successNoContent === status) {
+        worker.updateJsonStorage();
+    }
 });
 
 

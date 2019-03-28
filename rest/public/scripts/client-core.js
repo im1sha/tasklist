@@ -65,7 +65,8 @@ class ClientCore {
     }
 
     successHandlerForTemplate(template, textStatus, jqXHR) {
-        this.tryRender(template);
+        this.template = template;
+        this.tryRender();
     }
 
     static errorHandler(jqXHR, textStatus, errorThrown) {
@@ -76,10 +77,10 @@ class ClientCore {
     //
     //
 
-    tryRender(template) {
+    tryRender() {
         this.totalLoaded++;
         if (this.totalLoaded === this.expectedFiles) {
-            (new ClientInteraction(new ClientPageConstructor(template))).startInteraction();
+            (new ClientInteraction(new ClientPageConstructor(this.template))).startInteraction();
         }
     }
 }
