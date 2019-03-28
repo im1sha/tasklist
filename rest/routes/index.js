@@ -49,7 +49,7 @@ router.get('/api/tasks', (req, res) => {
     if (tasksToSend) {
         res.status(statuses.ok).json(tasksToSend);
     } else {
-        res.sendStatus(statuses.notFound).end();
+        res.status(statuses.ok).json([]);
     }
 });
 
@@ -58,7 +58,7 @@ router.get('/api/tasks/:id', (req, res) => {
 
     const task = worker.getTaskDataById(req.params.id);
     if (task !== null) {
-        res.status(statuses.ok).json(task)
+        res.status(statuses.ok).json(task);
     } else {
         res.sendStatus(statuses.notFound).end();
     }
@@ -71,9 +71,10 @@ router.get('/api/tasks/:id', (req, res) => {
 
 // removes 1 task
 router.delete('/api/tasks/:id', (req, res) => {
-    const status = pageConstructor.deleteTask(id);
+    const status = pageConstructor.deleteTask(req.params.id);
     res.sendStatus(status).end();
-    next('route');
+    // todo check code
+    worker.updateJsonStorage();
 });
 
 // partial update of 1 task.
@@ -81,26 +82,29 @@ router.delete('/api/tasks/:id', (req, res) => {
 router.patch('/api/tasks/:id', (req, res) => {
     const status = pageConstructor.patchTask(req.body, req.files, req.params.id);
     res.sendStatus(status).end();
-    next('route');
+    // todo check code
+    worker.updateJsonStorage();
 });
 
 // creates 1 task
 router.post('/api/tasks', (req, res) => {
-    const status = pageConstructor.createTask(req.body, req.files);
-    res.sendStatus(status).end();
-    next('route');
+    const result = pageConstructor.createTask(req.body, req.files);
+    if (result.newItemIndex === null) {
+        res.sendStatus(result.status).end();
+    } else {
+        res.status(result.status).json(result.newItemIndex);
+        worker.updateJsonStorage();
+    }
 });
 
 // changes 1 task
 router.put('/api/tasks/:id', (req, res) => {
-    const status = pageConstructor.updateTask(req.body,
-        req.files, req.params.id);
+    const status = pageConstructor.updateTask(req.body, req.files, req.params.id);
     res.sendStatus(status).end();
-    next('route');
+    // todo check code
+    worker.updateJsonStorage();
 });
 
-
-router.all('/', (req, res) => worker.updateJsonStorage());
 
 module.exports = { router:router };
 

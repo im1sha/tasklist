@@ -63,6 +63,13 @@ class ClientPageStructure {
             mainFormTaskId: '-1',
         };
     }
+
+    static getCheckboxesNames(){
+        return {
+            completeCheckbox:'completeCheckbox',
+            updateCheckbox:'updateCheckbox'
+        }
+    }
 }
 
 try {

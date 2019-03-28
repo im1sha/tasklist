@@ -20,7 +20,7 @@ const staticPlaceholders = {
 };
 const defaultMainFormPlaceholders = ClientPageStructure.getDefaultMainFormPlaceholders();
 const defaultCheckboxesStyles = ClientPageStructure.getDefaultCheckboxesStyles();
-const attachmentProperty = 'Attachment';
+const attachmentProperty = 'taskAttachment';
 const tasksProperties = Task.getPropertiesNamesAsList(); // use when forming table header
 
 class PageConstructor {
@@ -87,6 +87,10 @@ class PageConstructor {
             : files[attachmentProperty];
     }
 
+    static getAttachmentName(files){
+        return files[attachmentProperty] ? files[attachmentProperty].name : "No file";
+    }
+
     getFilteredTask(query) {
         let tasksToShow = [];
 
@@ -110,17 +114,26 @@ class PageConstructor {
         return null;
     }
 
-    createTask(body, files){
-        return this.worker.createTask(body, PageConstructor.retrieveAttachment(files));
+    createTask(properties, files){
+        this.changePropertiesUsingFiles(properties, files);
+        return this.worker.createTask(properties, PageConstructor.retrieveAttachment(files));
     }
 
-    // returns http status
-    updateTask(body, files, id){
-        return this.worker.changeTask(body, PageConstructor.retrieveAttachment(files), id);
+    updateTask(props, files, id){
+        this.changePropertiesUsingFiles(props, files);
+        return this.worker.changeTask(props, PageConstructor.retrieveAttachment(files), Number(id));
+    }
+
+    // private use only
+    changePropertiesUsingFiles(properties, files) {
+        const checkboxesNames = ClientPageStructure.getCheckboxesNames();
+        properties.taskCompleted = Boolean(properties[checkboxesNames.completeCheckbox]);
+        properties.taskShouldUpdateAttachment = Boolean(properties[checkboxesNames.updateCheckbox]);
+        properties.taskAttachmentFileName = PageConstructor.getAttachmentName(files);
     }
 
     deleteTask(id) {
-        return this.worker.deleteTask(id);
+        return this.worker.deleteTask(Number(id));
     }
 
     patchTask(body, files, id) {
@@ -129,14 +142,14 @@ class PageConstructor {
         if ((Object.keys(body).length === 1)
             && body.hasOwnProperty(ClientUtils.getTaskCompletedPropertyName())
             && (body[ClientUtils.getTaskCompletedPropertyName()] === true)) {
-            return this.completeTask(id);
+            return this.completeTask(Number(id));
         }
 
         return ClientUtils.getStatusCodes().unprocessableEntity;
     }
 
     completeTask(id) {
-        return this.worker.completeTask(id);
+        return this.worker.completeTask(Number(id));
     }
 }
 

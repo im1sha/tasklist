@@ -73,9 +73,9 @@ class TaskWorker {
             : this.tasks.length;
     }
 
-    getAttachmentPathById(id){
-        if (this.tasks[id]) {
-            return this.tasks[id].getAttachmentPath();
+    getAttachmentPathById(params){
+        if (this.tasks[Number(params.id)]) {
+            return this.tasks[Number(params.id)].getAttachmentPath();
         }
         return null;
     }
@@ -158,7 +158,7 @@ class TaskWorker {
     createTask(properties, attachment) {
 
         if (!Task.isValidObject(properties, false)) {
-            return statuses.unprocessableEntity;
+            return {status: statuses.unprocessableEntity, newItemIndex: null};
         }
 
         const taskId = this.getNewItemIndex();
@@ -179,7 +179,7 @@ class TaskWorker {
             properties[taskProperties.taskCompleted]
         );
 
-        return statuses.created;
+        return {status: statuses.created, newItemIndex: taskId};
     }
 }
 

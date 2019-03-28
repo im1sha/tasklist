@@ -6,70 +6,77 @@ class ClientInteraction {
     }
 
     startInteraction() {
-        this.renderTable(ClientPageStructure.getDefaultFilters());
-        this.registerHandlers(this);
+        this.loadTable(ClientPageStructure.getDefaultFilters());
+        this.registerGlobalHandlers(this);
     }
 
-    registerHandlers(thisInstance) {
-        $("form").submit(event => {
-            event.preventDefault(event);
+    //
+    // click handlers
+    //
 
-            if ($("[name='taskId'], [type='hidden']").attr('value') === '-1') {
+    registerGlobalHandlers(thisInstance) {
+
+        $(':reset').click(event => {
+
+            if ($("[name='taskId'],[type='hidden']").attr('value') !== '-1') {
+                event.preventDefault();
+
+                thisInstance.requestEdit($("[name='taskId'],[type='hidden']").attr('value'));
+            }
+        });
+
+        $("form").submit(event => {
+            event.preventDefault();
+
+            if ($("[name='taskId'],[type='hidden']").attr('value') === '-1') {
                 thisInstance.createTask();
             } else {
-                thisInstance.updateTask();
+                thisInstance.editTask();
             }
         });
 
         // filters
-        $("input, [type='radio']").click(function() {
+        $("td input, [type='radio']").click(function(event) {
 
-            let usedFilters = ClientPageStructure.getDefaultFilters();
-
-            if (this.filters.completenessFilter === this.getAttribute('name')) {
-                switch (this.getAttribute('value')) {
-                    case this.filters.completeness.completed:
-                        usedFilters.completeness
-                            = this.filters.completeness.completed;
-                        break;
-                    case this.filters.completeness.incomplete:
-                        usedFilters.completeness
-                            = this.filters.completeness.incomplete;
-                        break;
-                    default:
-                        break;
-                }
-            } else {
-                switch (this.getAttribute('value')) {
-                    case this.filters.date.expired:
-                        usedFilters.date
-                            = this.filters.date.expired;
-                        break;
-                    case this.filters.date.upcoming:
-                        usedFilters.date
-                            = this.filters.date.upcoming;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            thisInstance.renderTable(usedFilters);
+            thisInstance.loadTable(ClientInteraction.getFilters(thisInstance));
         });
+    }
+
+    static getFilters(thisInstance) {
+        let usedFilters = ClientPageStructure.getDefaultFilters();
+
+        if ($('[value="incomplete"][name="completeness"]').is(':checked')) {
+            usedFilters.completeness = thisInstance.filters.completeness.incomplete;
+        }
+        if ($('[value="completed"][name="completeness"]').is(':checked')) {
+            usedFilters.completeness = thisInstance.filters.completeness.completed;
+        }
+        if ($('[value="upcoming"][name="date"]').is(':checked')) {
+            usedFilters.date = thisInstance.filters.date.upcoming;
+        }
+        if ($('[value="expired"][name="date"]').is(':checked')) {
+            usedFilters.date = thisInstance.filters.date.expired;
+        }
+
+        return usedFilters;
+    }
+
+    static registerTableHandlers(thisInstance){
 
         // working with task
-        $("td button").click(function() {
+        $("td input").click(function() {
+
             const id = this.getAttribute("data-id");
 
             switch (this.getAttribute('value')) {
                 case 'complete':
-                    thisInstance.completeTask(id);
+                    thisInstance.completeTask( id);
                     break;
                 case 'download':
                     thisInstance.downloadAttachment(id);
                     break;
                 case 'edit':
-                    thisInstance.renderMainForm(id);
+                    thisInstance.requestEdit(id);
                     break;
                 case 'remove':
                     thisInstance.deleteTask(id);
@@ -77,6 +84,10 @@ class ClientInteraction {
             }
         });
     }
+
+    //
+    //
+    //
 
     static getFilteredTasksPath(allFilters, requiredFilters) {
 
@@ -114,16 +125,55 @@ class ClientInteraction {
         return path;
     }
 
-    // gets tasks and updates table
-    renderTable(filters) {
+    //
+    // createTask() finalization
+    //
+
+    addTaskToTable(id) {
+        const thisInstance = this;
         const pageConstructor = this.pageConstructor;
         $.ajax({
             method: "GET",
-            url: ClientInteraction.getFilteredTasksPath(this.filters, filters),
+            url: "http://localhost:3000/api/tasks/" + String(id),
             dataType: 'JSON',
-            success: function (data, textStatus, jqXHR) {
+            success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
-                    pageConstructor.renderTable(data);
+                    pageConstructor.addTaskToTable(data);
+                    ClientInteraction.registerTableHandlers(thisInstance); // todo check
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error:(jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
+
+
+    //
+    // working with main form
+    // empty form and update table
+    //
+
+    createTask() {
+        const thisInstance = this;
+        const pageConstructor = this.pageConstructor;
+        const formData = new FormData($('form')[0]);
+
+        // posts multipart/form-data content
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:3000/api/tasks",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status === ClientUtils.getStatusCodes().created) {
+                    pageConstructor.renderForm(true);
+                    thisInstance.addTaskToTable(JSON.parse(data));
                 } else {
                     pageConstructor.showError(jqXHR.statusText);
                 }
@@ -134,8 +184,41 @@ class ClientInteraction {
         });
     }
 
+    editTask() {
+        const id = $('[type="hidden"][name="taskId"]').attr('value');
+        const pageConstructor = this.pageConstructor;
+        const formData = new FormData($('form')[0]);
+        const thisInstance = this;
+
+        // puts multipart/form-data content
+        $.ajax({
+            method: "PUT",
+            url: "http://localhost:3000/api/tasks/" + String(id),
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'JSON',
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
+                    pageConstructor.renderForm(true);
+                    thisInstance.loadTable(ClientInteraction.getFilters(thisInstance));
+                } else {
+                    pageConstructor.showError(jqXHR.statusText);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
+
+    //
+    // working with table
+    //
+
     // gets task and updates main form
-    renderMainForm(id) {
+    requestEdit(id) {
         const pageConstructor = this.pageConstructor;
 
         $.ajax({
@@ -155,7 +238,6 @@ class ClientInteraction {
         });
     }
 
-    // deletes task from table
     deleteTask(id) {
         const pageConstructor = this.pageConstructor;
 
@@ -176,6 +258,24 @@ class ClientInteraction {
         });
     }
 
+    downloadAttachment(id) {
+        const pageConstructor = this.pageConstructor;
+
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:3000/api/attachments/" + String(id),
+            success: (data, textStatus, jqXHR) => {
+                if (jqXHR.status !==  ClientUtils.getStatusCodes().ok) {
+                    pageConstructor.showError("+"+jqXHR.statusText);
+                } else {
+                    window.location = 'http://localhost:3000/api/attachments/' + String(id);
+                }
+            },
+            error:(jqXHR, textStatus, errorThrown) => {
+                pageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
 
     completeTask(id) {
         const pageConstructor = this.pageConstructor;
@@ -199,75 +299,22 @@ class ClientInteraction {
         });
     }
 
-    // empties form and updates table
-    createTask() {
+    loadTable(filters) {
         const pageConstructor = this.pageConstructor;
-        const formData = new FormData($('form')[0]);
-
-        // posts multipart/form-data content
-        $.ajax({
-            method: "POST",
-            url: "http://localhost:3000/api/tasks",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "JSON",
-            success: (data, textStatus, jqXHR) => {
-                if (jqXHR.status ===  ClientUtils.getStatusCodes().created) {
-                    pageConstructor.renderForm(true);
-                    pageConstructor.addTaskToTable(formData);
-                } else {
-                    pageConstructor.showError(jqXHR.statusText);
-                }
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
-            },
-        });
-    }
-
-    // empties form and updates table
-    updateTask() {
-        const pageConstructor = this.pageConstructor;
-        const formData = new FormData($('form')[0]);
-
-        // puts multipart/form-data content
-        $.ajax({
-            method: "PUT",
-            url: "http://localhost:3000/api/tasks/" + String(id),
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "JSON",
-
-            success: (data, textStatus, jqXHR) => {
-                if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
-                    pageConstructor.renderForm(true);
-                    pageConstructor.changeTaskAtTable(formData);
-                } else {
-                    pageConstructor.showError(jqXHR.statusText);
-                }
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
-            },
-        });
-    }
-
-    downloadAttachment(id) {
-        const pageConstructor = this.pageConstructor;
-
+        const thisInstance = this;
         $.ajax({
             method: "GET",
-            url: "http://localhost:3000/api/attachments/" + String(id),
-            success: (data, textStatus, jqXHR) => {
-                if (jqXHR.status !==  ClientUtils.getStatusCodes().ok) {
+            url: ClientInteraction.getFilteredTasksPath(this.filters, filters),
+            dataType: 'JSON',
+            success: function (data, textStatus, jqXHR) {
+                if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
+                    pageConstructor.renderTable(data);
+                    ClientInteraction.registerTableHandlers(thisInstance)
+                } else {
                     pageConstructor.showError(jqXHR.statusText);
                 }
             },
-            error:(jqXHR, textStatus, errorThrown) => {
+            error: (jqXHR, textStatus, errorThrown) => {
                 pageConstructor.showError(jqXHR.statusText);
             },
         });

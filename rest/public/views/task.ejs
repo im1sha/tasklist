@@ -1,23 +1,23 @@
-<tr <%= entryStyle %> >
+<tr <%= entryStyle %> data-id="<%= taskId %>">
     <td><%= idText %></td>
     <td><%= taskDisplayedName %></td>
     <td><%= taskDate %></td>
-    <td><%= taskCompletedAsString %></td>
+    <td>   <span class="displayedAttachmentName" data-id="<%= taskId %>"><%= taskCompletedAsString %> </span></td>
     <td>
-        <input class="btn btn-primary btn-xs"
+        <input type="submit" class="btn btn-primary btn-xs"
                 <%= completeButtonStyle %>
                 data-id='<%= taskId %>'
                 value="complete">
     </td>
-    <td><%= taskAttachmentFileDisplayedName %></td>
+    <td><%= taskAttachmentFileDisplayedName %> </td>
     <td>
-        <input class="btn btn-default btn-xs"
+        <input type="submit" class="btn btn-default btn-xs"
                 <%= downloadButtonStyle %>
                 data-id="<%= taskId %>"
                 value="download">
     </td>
     <td>
-        <input class="btn btn-default btn-xs"
+        <input type="submit" class="btn btn-default btn-xs"
                 data-id="<%= taskId %>"
                 value="edit">
     </td>

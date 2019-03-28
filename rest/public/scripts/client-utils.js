@@ -61,7 +61,7 @@ class ClientUtils {
 
     static createDateInStandardFormat(date) {
 
-        let editedTaskDate = Utils.getDateAsObjectOfStrings(date);
+        let editedTaskDate = ClientUtils.getDateAsObjectOfStrings(date);
         return editedTaskDate.year + '-' +
             editedTaskDate.month + '-' + editedTaskDate.day +
             'T' + editedTaskDate.hours + ':' + editedTaskDate.minutes;
