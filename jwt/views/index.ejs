@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title><%= titleText %></title>
+    <link href='http://localhost:3000/stylesheets/style.css' rel='stylesheet' />
+    <link href="http://localhost:3000/stylesheets/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body id="body">
+
+    <h2><%= titleText %></h2>
+
+    <!-- MAIN FORM -->
+    <form  method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="taskId" value="<%= mainFormTaskId %>" />
+
+        <div class="form-group">
+            <label for="taskName"><%= nameText %></label>
+            <input required maxlength="500" tabindex="1"
+                   placeholder="<%= taskNameBackValue %>"
+                   class="form-control" name="taskName"
+                   value="<%= taskNameValue %>" >
+        </div>
+
+        <div class="form-group">
+            <label for="taskDate"><%= dateText %></label>
+            <input required tabindex="2" class="form-control"
+                   type="datetime-local" name="taskDate"
+                   max="9999-12-31T23:59"
+                   value="<%= taskDateValue %>"  >
+        </div>
+
+        <div class="form-group">
+            <label for="taskAttachment">Attachment</label>
+            <input tabindex="3" class="form-control"
+                   type="file" name="taskAttachment" >
+        </div>
+
+        <div class="form-group">
+            <input tabindex="4"
+                   type="checkbox" name="updateCheckbox"
+                    <%= checkboxUpdateValue %> >
+            <label for="updateCheckbox">Update attachment</label>
+        </div>
+
+        <div>
+            <input tabindex="5"
+                   type="checkbox" name="completeCheckbox"
+                    <%= checkboxCompleteValue %> >
+            <label for="completeCheckbox">Completed</label>
+        </div>
+
+        <div class="panel-body">
+            <button tabindex="6" type="submit" class="btn btn-primary">
+                save</button>
+            <input tabindex="7" type="reset" class="btn btn-danger"
+                   value="reset">
+        </div>
+    </form>
+
+    <!-- FILTERS -->
+    <form method="get">
+    <div>
+       <label>Completeness</label>
+       <div>
+           <span>
+               <input type="radio" name="completeness" value="all" <%= completenessAllStyle %> >
+               <label>All</label>
+           </span>
+           <span >
+               <input type="radio" name="completeness" value="incomplete" <%= completenessIncompleteStyle %> >
+               <label>Incomplete</label>
+           </span>
+           <span >
+               <input type="radio" name="completeness" value="completed"   <%= completenessCompletedStyle %> >
+               <label>Completed</label>
+           </span>
+       </div>
+       <label>Date</label>
+       <div>
+           <span >
+               <input type="radio" name="date" value="all" <%= dateAllStyle %>  >
+               <label>All</label>
+           </span>
+           <span>
+               <input type="radio" name="date" value="upcoming" <%= dateUpcomingStyle %> >
+               <label>Upcoming</label>
+           </span>
+             <span>
+               <input type="radio" name="date" value="expired"  <%= dateExpiredStyle %>  >
+               <label>Expired</label>
+           </span>
+       </div>
+    </div>
+    </form>
+
+    <!-- TASKS LIST -->
+
+    <table class="table table-condensed table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th><%= nameText %></th>
+                <th><%= dateText %></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script defer src="http://localhost:3000/scripts/jquery-3.3.1.min.js"></script>
+    <script defer src='http://localhost:3000/scripts/client-core.js'></script>
+    <script defer src='http://localhost:3000/scripts/client-main.js'></script>
+
+</body>
+
+</html>

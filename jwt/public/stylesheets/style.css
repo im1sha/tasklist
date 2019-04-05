@@ -1,0 +1,10 @@
+body {
+  padding: 1%;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+.expired * {
+   color: #ff0000;
+}
+
