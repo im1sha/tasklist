@@ -4,57 +4,61 @@ const router = express.Router();
 const TaskWorker = require('../scripts/task-worker');
 const UserWorker = require('../scripts/user-worker');
 const SafetyWorker = require ('../scripts/safety-worker');
+const RequestHandler = require ('../scripts/request-handler');
 
 const taskWorker = new TaskWorker();
 const userWorker = new UserWorker();
 const safetyWorker = new SafetyWorker();
+const requestHandler = new RequestHandler(taskWorker, userWorker);
 
 const ClientUtils = require('../public/scripts/client-utils');
-
 const Constructor = require('../scripts/page-constructor');
-const RequestHandler = require ('../scripts/request-handler');
-const requestHandler = new RequestHandler(taskWorker, userWorker);
 
 const statuses = ClientUtils.getStatusCodes();
 
-// // token check
-// router.use(function (req, res, next) {
-//     if ((req.url === '/login')
-//         || safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies))) {
-//         next();
-//     } else {
-//         res.status(statuses.unauthorized).end();
-//     }
-// });
-//
-// // authorization
-// router.post('/login', function (req, res) {
-//     const login = RequestHandler.retrieveLogin(req.body);
-//     const password = RequestHandler.retrievePassword(req.body);
-//
-//     const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
-//
-//     if (!doesUserExist) {
-//         const userData = requestHandler.createUser(login, password);
-//         if (userData === null) {
-//             res.status(statuses.unprocessableEntity).end();
-//         } else {
-//             userWorker.updateJsonStorage();
-//             safetyWorker.setCookie(res.cookies, userData);
-//             res.status(statuses.ok).end();
-//         }
-//     } else {
-//         const userData = requestHandler.checkUserCredentials(login, password);
-//         if (userData === null) {
-//             res.status(statuses.forbidden).end();
-//         } else {
-//             safetyWorker.setCookie(res.cookies, userData);
-//             res.status(statuses.ok).end();
-//         }
-//     }
-// });
 
-router.param('id', function (req, res, next, id) {
+router.use((req, res, next) => {
+    if ((req.url === '/login')
+        || (req.url === '/')
+        || safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies))) {
+        next();
+    } else {
+        res.status(statuses.unauthorized).end();
+    }
+});
+
+// authorization
+router.post('/login', (req, res) => {
+    const login = RequestHandler.retrieveLogin(req.body);
+    const password = RequestHandler.retrievePassword(req.body);
+
+    const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
+
+    if (!doesUserExist) {
+        const userData = requestHandler.createUser(login, password);
+        if (userData === null) {
+            res.status(statuses.unprocessableEntity).end();
+        } else {
+            userWorker.updateJsonStorage();
+            safetyWorker.setCookie(res.cookies, userData);
+            res.status(statuses.ok).end();
+        }
+    } else {
+        const userData = requestHandler.checkUserCredentials(login, password);
+        if (userData === null) {
+            res.status(statuses.forbidden).end();
+        } else {
+            safetyWorker.setCookie(res.cookies, userData);
+            res.status(statuses.ok).end();
+        }
+    }
+});
+
+
+router.get('/', (req, res) => res.render('initialization') );
+
+
+router.param('id', (req, res, next, id) => {
     if(RequestHandler.retrieveIndexOfRequestedElement(id) === null){
         res.sendStatus(statuses.badRequest).end();
     } else {

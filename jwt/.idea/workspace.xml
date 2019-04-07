@@ -4,13 +4,8 @@
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/client-interaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/client-interaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/client-page-constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/client-page-constructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/client-login.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/client-login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/safety-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/safety-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/65/UnitTestProject.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/68/UnitTestProject.csprojResolveAssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/tasks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/tasks.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+            <state relative-caret-position="936">
+              <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -38,15 +33,59 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/scripts/client-interaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="136" column="60" lean-forward="true" selection-start-line="136" selection-start-column="60" selection-end-line="136" selection-end-column="60" />
+            <state relative-caret-position="-965">
+              <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
               <folding>
-                <element signature="n#!!block;n#getFilteredTasksPath#0;n#ClientInteraction#0" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#!!block;n#constructor#0;n#ClientInteraction#0" />
+                <element signature="n#!!block;n#startInteraction#0;n#ClientInteraction#0" />
                 <element signature="n#!!block;n#addTaskToTable#0;n#ClientInteraction#0" />
                 <element signature="n#!!block;n#createTask#0;n#ClientInteraction#0" />
+                <element signature="n#!!block;n#editTask#0;n#ClientInteraction#0" />
                 <element signature="n#!!block;n#requestEdit#0;n#ClientInteraction#0" />
                 <element signature="n#!!block;n#deleteTask#0;n#ClientInteraction#0" />
                 <element signature="n#!!block;n#downloadAttachment#0;n#ClientInteraction#0" />
+                <element signature="n#!!block;n#completeTask#0;n#ClientInteraction#0" />
+                <element signature="n#!!block;n#loadTable#0;n#ClientInteraction#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/initialization.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/login.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/scripts/client-login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="499">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,7 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>attachmentProperty</find>
       <find>addTaskToTable</find>
       <find>filters</find>
       <find>.is</find>
@@ -93,6 +131,7 @@
       <find>registerGlobalHandlers</find>
       <find>registerTableHandlers</find>
       <find>getFilters</find>
+      <find>localhost:3000</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -150,8 +189,10 @@
         <option value="$PROJECT_DIR$/views/login.ejs" />
         <option value="$PROJECT_DIR$/scripts/safety-worker.js" />
         <option value="$PROJECT_DIR$/public/scripts/client-page-constructor.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/public/scripts/client-interaction.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/views/initialization.ejs" />
+        <option value="$PROJECT_DIR$/public/scripts/client-login.js" />
       </list>
     </option>
   </component>
@@ -162,8 +203,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
+    <option name="x" value="-10" />
+    <option name="width" value="980" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -192,6 +233,12 @@
               <item name="jwt" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
@@ -361,12 +408,13 @@
       <workItem from="1554627715225" duration="10029000" />
       <workItem from="1554637850990" duration="3916000" />
       <workItem from="1554644893141" duration="14591000" />
-      <workItem from="1554663046788" duration="2382000" />
+      <workItem from="1554663046788" duration="6617000" />
+      <workItem from="1554669706831" duration="31000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="415412000" />
+    <option name="totallyTimeSpent" value="419678000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -379,10 +427,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32402235" />
-      <window_info active="true" anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" visible="true" weight="0.20111732" />
+      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.041899443" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.35055867" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -396,7 +445,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" weight="0.37349397" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.22273628" />
       <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout>
@@ -435,18 +484,6 @@
       </list>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/index.js</url>
-          <line>57</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
@@ -484,7 +521,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tasks/attachments/6/same profiles.PNG" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/11.10.1/core-modules/fs.js" />
     <entry file="file://$PROJECT_DIR$/tasks/attachments/9/Program.cs" />
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/express.js">
@@ -607,23 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/users/users.dat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -645,13 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/error.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -663,75 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="48" lean-forward="true" selection-start-column="48" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
-          <folding>
-            <element signature="n#!!block;n#isDate#0;n#Utils#0" />
-            <element signature="n#!!block;n#isNumberInteger#0;n#Utils#0" />
-            <element signature="n#!!block;n#isNumberPositiveInteger#0;n#Utils#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/user-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!block;n#constructor#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#getUsersDirectory#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#getStoragePath#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#updateJsonStorage#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#initializeJsonStorage#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#getUserHashByLogin#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#getUserIdByLogin#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#getUserDataByLogin#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#getNewItemIndex#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#checkPassword#0;n#UserWorker#0" />
-            <element signature="n#!!block;n#addUser#0;n#UserWorker#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-          <folding>
-            <element signature="n#!!block;n#constructor#0;n#User#0" />
-            <element signature="n#!!block;n#checkPassword#0;n#User#0" />
-            <element signature="n#!!block;n#calculateHash#0;n#User#0" />
-            <element signature="n#!!block;n#hasValidProperties#0;n#User#0" />
-            <element signature="n#!!block;n#fromObject#0;n#User#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="176" column="19" lean-forward="true" selection-start-line="176" selection-start-column="19" selection-end-line="176" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!block;n#constructor#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getTasksDirectory#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getTasksPath#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getAttachmentsDirectory#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#initializeJsonStorage#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getAttachmentPathById#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getTasksData#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getTaskDataById#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#completeTask#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#deleteTask#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#changeTask#0;n#TaskWorker#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -821,23 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-          <folding>
-            <element signature="n#!!block;n#getTaskPropertiesNamesAsList#0;n#ClientUtils#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="96" column="25" lean-forward="true" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1632">
@@ -852,24 +778,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/page-constructor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="912">
           <caret line="47" column="42" lean-forward="true" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -888,17 +800,153 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="n#!!block;n#getTaskPropertiesNamesAsList#0;n#ClientUtils#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
+          <folding>
+            <element signature="n#!!block;n#isDate#0;n#Utils#0" />
+            <element signature="n#!!block;n#isNumberInteger#0;n#Utils#0" />
+            <element signature="n#!!block;n#isNumberPositiveInteger#0;n#Utils#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#User#0" />
+            <element signature="n#!!block;n#checkPassword#0;n#User#0" />
+            <element signature="n#!!block;n#calculateHash#0;n#User#0" />
+            <element signature="n#!!block;n#hasValidProperties#0;n#User#0" />
+            <element signature="n#!!block;n#fromObject#0;n#User#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="176" column="19" lean-forward="true" selection-start-line="176" selection-start-column="19" selection-end-line="176" selection-end-column="19" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTasksDirectory#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTasksPath#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getAttachmentsDirectory#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#initializeJsonStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getAttachmentPathById#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTasksData#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTaskDataById#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#completeTask#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#deleteTask#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#changeTask#0;n#TaskWorker#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-864">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/user-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#getUsersDirectory#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#getStoragePath#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#updateJsonStorage#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#initializeJsonStorage#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#getUserHashByLogin#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#getUserIdByLogin#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#getUserDataByLogin#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#getNewItemIndex#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#checkPassword#0;n#UserWorker#0" />
+            <element signature="n#!!block;n#addUser#0;n#UserWorker#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1123">
+          <caret line="119" column="26" selection-start-line="119" selection-end-line="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/initialization.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/client-interaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="136" column="60" lean-forward="true" selection-start-line="136" selection-start-column="60" selection-end-line="136" selection-end-column="60" />
+        <state relative-caret-position="-965">
+          <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
           <folding>
-            <element signature="n#!!block;n#getFilteredTasksPath#0;n#ClientInteraction#0" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!block;n#constructor#0;n#ClientInteraction#0" />
+            <element signature="n#!!block;n#startInteraction#0;n#ClientInteraction#0" />
             <element signature="n#!!block;n#addTaskToTable#0;n#ClientInteraction#0" />
             <element signature="n#!!block;n#createTask#0;n#ClientInteraction#0" />
+            <element signature="n#!!block;n#editTask#0;n#ClientInteraction#0" />
             <element signature="n#!!block;n#requestEdit#0;n#ClientInteraction#0" />
             <element signature="n#!!block;n#deleteTask#0;n#ClientInteraction#0" />
             <element signature="n#!!block;n#downloadAttachment#0;n#ClientInteraction#0" />
+            <element signature="n#!!block;n#completeTask#0;n#ClientInteraction#0" />
+            <element signature="n#!!block;n#loadTable#0;n#ClientInteraction#0" />
           </folding>
         </state>
       </provider>

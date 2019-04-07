@@ -1,3 +1,10 @@
+///
+/// class that
+///     gets data from server;
+///     sends data to server;
+///     calls page elements to update;
+///
+
 class ClientInteraction {
 
     constructor(pageConstructor) {
@@ -9,11 +16,6 @@ class ClientInteraction {
         this.loadTable(ClientPageStructure.getDefaultFilters());
         this.pageConstructor.registerGlobalHandlers(this);
     }
-
-
-    //
-    //
-    //
 
     static getFilteredTasksPath(allFilters, requiredFilters) {
 
