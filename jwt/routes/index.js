@@ -17,42 +17,42 @@ const requestHandler = new RequestHandler(taskWorker, userWorker);
 
 const statuses = ClientUtils.getStatusCodes();
 
-// token check
-router.use(function (req, res, next) {
-    if ((req.url === '/login')
-        || safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies))) {
-        next();
-    } else {
-        res.status(statuses.unauthorized).end();
-    }
-});
-
-// authorization
-router.post('/login', function (req, res) {
-    const login = RequestHandler.retrieveLogin(req.body);
-    const password = RequestHandler.retrievePassword(req.body);
-
-    const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
-
-    if (!doesUserExist) {
-        const userData = requestHandler.createUser(login, password);
-        if (userData === null) {
-            res.status(statuses.unprocessableEntity).end();
-        } else {
-            userWorker.updateJsonStorage();
-            safetyWorker.setCookie(res.cookies, userData);
-            res.status(statuses.ok).end();
-        }
-    } else {
-        const userData = requestHandler.checkUserCredentials(login, password);
-        if (userData === null) {
-            res.status(statuses.forbidden).end();
-        } else {
-            safetyWorker.setCookie(res.cookies, userData);
-            res.status(statuses.ok).end();
-        }
-    }
-});
+// // token check
+// router.use(function (req, res, next) {
+//     if ((req.url === '/login')
+//         || safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies))) {
+//         next();
+//     } else {
+//         res.status(statuses.unauthorized).end();
+//     }
+// });
+//
+// // authorization
+// router.post('/login', function (req, res) {
+//     const login = RequestHandler.retrieveLogin(req.body);
+//     const password = RequestHandler.retrievePassword(req.body);
+//
+//     const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
+//
+//     if (!doesUserExist) {
+//         const userData = requestHandler.createUser(login, password);
+//         if (userData === null) {
+//             res.status(statuses.unprocessableEntity).end();
+//         } else {
+//             userWorker.updateJsonStorage();
+//             safetyWorker.setCookie(res.cookies, userData);
+//             res.status(statuses.ok).end();
+//         }
+//     } else {
+//         const userData = requestHandler.checkUserCredentials(login, password);
+//         if (userData === null) {
+//             res.status(statuses.forbidden).end();
+//         } else {
+//             safetyWorker.setCookie(res.cookies, userData);
+//             res.status(statuses.ok).end();
+//         }
+//     }
+// });
 
 router.param('id', function (req, res, next, id) {
     if(RequestHandler.retrieveIndexOfRequestedElement(id) === null){

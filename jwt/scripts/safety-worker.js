@@ -33,7 +33,7 @@ class SafetyWorker {
     //  {
     //      userId ,
     //      userHash,
-    //      serLogin
+    //      userLogin
     //  }
     createJwtToken(userData) {
         return jwt.sign(JSON.parse(JSON.stringify(userData)), this.getKey(),

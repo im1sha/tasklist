@@ -14,6 +14,94 @@ class ClientPageConstructor {
         $('#body').html(errorThrown);
     }
 
+
+    //
+    // click handlers
+    //
+
+    registerGlobalHandlers(interactionInstance) {
+
+        $(':reset').click(event => {
+
+            if ($("[name='taskId'],[type='hidden']").attr('value') !== '-1') {
+                event.preventDefault();
+
+                interactionInstance.requestEdit($("[name='taskId'],[type='hidden']").attr('value'));
+            }
+        });
+
+        $("form").submit(event => {
+            event.preventDefault();
+
+            if ($("[name='taskId'],[type='hidden']").attr('value') === '-1') {
+                interactionInstance.createTask();
+            } else {
+                interactionInstance.editTask();
+            }
+        });
+
+        // filters
+        $("td input, [type='radio']").click(function(event) {
+
+            interactionInstance.loadTable(ClientPageConstructor.getFilters(interactionInstance));
+        });
+    }
+
+    static getFilters(interactionInstance) {
+        let usedFilters = ClientPageStructure.getDefaultFilters();
+
+        if ($('[value="incomplete"][name="completeness"]').is(':checked')) {
+            usedFilters.completeness = interactionInstance.filters.completeness.incomplete;
+        }
+        if ($('[value="completed"][name="completeness"]').is(':checked')) {
+            usedFilters.completeness = interactionInstance.filters.completeness.completed;
+        }
+        if ($('[value="upcoming"][name="date"]').is(':checked')) {
+            usedFilters.date = interactionInstance.filters.date.upcoming;
+        }
+        if ($('[value="expired"][name="date"]').is(':checked')) {
+            usedFilters.date = interactionInstance.filters.date.expired;
+        }
+
+        return usedFilters;
+    }
+
+    static registerTableHandlers(interactionInstance){
+
+        // working with task
+        $("td input").click(function() {
+
+            const id = this.getAttribute("data-id");
+
+            switch (this.getAttribute('value')) {
+                case 'complete':
+                    interactionInstance.completeTask( id);
+                    break;
+                case 'download':
+                    interactionInstance.downloadAttachment(id);
+                    break;
+                case 'edit':
+                    interactionInstance.requestEdit(id);
+                    break;
+                case 'remove':
+                    interactionInstance.deleteTask(id);
+                    break;
+            }
+        });
+    }
+
+    //
+    //
+    //
+
+    getMainFormId(){
+        return $('[type="hidden"][name="taskId"]').attr('value'); // mainForm task id
+    }
+
+    getMainFormData() {
+        return new FormData($('form')[0]);
+    }
+
     // fills table with tasks
     // jsonData is [{}, {}, {} ...]
     renderTable(jsonData) {

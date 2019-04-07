@@ -7,83 +7,9 @@ class ClientInteraction {
 
     startInteraction() {
         this.loadTable(ClientPageStructure.getDefaultFilters());
-        this.registerGlobalHandlers(this);
+        this.pageConstructor.registerGlobalHandlers(this);
     }
 
-    //
-    // click handlers
-    //
-
-    registerGlobalHandlers(thisInstance) {
-
-        $(':reset').click(event => {
-
-            if ($("[name='taskId'],[type='hidden']").attr('value') !== '-1') {
-                event.preventDefault();
-
-                thisInstance.requestEdit($("[name='taskId'],[type='hidden']").attr('value'));
-            }
-        });
-
-        $("form").submit(event => {
-            event.preventDefault();
-
-            if ($("[name='taskId'],[type='hidden']").attr('value') === '-1') {
-                thisInstance.createTask();
-            } else {
-                thisInstance.editTask();
-            }
-        });
-
-        // filters
-        $("td input, [type='radio']").click(function(event) {
-
-            thisInstance.loadTable(ClientInteraction.getFilters(thisInstance));
-        });
-    }
-
-    static getFilters(thisInstance) {
-        let usedFilters = ClientPageStructure.getDefaultFilters();
-
-        if ($('[value="incomplete"][name="completeness"]').is(':checked')) {
-            usedFilters.completeness = thisInstance.filters.completeness.incomplete;
-        }
-        if ($('[value="completed"][name="completeness"]').is(':checked')) {
-            usedFilters.completeness = thisInstance.filters.completeness.completed;
-        }
-        if ($('[value="upcoming"][name="date"]').is(':checked')) {
-            usedFilters.date = thisInstance.filters.date.upcoming;
-        }
-        if ($('[value="expired"][name="date"]').is(':checked')) {
-            usedFilters.date = thisInstance.filters.date.expired;
-        }
-
-        return usedFilters;
-    }
-
-    static registerTableHandlers(thisInstance){
-
-        // working with task
-        $("td input").click(function() {
-
-            const id = this.getAttribute("data-id");
-
-            switch (this.getAttribute('value')) {
-                case 'complete':
-                    thisInstance.completeTask( id);
-                    break;
-                case 'download':
-                    thisInstance.downloadAttachment(id);
-                    break;
-                case 'edit':
-                    thisInstance.requestEdit(id);
-                    break;
-                case 'remove':
-                    thisInstance.deleteTask(id);
-                    break;
-            }
-        });
-    }
 
     //
     //
@@ -139,7 +65,7 @@ class ClientInteraction {
             success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
                     pageConstructor.addTaskToTable(data);
-                    ClientInteraction.registerTableHandlers(thisInstance); // todo check
+                    ClientPageConstructor.registerTableHandlers(thisInstance);
                 } else {
                     pageConstructor.showError(jqXHR.statusText);
                 }
@@ -159,7 +85,7 @@ class ClientInteraction {
     createTask() {
         const thisInstance = this;
         const pageConstructor = this.pageConstructor;
-        const formData = new FormData($('form')[0]);
+        const formData = pageConstructor.getMainFormData();
 
         // posts multipart/form-data content
         $.ajax({
@@ -185,10 +111,10 @@ class ClientInteraction {
     }
 
     editTask() {
-        const id = $('[type="hidden"][name="taskId"]').attr('value');
-        const pageConstructor = this.pageConstructor;
-        const formData = new FormData($('form')[0]);
         const thisInstance = this;
+        const pageConstructor = this.pageConstructor;
+        const id = pageConstructor.getMainFormId();
+        const formData = pageConstructor.getMainFormData();
 
         // puts multipart/form-data content
         $.ajax({
@@ -202,7 +128,7 @@ class ClientInteraction {
             success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
                     pageConstructor.renderForm(true);
-                    thisInstance.loadTable(ClientInteraction.getFilters(thisInstance));
+                    thisInstance.loadTable(ClientPageConstructor.getFilters(thisInstance));
                 } else {
                     pageConstructor.showError(jqXHR.statusText);
                 }
@@ -309,7 +235,7 @@ class ClientInteraction {
             success: function (data, textStatus, jqXHR) {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
                     pageConstructor.renderTable(data);
-                    ClientInteraction.registerTableHandlers(thisInstance)
+                    ClientPageConstructor.registerTableHandlers(thisInstance)
                 } else {
                     pageConstructor.showError(jqXHR.statusText);
                 }
