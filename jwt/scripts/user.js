@@ -19,11 +19,13 @@ class User {
         };
     }
 
+    checkPassword(password) {
+        return this.userHash === User.calculateHash(password);
+    }
+
     static calculateHash(password) {
         return bcrypt.hashSync(password, 10);
     }
-
-    static getNewItemIndex() { return -1; }
 
     static hasValidProperties(obj){
         return obj.hasOwnProperty('userId')

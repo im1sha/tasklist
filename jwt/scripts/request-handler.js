@@ -5,11 +5,15 @@ const ClientPageStructure = require( "../public/scripts/client-page-structure");
 const ClientUtils = require( "../public/scripts/client-utils");
 
 const attachmentProperty = 'taskAttachment';
+const credentialsMinimalLength = 6;
 
 class RequestHandler {
-    constructor(taskWorker) {
+
+    constructor(taskWorker, userWorker) {
         this.taskWorker = taskWorker;
+        this.userWorker = userWorker;
     }
+
 
     static retrieveAttachment(files) {
         return (files === undefined)
@@ -85,22 +89,34 @@ class RequestHandler {
     ///
     /// Login section
     ///
-    // static retrieveLogin(body) {
-    //
-    //
-    // }
-    //
-    // static  retrievePassword(body) {
-    //
-    // }
-    //
-    // createUser() {
-    //
-    // }
-    //
-    // checkIfUserExists() {
-    //
-    // }
+
+    static getCredentialsMinimalLength() { return credentialsMinimalLength; }
+
+    static retrieveLogin(body) {
+        return body['login'] ? body['login'] : null;
+    }
+
+    static retrievePassword(body) {
+        return body['password'] ? body['password'] : null;
+    }
+
+    createUser(login, password) {
+        const loginString = String(login).length > RequestHandler.getCredentialsMinimalLength()
+            ? String(login)
+            : null;
+        const passwordString = String(password).length > RequestHandler.getCredentialsMinimalLength()
+            ? String(password)
+            : null;
+
+        if (passwordString && loginString) {
+            return this.userWorker.addUser(loginString, passwordString)
+        }
+        return null;
+    }
+
+    checkUserCredentials(login, password) {
+        return this.userWorker.checkPassword(String(login), String(password));
+    }
 
 }
 

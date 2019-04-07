@@ -12,7 +12,6 @@ class UserWorker {
     getUsersDirectory() {
         return './users';
     }
-
     getStoragePath(){
         return path.join(this.getUsersDirectory(), './users.dat');
     }
@@ -20,7 +19,6 @@ class UserWorker {
     updateJsonStorage() {
         StorageHelper.updateJsonStorage(this.getStoragePath(), this.users);
     }
-
     initializeJsonStorage() {
         this.users = StorageHelper.initializeJsonStorage(
             this.getUsersDirectory(),
@@ -35,15 +33,37 @@ class UserWorker {
         }
         return null;
     }
-
-    getUsersData() {
-        const tasks = [];
-        for (let value of this.users) {
-            if (value) {
-                tasks.push(value.getData());
-            }
+    getUserIdByLogin(login) {
+        for (let user of this.users) {
+            if (user.getLogin() === login) { return user.getId(); }
         }
-        return tasks;
+        return null;
+    }
+    getUserDataByLogin(login) {
+        for (let user of this.users) {
+            if (user.getLogin() === login) { return user.getData(); }
+        }
+        return null;
+    }
+
+    getNewItemIndex(){
+        return (this.users === null)
+            ? 0
+            : this.users.length;
+    }
+
+    /// returns user's data
+    checkPassword(login, password) {
+        if (this.getUserHashByLogin(login) === User.calculateHash(password)) {
+            return this.getUserDataByLogin(login);
+        }
+        return null;
+    }
+
+    addUser(login, password) {
+        const id = this.getNewItemIndex();
+        this.users[id] = new User(id, login, password);
+        return this.getUserDataByLogin(login);
     }
 }
 

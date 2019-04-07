@@ -1,7 +1,7 @@
 const fs = require ('fs');
 const random = require ('secure-random');
 const jwt = require ('jsonwebtoken');
-
+// const User = require ('./user');
 
 let key = '';
 
@@ -61,7 +61,6 @@ class SafetyWorker {
         }
     }
 
-
     getUserDataFromJwtToken(token) {
         try {
             return jwt.verify(token, this.getKey());
@@ -70,8 +69,8 @@ class SafetyWorker {
         }
     }
 
-    getTokenFromRequest(req) {
-        return req.cookies[cookieName];
+    getJwtTokenFromCookie(cookies) {
+        return cookies[this.getJwtTokenName()];
     }
 }
 
