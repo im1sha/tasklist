@@ -45,3 +45,4 @@ class StorageHelper {
 }
 
 module.exports = StorageHelper;
+

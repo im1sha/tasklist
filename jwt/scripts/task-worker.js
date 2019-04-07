@@ -1,10 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 const Task = require('./task');
-const Utils  = require('./utils');
-const ClientUtils = require('../public/scripts/client-utils');
-
+const AttachmentsHelper = require('./attachments-helper');
 const StorageHelper = require('./storage-helper');
+
+const ClientUtils = require('../public/scripts/client-utils');
 
 const taskProperties = Task.getPropertiesNamesAsList();
 const statuses = ClientUtils.getStatusCodes();
@@ -25,6 +25,10 @@ class TaskWorker {
         this.initializeAttachmentsStorage()
     }
 
+    ///
+    /// Path constants
+    ///
+
     getTasksDirectory() {
         return './tasks';
     }
@@ -36,19 +40,8 @@ class TaskWorker {
     }
 
     ///
-    // serialize
-    // deserialize
-    // updateJsonStorage
-    // initializeJsonStorage
-    //
-
-    serialize(taskArray) {
-        StorageHelper.serialize(taskArray);
-    }
-
-    deserialize(jsonString) {
-        return StorageHelper.deserialize(jsonString, Task.fromObject);
-    }
+    /// Working with storage
+    ///
 
     updateJsonStorage() {
         StorageHelper.updateJsonStorage(this.getTasksPath(), this.tasks);
@@ -67,6 +60,10 @@ class TaskWorker {
             fs.mkdirSync(this.getAttachmentsDirectory());
         }
     }
+
+    ///
+    /// Getting task info
+    ///
 
     isItemExists(id) {
         return Boolean(this.tasks[id]);
@@ -99,6 +96,10 @@ class TaskWorker {
         return null;
     }
 
+    ///
+    /// Changing operations
+    ///
+
     completeTask(id) {
 
         if (!this.isItemExists(id)) {
@@ -120,7 +121,7 @@ class TaskWorker {
         }
 
         this.tasks[id] = null;
-        Utils.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(id)));
+        AttachmentsHelper.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(id)));
         return statuses.successNoContent;
     }
 
@@ -148,9 +149,9 @@ class TaskWorker {
         if (properties[ClientUtils.getTaskShouldUpdateAttachmentPropertyName()] === true) {
             let result;
             if (attachment) {
-                result = Utils.rewriteFolderWithAttachment(this.getAttachmentsDirectory(), String(taskId), attachment);
+                result = AttachmentsHelper.rewriteFolderWithAttachment(this.getAttachmentsDirectory(), String(taskId), attachment);
             } else {
-                Utils.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(taskId)));
+                AttachmentsHelper.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(taskId)));
             }
             task.changeAttachment(
                 result ? result.attachmentPath : null,
@@ -167,7 +168,7 @@ class TaskWorker {
 
         const taskId = this.getNewItemIndex();
         const createResult =
-            Utils.rewriteFolderWithAttachment(
+            AttachmentsHelper.rewriteFolderWithAttachment(
                 this.getAttachmentsDirectory(),
                 String(taskId),
                 attachment);
