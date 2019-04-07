@@ -3,15 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/tasks-processing.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/client-login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/page-constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/page-constructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/storage-helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/storage-helper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/task-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/task-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/safety-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/safety-worker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/user-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/user-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/tasks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/tasks.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,8 +28,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/user-worker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            <state relative-caret-position="888">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/storage-helper.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
+              <folding>
+                <element signature="n#!!block;n#serialize#0;n#StorageHelper#0" />
+                <element signature="n#!!block;n#deserialize#0;n#StorageHelper#0" />
+                <element signature="n#!!block;n#updateJsonStorage#0;n#StorageHelper#0" />
+                <element signature="n#!!block;n#initializeJsonStorage#0;n#StorageHelper#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1536">
+              <caret line="64" column="2" selection-start-line="64" selection-start-column="2" selection-end-line="64" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -39,32 +61,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="187" column="15" selection-start-line="187" selection-start-column="15" selection-end-line="187" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="175" column="13" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="13" />
+            <state relative-caret-position="216">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
-                <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
-                <element signature="n#!!block;n#getNewItemIndex#0;n#TaskWorker#0" />
-                <element signature="n#!!block;n#getAttachmentPathById#0;n#TaskWorker#0" />
-                <element signature="n#!!block;n#getTasksData#0;n#TaskWorker#0" />
-                <element signature="n#!!block;n#getTaskDataById#0;n#TaskWorker#0" />
+                <element signature="n#!!block;n#constructor#0;n#User#0" />
+                <element signature="n#!!block;n#getData#0;n#User#0" />
+                <element signature="n#!!block;n#calculateHash#0;n#User#0" />
+                <element signature="n#!!block;n#hasValidProperties#0;n#User#0" />
+                <element signature="n#!!block;n#fromObject#0;n#User#0" />
               </folding>
             </state>
           </provider>
@@ -73,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="120" column="51" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
+            <state relative-caret-position="254">
+              <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
               <folding>
                 <element signature="n#!!block;n#constructor#0;n#Task#0" />
                 <element signature="n#!!block;n#getId#0;n#Task#0" />
@@ -89,48 +93,11 @@
                 <element signature="n#!!block;n#changeName#0;n#Task#0" />
                 <element signature="n#!!block;n#changeAttachment#0;n#Task#0" />
                 <element signature="n#!!block;n#getData#0;n#Task#0" />
-                <element signature="n#!!block;n#getPropertiesNamesAsList#0;n#Task#0" />
                 <element signature="n#!!block;n#hasValidGeneralProperties#0;n#Task#0" />
                 <element signature="n#!!block;n#hasValidLocalProperties#0;n#Task#0" />
                 <element signature="n#!!block;n#hasValidExternalProperties#0;n#Task#0" />
+                <element signature="n#!!block;n#isValidObject#0;n#Task#0" />
                 <element signature="n#!!block;n#fromObject#0;n#Task#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/storage-helper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-              <folding>
-                <element signature="n#!!block;n#serialize#0;n#StorageHelper#0" />
-                <element signature="n#!!block;n#deserialize#0;n#StorageHelper#0" />
-                <element signature="n#!!block;n#updateJsonStorage#0;n#StorageHelper#0" />
-                <element signature="n#!!block;n#initializeJsonStorage#0;n#StorageHelper#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/page-constructor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="118" column="93" selection-start-line="118" selection-start-column="93" selection-end-line="118" selection-end-column="93" />
-              <folding>
-                <element signature="n#!!block;n#constructor#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#getPlaceholdersForRadioButtons#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#getPlaceholders#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#shouldItemToShow#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#getAttachmentName#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#getFilteredTask#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#retrieveIndexOfRequestedElement#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#updateTask#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#deleteTask#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#patchTask#0;n#PageConstructor#0" />
-                <element signature="n#!!block;n#completeTask#0;n#PageConstructor#0" />
               </folding>
             </state>
           </provider>
@@ -139,7 +106,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/attachments-helper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="192">
               <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
               <folding>
                 <element signature="n#!!block;n#moveFileInFolder#0;n#AttachmentsHelper#0" />
@@ -150,11 +117,65 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scripts/request-handler.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+              <folding>
+                <element signature="n#!!block;n#constructor#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#retrieveAttachment#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#getAttachmentName#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#getFilteredTask#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#retrieveIndexOfRequestedElement#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#createTask#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#updateTask#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#changePropertiesUsingFiles#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#deleteTask#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#patchTask#0;n#RequestHandler#0" />
+                <element signature="n#!!block;n#completeTask#0;n#RequestHandler#0" />
+                <element signature="e#2250#2253#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/page-constructor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+              <folding>
+                <element signature="n#!!block;n#getPlaceholdersForRadioButtons#0;n#PageConstructor#0" />
+                <element signature="n#!!block;n#getPlaceholders#0;n#PageConstructor#0" />
+                <element signature="n#!!block;n#shouldItemToShow#0;n#PageConstructor#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1704">
+              <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
+              <folding>
+                <element signature="n#!!block;n#initializeKey#0;n#SafetyWorker#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="14" column="72" lean-forward="true" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
+            <state relative-caret-position="264">
+              <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
+              <folding>
+                <element signature="n#!!block;n#isDate#0;n#Utils#0" />
+                <element signature="n#!!block;n#isNumberInteger#0;n#Utils#0" />
+                <element signature="n#!!block;n#isNumberPositiveInteger#0;n#Utils#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -170,10 +191,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rewriteAttachment</find>
-      <find>construc</find>
-      <find>pre</find>
-      <find>ClientPageConstructor</find>
       <find>alert</find>
       <find>taskI</find>
       <find>id</find>
@@ -200,6 +217,10 @@
       <find>serialize</find>
       <find>u</find>
       <find>utils</find>
+      <find>getTokenFromRequest</find>
+      <find>calculateHash</find>
+      <find>task</find>
+      <find>worker</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -245,18 +266,20 @@
         <option value="$PROJECT_DIR$/public/scripts/client-core.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/scripts/tasks-processing.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/scripts/user.js" />
         <option value="$PROJECT_DIR$/scripts/JsonParser.js" />
         <option value="$PROJECT_DIR$/scripts/json-parser.js" />
         <option value="$PROJECT_DIR$/scripts/utils.js" />
         <option value="$PROJECT_DIR$/scripts/storage-helper.js" />
         <option value="$PROJECT_DIR$/views/login.ejs" />
-        <option value="$PROJECT_DIR$/scripts/page-constructor.js" />
-        <option value="$PROJECT_DIR$/scripts/user-worker.js" />
         <option value="$PROJECT_DIR$/scripts/task-worker.js" />
-        <option value="$PROJECT_DIR$/scripts/safety-worker.js" />
         <option value="$PROJECT_DIR$/scripts/attachments-helper.js" />
+        <option value="$PROJECT_DIR$/scripts/user-worker.js" />
+        <option value="$PROJECT_DIR$/scripts/safety-worker.js" />
+        <option value="$PROJECT_DIR$/scripts/requeset-handler.js" />
+        <option value="$PROJECT_DIR$/scripts/user.js" />
+        <option value="$PROJECT_DIR$/scripts/page-constructor.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/scripts/request-handler.js" />
       </list>
     </option>
   </component>
@@ -306,11 +329,6 @@
               <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
               <item name="jwt" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
-              <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -459,12 +477,12 @@
       <workItem from="1554619470992" duration="2333000" />
       <workItem from="1554627715225" duration="10029000" />
       <workItem from="1554637850990" duration="3916000" />
-      <workItem from="1554644893141" duration="2301000" />
+      <workItem from="1554644893141" duration="8132000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="400740000" />
+    <option name="totallyTimeSpent" value="406571000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -477,11 +495,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32402235" />
-      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.2877095" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" visible="true" weight="0.35055867" />
+      <window_info active="true" anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" visible="true" weight="0.2877095" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.35055867" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
@@ -494,20 +513,20 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.15532055" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.1526768" />
       <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32402235" />
-      <window_info active="true" anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" visible="true" weight="0.2793296" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.52793294" />
+      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.2877095" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.35055867" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.5009914" side_tool="true" weight="0.36864406" />
-      <window_info anchor="bottom" id="Favorites" order="8" sideWeight="0.5009914" side_tool="true" weight="0.36864406" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.5009914" side_tool="true" weight="0.30167598" />
+      <window_info anchor="bottom" id="Favorites" order="8" sideWeight="0.5009914" side_tool="true" weight="0.36731842" />
       <window_info anchor="bottom" auto_hide="true" id="TODO" order="9" sideWeight="0.5009914" side_tool="true" weight="0.36871508" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.5009914" side_tool="true" weight="0.36871508" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50537634" side_tool="true" weight="0.46751413" />
@@ -515,8 +534,8 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37569833" weight="0.8988764" />
-      <window_info anchor="right" id="npm" order="4" sideWeight="0.6243017" side_tool="true" weight="0.17607526" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.15532055" />
+      <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout-to-restore>
   </component>
@@ -538,15 +557,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/index.js</url>
-          <line>186</line>
+          <line>134</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/scripts/page-constructor.js</url>
-          <line>118</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/attachments-helper.js</url>
@@ -606,7 +619,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tasks/attachments/0/undefined" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/11.10.1/node-typings/node_modules/@types/node/globals.d.ts" />
     <entry file="file://$PROJECT_DIR$/node_modules/express/index.js" />
     <entry file="file://$PROJECT_DIR$/tasks/attachments/6/same profiles.PNG" />
@@ -639,13 +651,6 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_code.jquery.com_jquery-2.2.4.js" />
     <entry file="file://$PROJECT_DIR$/public/scripts/global.js" />
     <entry file="file://$PROJECT_DIR$/routes/download.js" />
-    <entry file="file://$PROJECT_DIR$/public/scripts/ejs.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="72" selection-start-column="72" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -665,15 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
           <caret line="359" column="2" lean-forward="true" selection-start-line="359" selection-start-column="2" selection-end-line="359" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/jquery-3.3.1.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -755,54 +751,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
+    <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+        <state relative-caret-position="24">
+          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
+    <entry file="file://$PROJECT_DIR$/views/login.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="552">
+          <caret line="23" column="47" lean-forward="true" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="13" column="29" lean-forward="true" selection-start-line="12" selection-end-line="13" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/error.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-293">
+          <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/ejs.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="72" selection-start-column="72" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/jquery-3.3.1.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="643">
-          <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+          <caret line="96" column="25" lean-forward="true" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-utils.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="61" column="11" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
-          <folding>
-            <element signature="n#!!block;n#getTaskPropertiesNamesAsList#0;n#ClientUtils#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
-          <folding>
-            <element signature="n#!!block;n#constructor#0;n#ClientPageConstructor#0" />
-            <element signature="n#!!block;n#showError#0;n#ClientPageConstructor#0" />
-            <element signature="n#!!block;n#renderTable#0;n#ClientPageConstructor#0" />
-            <element signature="n#!!block;n#completeTaskAtTable#0;n#ClientPageConstructor#0" />
-            <element signature="n#!!block;n#deleteTaskFromTable#0;n#ClientPageConstructor#0" />
-            <element signature="n#!!block;n#renderForm#0;n#ClientPageConstructor#0" />
-            <element signature="n#!!block;n#addTaskToTable#0;n#ClientPageConstructor#0" />
-            <element signature="n#!!block;n#createTaskEntry#0;n#ClientPageConstructor#0" />
-          </folding>
+        <state relative-caret-position="1920">
+          <caret line="80" column="27" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -829,83 +839,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/www">
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+        <state relative-caret-position="499">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/tasks-processing.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="96" column="25" lean-forward="true" selection-start-line="96" selection-start-column="25" selection-end-line="96" selection-end-column="25" />
+        <state relative-caret-position="1632">
+          <caret line="68" column="48" lean-forward="true" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-293">
-          <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        <state relative-caret-position="1224">
+          <caret line="61" column="11" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!block;n#getTaskPropertiesNamesAsList#0;n#ClientUtils#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.ejs">
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="11" lean-forward="true" selection-start-column="11" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#showError#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#renderTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#completeTaskAtTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#deleteTaskFromTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#renderForm#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#addTaskToTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#createTaskEntry#0;n#ClientPageConstructor#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
-          <caret line="23" column="47" lean-forward="true" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="13" column="29" lean-forward="true" selection-start-line="12" selection-end-line="13" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/error.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
           <folding>
-            <element signature="n#!!block;n#initializeKey#0;n#SafetyWorker#0" />
+            <element signature="n#!!block;n#constructor#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTasksDirectory#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTasksPath#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getAttachmentsDirectory#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#initializeJsonStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getNewItemIndex#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getAttachmentPathById#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTasksData#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#getTaskDataById#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#completeTask#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#deleteTask#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#changeTask#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#createTask#0;n#TaskWorker#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#User#0" />
+            <element signature="n#!!block;n#getData#0;n#User#0" />
+            <element signature="n#!!block;n#calculateHash#0;n#User#0" />
+            <element signature="n#!!block;n#hasValidProperties#0;n#User#0" />
+            <element signature="n#!!block;n#fromObject#0;n#User#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="72" lean-forward="true" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
+        <state relative-caret-position="264">
+          <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
+          <folding>
+            <element signature="n#!!block;n#isDate#0;n#Utils#0" />
+            <element signature="n#!!block;n#isNumberInteger#0;n#Utils#0" />
+            <element signature="n#!!block;n#isNumberPositiveInteger#0;n#Utils#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/user-worker.js">
+    <entry file="file://$PROJECT_DIR$/scripts/attachments-helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        <state relative-caret-position="192">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <folding>
+            <element signature="n#!!block;n#moveFileInFolder#0;n#AttachmentsHelper#0" />
+            <element signature="n#!!block;n#deleteFilesInFolder#0;n#AttachmentsHelper#0" />
+            <element signature="n#!!block;n#deleteFolderWithAttachment#0;n#AttachmentsHelper#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/storage-helper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="n#!!block;n#serialize#0;n#StorageHelper#0" />
             <element signature="n#!!block;n#deserialize#0;n#StorageHelper#0" />
@@ -917,8 +961,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="120" column="51" selection-start-line="120" selection-start-column="51" selection-end-line="120" selection-end-column="51" />
+        <state relative-caret-position="254">
+          <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
           <folding>
             <element signature="n#!!block;n#constructor#0;n#Task#0" />
             <element signature="n#!!block;n#getId#0;n#Task#0" />
@@ -933,65 +977,69 @@
             <element signature="n#!!block;n#changeName#0;n#Task#0" />
             <element signature="n#!!block;n#changeAttachment#0;n#Task#0" />
             <element signature="n#!!block;n#getData#0;n#Task#0" />
-            <element signature="n#!!block;n#getPropertiesNamesAsList#0;n#Task#0" />
             <element signature="n#!!block;n#hasValidGeneralProperties#0;n#Task#0" />
             <element signature="n#!!block;n#hasValidLocalProperties#0;n#Task#0" />
             <element signature="n#!!block;n#hasValidExternalProperties#0;n#Task#0" />
+            <element signature="n#!!block;n#isValidObject#0;n#Task#0" />
             <element signature="n#!!block;n#fromObject#0;n#Task#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/attachments-helper.js">
+    <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+        <state relative-caret-position="1704">
+          <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
           <folding>
-            <element signature="n#!!block;n#moveFileInFolder#0;n#AttachmentsHelper#0" />
-            <element signature="n#!!block;n#deleteFilesInFolder#0;n#AttachmentsHelper#0" />
-            <element signature="n#!!block;n#deleteFolderWithAttachment#0;n#AttachmentsHelper#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="175" column="13" selection-start-line="175" selection-start-column="13" selection-end-line="175" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getNewItemIndex#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getAttachmentPathById#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getTasksData#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getTaskDataById#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#initializeKey#0;n#SafetyWorker#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/page-constructor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="118" column="93" selection-start-line="118" selection-start-column="93" selection-end-line="118" selection-end-column="93" />
+        <state relative-caret-position="552">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
-            <element signature="n#!!block;n#constructor#0;n#PageConstructor#0" />
             <element signature="n#!!block;n#getPlaceholdersForRadioButtons#0;n#PageConstructor#0" />
             <element signature="n#!!block;n#getPlaceholders#0;n#PageConstructor#0" />
             <element signature="n#!!block;n#shouldItemToShow#0;n#PageConstructor#0" />
-            <element signature="n#!!block;n#getAttachmentName#0;n#PageConstructor#0" />
-            <element signature="n#!!block;n#getFilteredTask#0;n#PageConstructor#0" />
-            <element signature="n#!!block;n#retrieveIndexOfRequestedElement#0;n#PageConstructor#0" />
-            <element signature="n#!!block;n#updateTask#0;n#PageConstructor#0" />
-            <element signature="n#!!block;n#deleteTask#0;n#PageConstructor#0" />
-            <element signature="n#!!block;n#patchTask#0;n#PageConstructor#0" />
-            <element signature="n#!!block;n#completeTask#0;n#PageConstructor#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/user-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="888">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="187" column="15" selection-start-line="187" selection-start-column="15" selection-end-line="187" selection-end-column="15" />
+        <state relative-caret-position="1536">
+          <caret line="64" column="2" selection-start-line="64" selection-start-column="2" selection-end-line="64" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/request-handler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#retrieveAttachment#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#getAttachmentName#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#getFilteredTask#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#retrieveIndexOfRequestedElement#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#createTask#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#updateTask#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#changePropertiesUsingFiles#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#deleteTask#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#patchTask#0;n#RequestHandler#0" />
+            <element signature="n#!!block;n#completeTask#0;n#RequestHandler#0" />
+            <element signature="e#2250#2253#0" />
+          </folding>
         </state>
       </provider>
     </entry>

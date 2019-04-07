@@ -29,6 +29,13 @@ class UserWorker {
         );
     }
 
+    getUserHashByLogin(login) {
+        for (let user of this.users) {
+            if (user.getLogin() === login) { return user.getHash(); }
+        }
+        return null;
+    }
+
     getUsersData() {
         const tasks = [];
         for (let value of this.users) {

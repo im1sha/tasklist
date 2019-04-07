@@ -19,7 +19,7 @@ class User {
         };
     }
 
-    calculateHash(password) {
+    static calculateHash(password) {
         return bcrypt.hashSync(password, 10);
     }
 
