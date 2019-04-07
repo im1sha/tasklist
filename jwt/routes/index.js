@@ -9,8 +9,100 @@ const pageConstructor = new Constructor(worker);
 
 const statuses = ClientUtils.getStatusCodes();
 
-// todo check query content here ? OR on single router?
-//  router.all();
+
+
+//////////////////////////////////////////////////
+
+
+
+
+
+//
+// router.use(function (req, res, next) {
+//     if (req.url.includes('login') || (req.url === '/') || isTokenValid(getTokenFromRequest(req))) {
+//         next();
+//     } else {
+//         res.status(401).end();
+//     }
+// });
+//
+// function isTokenValid(token) {
+//     try {
+//         const decoded = decodeUserFromToken(token),
+//             tokenUser = users.filter((user) => user.username === decoded.username);
+//         if (tokenUser.length === 0) {
+//             return false;
+//         } else {
+//             return tokenUser[0].passwordHash === decoded.passwordHash;
+//         }
+//     } catch(err) {
+//         return false;
+//     }
+// }
+//
+// function decodeUserFromToken(token) {
+//     return jwt.verify(token, privateKey);
+// }
+//
+// function getTokenFromRequest(req) {
+//     return req.cookies[cookieName];
+// }
+//
+// router.get('/', (req, res) => res.send(fs.readFileSync(path.join('views', 'page.ejs')).toString()));
+//
+// router.get('/index', (req, res) => res.send(JSON.stringify({
+//     template: fs.readFileSync(path.join('views', 'index.ejs')).toString(),
+//     loc: pageLocalization })));
+//
+// router.get('/login', (req, res) => res.send(JSON.stringify({
+//     template: fs.readFileSync(path.join('views', 'login.ejs')).toString(),
+//     loc: loginLocalization })));
+//
+// router.post('/login', function (req, res) {
+//     const username = req.body['username'],
+//         password = req.body['password'];
+//
+//     const suchUsers = users.filter((user) => user.username === username);
+//     if (suchUsers.length === 0) {
+//         const user = new User(username, users.length, password);
+//         users.push(user);
+//         updateUsersStorage();
+//         createCookie(res, user);
+//         res.status(200).end();
+//     } else {
+//         const user = suchUsers[0];
+//         if (user.checkPassword(password)) {
+//             createCookie(res, user);
+//             res.status(200).end();
+//         } else {
+//             res.status(406).end();
+//         }
+//     }
+// });
+//
+// function createCookie(res, user) {
+//     res.cookie(cookieName, createToken(user), { httpOnly: true, maxAge: tokenExpirationTime });
+// }
+//
+// function createToken(user) {
+//     return jwt.sign(JSON.parse(JSON.stringify(user)),
+//         privateKey,
+//         { expiresIn: tokenExpirationTime });
+// }
+//
+
+
+
+
+
+
+/////////////////////////////////////////////////////
+
+
+
+
+
+
 
 router.param('id', function (req, res, next, id) {
     if(Constructor.retrieveIndexOfRequestedElement(id) === null){

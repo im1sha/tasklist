@@ -2,6 +2,7 @@ const path = require('path');
 const createError = require('http-errors');
 const express = require('express');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload');
 
 //
@@ -21,6 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+app.use(cookieParser());
 
 app.use(fileUpload());
 app.use(express.json());

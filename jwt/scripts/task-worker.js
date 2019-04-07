@@ -4,14 +4,17 @@ const Task = require('./task');
 const Utils  = require('./utils');
 const ClientUtils = require('../public/scripts/client-utils');
 
+const StorageHelper = require('./storage-helper');
+
 const taskProperties = Task.getPropertiesNamesAsList();
 const statuses = ClientUtils.getStatusCodes();
 
+
 //
 // code that uses this class should call updateJsonStorage()
-// todo
+//  todo
 //  implement router that calls updateJsonStorage()
-//  ? implement router that updates attachment storage ?
+//  implement router that updates attachment storage
 //
 
 class TaskWorker {
@@ -32,32 +35,33 @@ class TaskWorker {
         return path.join(this.getTasksDirectory(), 'attachments');
     }
 
+    ///
+    // serialize
+    // deserialize
+    // updateJsonStorage
+    // initializeJsonStorage
+    //
+
     serialize(taskArray) {
-        return JSON.stringify(taskArray);
+        StorageHelper.serialize(taskArray);
     }
+
     deserialize(jsonString) {
-        const deserialized = JSON.parse(jsonString);
-        const taskArray = [];
-
-        if (Array.isArray(deserialized)) {
-            deserialized.forEach(e => taskArray.push(Task.fromObject(e)));
-        }
-
-        return taskArray;
+        return StorageHelper.deserialize(jsonString, Task.fromObject);
     }
 
     updateJsonStorage() {
-       fs.writeFileSync(this.getTasksPath(), this.serialize(this.tasks));
+        StorageHelper.updateJsonStorage(this.getTasksPath(), this.tasks);
     }
+
     initializeJsonStorage() {
-        if (!fs.existsSync(this.getTasksDirectory())) {
-            fs.mkdirSync(this.getTasksDirectory());
-        }
-        if (fs.existsSync(this.getTasksPath())) {
-            this.tasks = this.deserialize(fs.readFileSync(this.getTasksPath()));
-        }
-        this.updateJsonStorage();
+        this.tasks = StorageHelper.initializeJsonStorage(
+            this.getTasksDirectory(),
+            this.getTasksPath(),
+            Task.fromObject // parser
+        );
     }
+
     initializeAttachmentsStorage() {
         if (!fs.existsSync(this.getAttachmentsDirectory())) {
             fs.mkdirSync(this.getAttachmentsDirectory());
