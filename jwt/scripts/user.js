@@ -14,8 +14,8 @@ class User {
     getData() {
         return {
             userId : this.getId(),
+            userLogin: this.getLogin(),
             userHash: this.getHash(),
-            userLogin: this.getLogin()
         };
     }
 

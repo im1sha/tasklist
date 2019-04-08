@@ -15,7 +15,7 @@ class StorageHelper {
 
         const array = [];
 
-        if (Array.isArray(parsedData)) {
+        if (Array.isArray(parsedData) && parsedData.length > 0) {
             parsedData.forEach(item => array.push(parserFunction(item)));
         }
 
@@ -40,8 +40,6 @@ class StorageHelper {
         if (fs.existsSync(filePath)) {
             content = this.deserialize(fs.readFileSync(filePath), parserFunction);
         }
-
-
 
         StorageHelper.updateJsonStorage(filePath, content);
 

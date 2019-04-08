@@ -27,7 +27,7 @@ class SafetyWorker {
 
     getJwtTokenName() { return 'token'; }
 
-    getJwtTokenExpirationTimeInSeconds() { return 60 * 60 * 12;} // 12h
+    getJwtTokenExpirationTimeInSeconds() { return 60 * 60 * 12; } // 12h
 
     // userData is
     //  {
@@ -36,21 +36,16 @@ class SafetyWorker {
     //      userLogin
     //  }
     createJwtToken(userData) {
-
-        console.log(JSON.parse(JSON.stringify(userData)));
-
-        return jwt.sign(
-            JSON.stringify(userData),
-            this.getKey(),
-            { expiresIn: this.getJwtTokenExpirationTimeInSeconds() }
-            );
+        return jwt.sign(userData, this.getKey(), {
+            expiresIn: this.getJwtTokenExpirationTimeInSeconds()
+        });
     }
 
-    setCookie(cookie, userData) {
-        cookie(
+    setCookie(res, userData) {
+        res.cookie(
             this.getJwtTokenName(),
             this.createJwtToken(userData),
-            { httpOnly: true, maxAge: this.getJwtTokenExpirationTimeInSeconds() }
+            {httpOnly: true, maxAge: this.getJwtTokenExpirationTimeInSeconds()}
         );
     }
 

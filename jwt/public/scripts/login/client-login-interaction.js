@@ -19,11 +19,11 @@ class ClientLoginInteraction {
                 if (jqXHR.status === ClientUtils.getStatusCodes().ok) {
                     window.location.replace("http://localhost:3000/");
                 } else {
-                    this.pageConstructor.showError(textStatus);
+                    ClientLoginPageConstructor.showError(textStatus);
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                this.pageConstructor.showError(errorThrown);
+                 ClientLoginPageConstructor.showError(errorThrown);
             }
         });
     }

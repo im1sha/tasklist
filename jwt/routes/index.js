@@ -3,8 +3,8 @@ const router = express.Router();
 
 const TaskWorker = require('../scripts/task-worker');
 const UserWorker = require('../scripts/user-worker');
-const SafetyWorker = require ('../scripts/safety-worker');
-const RequestHandler = require ('../scripts/request-handler');
+const SafetyWorker = require('../scripts/safety-worker');
+const RequestHandler = require('../scripts/request-handler');
 
 const taskWorker = new TaskWorker();
 const userWorker = new UserWorker();
@@ -30,12 +30,12 @@ router.use((req, res, next) => {
 
     if (!req.authorized) {
 
-       if (req.url === '/login' && (req.method.toLowerCase() === 'get'
+        if (req.url === '/login' && (req.method.toLowerCase() === 'get'
             || req.method.toLowerCase() === 'post')) {
             next();
-       } else if (req.url === '/' && req.method.toLowerCase() === 'get') {
-           res.status(statuses.unauthorized).redirect(statuses.found, '/login');
-       }
+        } else if (req.url === '/' && req.method.toLowerCase() === 'get') {
+            res.status(statuses.unauthorized).redirect(statuses.found, '/login');
+        }
 
     } else {
 
@@ -49,7 +49,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/login', (req, res) => {
-    res.status(statuses.unauthorized).render('initialization', { });
+    res.status(statuses.unauthorized).render('initialization', {});
 });
 
 router.post('/login', (req, res) => {
@@ -65,7 +65,7 @@ router.post('/login', (req, res) => {
             res.status(statuses.unprocessableEntity).end();
         } else {
             userWorker.updateJsonStorage();
-            safetyWorker.setCookie(res.cookie, userData);
+            safetyWorker.setCookie(res, userData);
             res.status(statuses.ok).end();
         }
 
@@ -75,7 +75,7 @@ router.post('/login', (req, res) => {
         if (userData === null) {
             res.status(statuses.forbidden).end();
         } else {
-            safetyWorker.setCookie(res.cookie, userData);
+            safetyWorker.setCookie(res, userData);
             res.status(statuses.ok).end();
         }
 
@@ -87,7 +87,7 @@ router.post('/login', (req, res) => {
 //
 
 router.param('id', (req, res, next, id) => {
-    if(RequestHandler.retrieveIndexOfRequestedElement(id) === null){
+    if (RequestHandler.retrieveIndexOfRequestedElement(id) === null) {
         res.sendStatus(statuses.badRequest).end();
     } else {
         next();
@@ -182,6 +182,6 @@ router.put('/api/tasks/:id', (req, res) => {
 });
 
 
-module.exports = { router:router };
+module.exports = {router: router};
 
 
