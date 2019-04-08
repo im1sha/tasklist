@@ -93,11 +93,11 @@ class RequestHandler {
     static getCredentialsMinimalLength() { return credentialsMinimalLength; }
 
     static retrieveLogin(body) {
-        return body['login'] ? body['login'] : null;
+        return body['login'] ? String(body['login']) : null;
     }
 
     static retrievePassword(body) {
-        return body['password'] ? body['password'] : null;
+        return body['password'] ? String(body['password']) : null;
     }
 
     createUser(login, password) {

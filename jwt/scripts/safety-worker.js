@@ -36,13 +36,19 @@ class SafetyWorker {
     //      userLogin
     //  }
     createJwtToken(userData) {
-        return jwt.sign(JSON.parse(JSON.stringify(userData)), this.getKey(),
+
+        console.log(JSON.parse(JSON.stringify(userData)));
+
+        return jwt.sign(
+            JSON.stringify(userData),
+            this.getKey(),
             { expiresIn: this.getJwtTokenExpirationTimeInSeconds() }
             );
     }
 
     setCookie(cookie, userData) {
-        cookie(this.getJwtTokenName(),
+        cookie(
+            this.getJwtTokenName(),
             this.createJwtToken(userData),
             { httpOnly: true, maxAge: this.getJwtTokenExpirationTimeInSeconds() }
         );

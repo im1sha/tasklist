@@ -10,8 +10,8 @@ class ClientPageConstructor {
         this.taskStatuses = ClientPageStructure.getTaskStatuses();
     }
 
-    showError(errorThrown) {
-        $('#body').html(errorThrown);
+    static showError(errorThrown) {
+        $('body').html(errorThrown);
     }
 
 

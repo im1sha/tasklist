@@ -4,8 +4,8 @@ class User {
 
     constructor(userId, userLogin, userHash) {
         this.userId = userId;
-        this.userLogin = userLogin;
-        this.userHash = userHash;
+        this.userLogin = String(userLogin);
+        this.userHash = String(userHash);
     }
 
     getId() { return this.userId; }
@@ -20,7 +20,7 @@ class User {
     }
 
     checkPassword(password) {
-        return this.userHash === User.calculateHash(password);
+        return bcrypt.compareSync(password, this.userHash);
     }
 
     static calculateHash(password) {

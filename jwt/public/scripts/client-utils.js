@@ -37,6 +37,7 @@ class ClientUtils {
             ok: 200,
             created: 201,
             successNoContent: 204,
+            found: 302,
             badRequest: 400,
             unauthorized: 401,
             forbidden: 403,

@@ -8,7 +8,7 @@ const RequestHandler = require ('../scripts/request-handler');
 
 const taskWorker = new TaskWorker();
 const userWorker = new UserWorker();
-const safetyWorker = new SafetyWorker();
+const safetyWorker = new SafetyWorker(userWorker);
 const requestHandler = new RequestHandler(taskWorker, userWorker);
 
 const ClientUtils = require('../public/scripts/client-utils');
@@ -17,17 +17,41 @@ const Constructor = require('../scripts/page-constructor');
 const statuses = ClientUtils.getStatusCodes();
 
 
+router.get('/favicon.ico', (req, res) =>
+    res.sendStatus(statuses.successNoContent).end()
+);
+
+//
+// authorization
+//
+
 router.use((req, res, next) => {
-    if ((req.url === '/login')
-        || (req.url === '/')
-        || safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies))) {
-        next();
+    req.authorized = safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies));
+
+    if (!req.authorized) {
+
+       if (req.url === '/login' && (req.method.toLowerCase() === 'get'
+            || req.method.toLowerCase() === 'post')) {
+            next();
+       } else if (req.url === '/' && req.method.toLowerCase() === 'get') {
+           res.status(statuses.unauthorized).redirect(statuses.found, '/login');
+       }
+
     } else {
-        res.status(statuses.unauthorized).end();
+
+        if (req.url === '/login') {
+            res.redirect(statuses.found, '/');
+        } else {
+            next();
+        }
+
     }
 });
 
-// authorization
+router.get('/login', (req, res) => {
+    res.status(statuses.unauthorized).render('initialization', { });
+});
+
 router.post('/login', (req, res) => {
     const login = RequestHandler.retrieveLogin(req.body);
     const password = RequestHandler.retrievePassword(req.body);
@@ -35,28 +59,32 @@ router.post('/login', (req, res) => {
     const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
 
     if (!doesUserExist) {
+
         const userData = requestHandler.createUser(login, password);
         if (userData === null) {
             res.status(statuses.unprocessableEntity).end();
         } else {
             userWorker.updateJsonStorage();
-            safetyWorker.setCookie(res.cookies, userData);
+            safetyWorker.setCookie(res.cookie, userData);
             res.status(statuses.ok).end();
         }
+
     } else {
+
         const userData = requestHandler.checkUserCredentials(login, password);
         if (userData === null) {
             res.status(statuses.forbidden).end();
         } else {
-            safetyWorker.setCookie(res.cookies, userData);
+            safetyWorker.setCookie(res.cookie, userData);
             res.status(statuses.ok).end();
         }
+
     }
 });
 
-
-router.get('/', (req, res) => res.render('initialization') );
-
+//
+// after authorization
+//
 
 router.param('id', (req, res, next, id) => {
     if(RequestHandler.retrieveIndexOfRequestedElement(id) === null){
@@ -66,9 +94,6 @@ router.param('id', (req, res, next, id) => {
     }
 });
 
-router.get('/favicon.ico', (req, res) =>
-    res.sendStatus(statuses.successNoContent).end()
-);
 
 // downloads 1 attachment
 router.get('/api/attachments/:id', (req, res) => {
@@ -79,7 +104,6 @@ router.get('/api/attachments/:id', (req, res) => {
         res.sendStatus(statuses.notFound).end();
     }
 });
-
 
 // returns default page
 // client should ask for all the content if DOM is ready

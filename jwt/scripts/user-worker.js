@@ -62,7 +62,7 @@ class UserWorker {
 
     addUser(login, password) {
         const id = this.getNewItemIndex();
-        this.users[id] = new User(id, login, password);
+        this.users[id] = new User(id, login,User.calculateHash(password));
         return this.getUserDataByLogin(login);
     }
 }

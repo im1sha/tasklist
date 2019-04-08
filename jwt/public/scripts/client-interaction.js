@@ -69,11 +69,11 @@ class ClientInteraction {
                     pageConstructor.addTaskToTable(data);
                     ClientPageConstructor.registerTableHandlers(thisInstance);
                 } else {
-                    pageConstructor.showError(jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 }
             },
             error:(jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }
@@ -103,11 +103,11 @@ class ClientInteraction {
                     pageConstructor.renderForm(true);
                     thisInstance.addTaskToTable(JSON.parse(data));
                 } else {
-                    pageConstructor.showError(jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }
@@ -132,11 +132,11 @@ class ClientInteraction {
                     pageConstructor.renderForm(true);
                     thisInstance.loadTable(ClientPageConstructor.getFilters(thisInstance));
                 } else {
-                    pageConstructor.showError(jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }
@@ -157,11 +157,11 @@ class ClientInteraction {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
                     pageConstructor.renderForm(false, data);
                 } else {
-                    pageConstructor.showError(jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 }
             },
             error:(jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }
@@ -177,11 +177,11 @@ class ClientInteraction {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
                     pageConstructor.deleteTaskFromTable(id);
                 } else {
-                    pageConstructor.showError(jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }
@@ -194,13 +194,13 @@ class ClientInteraction {
             url: "http://localhost:3000/api/attachments/" + String(id),
             success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status !==  ClientUtils.getStatusCodes().ok) {
-                    pageConstructor.showError("+"+jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 } else {
                     window.location = 'http://localhost:3000/api/attachments/' + String(id);
                 }
             },
             error:(jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }
@@ -218,11 +218,11 @@ class ClientInteraction {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().successNoContent) {
                     pageConstructor.completeTaskAtTable(id);
                 } else {
-                    pageConstructor.showError(jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }
@@ -239,11 +239,11 @@ class ClientInteraction {
                     pageConstructor.renderTable(data);
                     ClientPageConstructor.registerTableHandlers(thisInstance)
                 } else {
-                    pageConstructor.showError(jqXHR.statusText);
+                    ClientPageConstructor.showError(jqXHR.statusText);
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                pageConstructor.showError(jqXHR.statusText);
+                ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
     }

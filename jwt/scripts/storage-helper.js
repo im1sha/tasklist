@@ -8,8 +8,11 @@ class StorageHelper {
     }
 
     static deserialize(jsonString, parserFunction) {
+        let parsedData = [];
+        try {
+            parsedData = JSON.parse(jsonString);
+        } catch { }
 
-        const parsedData = JSON.parse(jsonString);
         const array = [];
 
         if (Array.isArray(parsedData)) {
@@ -37,6 +40,9 @@ class StorageHelper {
         if (fs.existsSync(filePath)) {
             content = this.deserialize(fs.readFileSync(filePath), parserFunction);
         }
+
+
+
         StorageHelper.updateJsonStorage(filePath, content);
 
         return content;
