@@ -24,7 +24,7 @@ class User {
     }
 
     static calculateHash(password) {
-        return bcrypt.hashSync(password, 10);
+        return bcrypt.hashSync(password, 10);//
     }
 
     static hasValidProperties(obj){

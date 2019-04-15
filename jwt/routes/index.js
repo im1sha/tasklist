@@ -55,45 +55,39 @@ router.get('/login', (req, res) => {
 
 router.post('/login', (req, res) => {
 
-    res.sendStatus(statuses.ok).end();
+    const login = RequestHandler.retrieveLogin(req.body);
+    const password = RequestHandler.retrievePassword(req.body);
 
-    //
-    // const login = RequestHandler.retrieveLogin(req.body);
-    // const password = RequestHandler.retrievePassword(req.body);
-    //
-    // const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
-    //
-    // if (!doesUserExist) {
-    //
-    //     const userData = requestHandler.createUser(login, password);
-    //     if (userData === null) {
-    //         res.status(statuses.unprocessableEntity).end();
-    //     } else {
-    //         userWorker.updateJsonStorage();
-    //         safetyWorker.setCookie(res, userData);
-    //         res.status(statuses.ok).end();
-    //     }
-    //
-    // } else {
-    //
-    //     const userData = requestHandler.checkUserCredentials(login, password);
-    //     if (userData === null) {
-    //         res.status(statuses.forbidden).end();
-    //     } else {
-    //         safetyWorker.setCookie(res, userData);
-    //         res.status(statuses.ok).end();
-    //     }
-    //
-    // }
+    const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
+
+    if (!doesUserExist) {
+
+        const userData = requestHandler.createUser(login, password);
+        if (userData === null) {
+            res.status(statuses.unprocessableEntity).end();
+        } else {
+            userWorker.updateJsonStorage();
+            safetyWorker.setCookie(res, userData);
+            res.status(statuses.ok).end();
+        }
+
+    } else {
+
+        const userData = requestHandler.checkUserCredentials(login, password);
+        if (userData === null) {
+            res.status(statuses.forbidden).end();
+        } else {
+            safetyWorker.setCookie(res, userData);
+            res.status(statuses.ok).end();
+        }
+
+    }
 
 });
 
 //
 // after authorization
 //
-
-
-
 
 router.param('id', (req, res, next, id) => {
     if (RequestHandler.retrieveIndexOfRequestedElement(id) === null) {

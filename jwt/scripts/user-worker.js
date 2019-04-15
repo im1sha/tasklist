@@ -54,7 +54,7 @@ class UserWorker {
 
     /// returns user's data
     checkPassword(login, password) {
-        if (this.getUserHashByLogin(login) === User.calculateHash(password)) {
+        if (this.users[ this.getUserIdByLogin(login) ].checkPassword(password)) {
             return this.getUserDataByLogin(login);
         }
         return null;
