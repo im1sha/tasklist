@@ -4,12 +4,14 @@ const ClientUtils =require('../public/scripts/client-utils');
 
 class Task {
     constructor(taskId,
+                taskOwner,
                 taskName,
                 taskDate,
                 taskAttachmentPath,
                 taskAttachmentFileName,
                 taskCompleted) {
         this.taskId = taskId;
+        this.taskOwner = taskOwner;
         this.taskAttachmentFileName = taskAttachmentFileName;
         this.taskAttachmentPath = taskAttachmentPath;
         this.taskDate = taskDate;
@@ -17,6 +19,9 @@ class Task {
         this.taskCompleted = taskCompleted;
     }
 
+    getOwner(){
+        return this.taskOwner;
+    }
     getId(){
         return this.taskId;
     }
@@ -62,6 +67,7 @@ class Task {
     getData() {
         return {
             taskId: this.getId(),
+            taskOwner: this.getOwner(),
             taskName: this.getName(),
             taskDate: this.getExpireDate(),
             taskAttachmentFileName: this.getAttachmentFileName(),
@@ -77,6 +83,7 @@ class Task {
 
 
     static getTaskAttachmentPathPropertyName() { return "taskAttachmentPath"; }
+    static getOwnerPropertyName() { return "taskOwner"; }
 
 
     static hasValidGeneralProperties(obj){
@@ -88,9 +95,11 @@ class Task {
             && !isNaN(Date.parse(obj[ClientUtils.getTaskDatePropertyName()]));
     }
 
+
     // serialized objects only
     static hasValidLocalProperties(obj){
         return obj.hasOwnProperty(Task.getTaskAttachmentPathPropertyName())
+            && obj.hasOwnProperty(Task.getOwnerPropertyName())
             && ((obj[Task.getTaskAttachmentPathPropertyName()] === null)
                 || fs.existsSync(obj[Task.getTaskAttachmentPathPropertyName()]));
     }
@@ -130,6 +139,7 @@ class Task {
         } else {
             return new Task(
                 obj[ClientUtils.getTaskIdPropertyName()],
+                obj[Task.getOwnerPropertyName()],
                 obj[ClientUtils.getTaskNamePropertyName()],
                 new Date(obj[ClientUtils.getTaskDatePropertyName()]),
                 obj[Task.getTaskAttachmentPathPropertyName()],
@@ -138,8 +148,6 @@ class Task {
             );
         }
     }
-
-
 }
 
 

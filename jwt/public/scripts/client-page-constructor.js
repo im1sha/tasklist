@@ -75,7 +75,31 @@ class ClientPageConstructor {
 
             switch (this.getAttribute('value')) {
                 case 'complete':
-                    interactionInstance.completeTask( id);
+                    interactionInstance.completeTask(id);
+                    break;
+                case 'download':
+                    interactionInstance.downloadAttachment(id);
+                    break;
+                case 'edit':
+                    interactionInstance.requestEdit(id);
+                    break;
+                case 'remove':
+                    interactionInstance.deleteTask(id);
+                    break;
+            }
+        });
+    }
+
+    static registerNewTaskHandlers(interactionInstance, taskId){
+
+        // working with task
+        $("td input[data-id='"+ taskId +"']").click(function() {
+
+            const id = this.getAttribute("data-id");
+
+            switch (this.getAttribute('value')) {
+                case 'complete':
+                    interactionInstance.completeTask(id);
                     break;
                 case 'download':
                     interactionInstance.downloadAttachment(id);

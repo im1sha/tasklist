@@ -22,29 +22,30 @@ router.get('/favicon.ico', (req, res) =>
 );
 
 
-///authorization
+/// authorization
 
 
 router.use((req, res, next) => {
-    req.authorized = safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies));
+    req.token = safetyWorker.getJwtTokenFromCookie(req.cookies);
+    req.authorized = safetyWorker.isJwtTokenValid(req.token);
 
     if (!req.authorized) {
-
         if (req.url === '/login' && (req.method.toLowerCase() === 'get'
             || req.method.toLowerCase() === 'post')) {
             next();
         } else if (req.url === '/' && req.method.toLowerCase() === 'get') {
             res.status(statuses.unauthorized).redirect(statuses.found, '/login');
         }
-
     } else {
+
+        req.ownerId = Number(safetyWorker.getUserDataFromJwtToken(req.token).userId);
+
 
         if (req.url === '/login') {
             res.redirect(statuses.found, '/');
         } else {
             next();
         }
-
     }
 
 });
@@ -57,22 +58,17 @@ router.post('/login', (req, res) => {
 
     const login = RequestHandler.retrieveLogin(req.body);
     const password = RequestHandler.retrievePassword(req.body);
-
     const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
 
     if (!doesUserExist) {
-
-        const userData = requestHandler.createUser(login, password);
-        if (userData === null) {
+        const userData = requestHandler.createUser(login, password);        if (userData === null) {
             res.status(statuses.unprocessableEntity).end();
         } else {
             userWorker.updateJsonStorage();
             safetyWorker.setCookie(res, userData);
             res.status(statuses.ok).end();
         }
-
     } else {
-
         const userData = requestHandler.checkUserCredentials(login, password);
         if (userData === null) {
             res.status(statuses.forbidden).end();
@@ -80,20 +76,29 @@ router.post('/login', (req, res) => {
             safetyWorker.setCookie(res, userData);
             res.status(statuses.ok).end();
         }
-
     }
-
 });
 
 //
 // after authorization
 //
 
+//
+// it needs to check access right to access most of following paths
+//
+
 router.param('id', (req, res, next, id) => {
-    if (RequestHandler.retrieveIndexOfRequestedElement(id) === null) {
-        res.sendStatus(statuses.badRequest).end();
+
+    if (!taskWorker.doesExist(id)) {
+        res.sendStatus(statuses.notFound).end();
+    } else if (!taskWorker.isOwner(req.ownerId, id)) {
+        res.sendStatus(statuses.forbidden).end();
     } else {
-        next();
+        if (RequestHandler.retrieveIndexOfRequestedElement(id) === null) {
+            res.sendStatus(statuses.badRequest).end();
+        } else {
+            next();
+        }
     }
 });
 
@@ -114,19 +119,6 @@ router.get('/', (req, res) => {
     res.status(statuses.ok).render('index', Constructor.getPlaceholders());
 });
 
-// gets all the tasks
-router.get('/api/tasks', (req, res) => {
-    const tasksToSend
-        = requestHandler.getFilteredTask(req.query);
-
-    if (tasksToSend) {
-        res.status(statuses.ok).json(tasksToSend);
-    } else {
-        res.status(statuses.ok).json([]);
-    }
-});
-
-///api/tasks/0
 
 // gets 1 task
 router.get('/api/tasks/:id', (req, res) => {
@@ -146,7 +138,7 @@ router.get('/api/tasks/:id', (req, res) => {
 
 // removes 1 task
 router.delete('/api/tasks/:id', (req, res) => {
-    const status = requestHandler.deleteTask(req.params.id);
+    const status = requestHandler.deleteTask(req.params.id).status;
     res.sendStatus(status).end();
 
     if (statuses.successNoContent === status) {
@@ -157,7 +149,7 @@ router.delete('/api/tasks/:id', (req, res) => {
 // partial update of 1 task.
 // it should process complete request here
 router.patch('/api/tasks/:id', (req, res) => {
-    const status = requestHandler.patchTask(req.body, req.files, req.params.id);
+    const status = requestHandler.patchTask(req.body, req.files, req.params.id).status;
     res.sendStatus(status).end();
 
     if (statuses.successNoContent === status) {
@@ -165,9 +157,30 @@ router.patch('/api/tasks/:id', (req, res) => {
     }
 });
 
+
+// changes 1 task
+router.put('/api/tasks/:id', (req, res) => {
+    const status = requestHandler.updateTask(req.body, req.files, req.params.id).status;
+    res.sendStatus(status).end();
+
+    if (statuses.successNoContent === status) {
+        taskWorker.updateJsonStorage();
+    }
+});
+
+
+
+//
+// no need to check ownership when:
+//      POST '/api/tasks' because of creation new task
+//      GET  '/api/tasks' because of checks while filtering
+//
+
+
+
 // creates 1 task
 router.post('/api/tasks', (req, res) => {
-    const result = requestHandler.createTask(req.body, req.files);
+    const result = requestHandler.createTask(req.ownerId, req.body, req.files);
     if (result.newItemIndex === null) {
         res.sendStatus(result.status).end();
     } else {
@@ -176,13 +189,14 @@ router.post('/api/tasks', (req, res) => {
     }
 });
 
-// changes 1 task
-router.put('/api/tasks/:id', (req, res) => {
-    const status = requestHandler.updateTask(req.body, req.files, req.params.id);
-    res.sendStatus(status).end();
+// gets all the tasks
+router.get('/api/tasks', (req, res) => {
+    const tasksToSend = requestHandler.getFilteredTask(req.ownerId, req.query);
 
-    if (statuses.successNoContent === status) {
-        taskWorker.updateJsonStorage();
+    if (tasksToSend) {
+        res.status(statuses.ok).json(tasksToSend);
+    } else {
+        res.status(statuses.ok).json([]);
     }
 });
 

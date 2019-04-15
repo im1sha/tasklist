@@ -67,7 +67,7 @@ class ClientInteraction {
             success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
                     pageConstructor.addTaskToTable(data);
-                    ClientPageConstructor.registerTableHandlers(thisInstance);
+                    ClientPageConstructor.registerNewTaskHandlers(thisInstance, String(id));
                 } else {
                     ClientPageConstructor.showError(jqXHR.statusText);
                 }

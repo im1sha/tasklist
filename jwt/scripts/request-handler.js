@@ -25,11 +25,11 @@ class RequestHandler {
         return files[attachmentProperty] ? files[attachmentProperty].name : "No file";
     }
 
-    getFilteredTask(query) {
+    getFilteredTask(ownerId, query) {
         let tasksToShow = [];
 
         this.taskWorker.getTasksData().forEach(value => {
-            if (value && PageConstructor.shouldItemToShow(value, query)) {
+            if (value && this.taskWorker.isOwner(ownerId, value.taskId) && PageConstructor.shouldItemToShow(value, query)) {
                 tasksToShow.push(value);
             }
         });
@@ -48,9 +48,9 @@ class RequestHandler {
         return null;
     }
 
-    createTask(properties, files){
+    createTask(ownerId, properties, files){
         this.changePropertiesUsingFiles(properties, files);
-        return this.taskWorker.createTask(properties, RequestHandler.retrieveAttachment(files));
+        return this.taskWorker.createTask(ownerId, properties, RequestHandler.retrieveAttachment(files));
     }
 
     updateTask(props, files, id){

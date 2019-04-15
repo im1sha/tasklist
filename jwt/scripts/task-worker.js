@@ -103,12 +103,12 @@ class TaskWorker {
     completeTask(id) {
 
         if (!this.isItemExists(id)) {
-            return statuses.notFound;
+            return {status: statuses.notFound};
         }
 
         this.tasks[id].changeCompleteness(true);
 
-        return statuses.successNoContent;
+        return {status: statuses.successNoContent};
     }
 
     //
@@ -117,12 +117,12 @@ class TaskWorker {
 
     deleteTask(id) {
         if (!this.isItemExists(id)) {
-            return statuses.notFound;
+            return {status:statuses.notFound};
         }
 
         this.tasks[id] = null;
         AttachmentsHelper.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(id)));
-        return statuses.successNoContent;
+        return {status:statuses.successNoContent};
     }
 
     // properties is { },
@@ -135,13 +135,14 @@ class TaskWorker {
     changeTask(properties, attachment, taskId) {
 
         if (!this.isItemExists(taskId)) {
-           return statuses.notFound;
+           return {status:statuses.notFound};
         }
         if (!Task.isValidObject(properties, false)) {
-            return statuses.unprocessableEntity;
+            return {status:statuses.unprocessableEntity};
         }
 
         const task = this.tasks[taskId];
+
         task.changeDate(new Date(properties[taskProperties.taskDate]));
         task.changeName(properties[taskProperties.taskName]);
         task.changeCompleteness(properties[taskProperties.taskCompleted]);
@@ -158,9 +159,9 @@ class TaskWorker {
                 result ? result.attachmentName : "No file");
         }
 
-        return statuses.successNoContent;
+        return {status:statuses.successNoContent};
     }
-    createTask(properties, attachment) {
+    createTask(ownerId, properties, attachment) {
 
         if (!Task.isValidObject(properties, false)) {
             return {status: statuses.unprocessableEntity, newItemIndex: null};
@@ -175,6 +176,7 @@ class TaskWorker {
 
         this.tasks[taskId] = new Task(
             taskId,
+            ownerId,
             properties[taskProperties.taskName],
             new Date(properties[taskProperties.taskDate]),
             createResult.attachmentPath,
@@ -185,6 +187,14 @@ class TaskWorker {
         );
 
         return {status: statuses.created, newItemIndex: taskId};
+    }
+
+    doesExist(taskId){
+        return Boolean(this.tasks[taskId]);
+    }
+
+    isOwner(userId, taskId) {
+        return this.tasks[taskId] ? this.tasks[taskId].taskOwner === userId : false;
     }
 }
 

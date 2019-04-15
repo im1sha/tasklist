@@ -27,7 +27,7 @@ class SafetyWorker {
 
     getJwtTokenName() { return 'token'; }
 
-    getJwtTokenExpirationTimeInSeconds() { return 60 * 60 * 12; } // 12h
+    getJwtTokenExpirationTimeInSeconds() { return 1000000; }
 
     // userData is
     //  {
