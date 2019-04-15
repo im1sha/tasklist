@@ -14,7 +14,7 @@ class ClientLoginInteraction {
             url: 'http://localhost:3000/login',
             contentType: "application/json",
             data: JSON.stringify({login: login, password: password}),
-            dataType: "JSON",
+            //dataType: "JSON",
             success: (data, textStatus, jqXHR) => {
                 if (jqXHR.status === ClientUtils.getStatusCodes().ok) {
                     window.location.replace("http://localhost:3000/");
