@@ -25,66 +25,77 @@ router.get('/favicon.ico', (req, res) =>
 // authorization
 //
 
-router.use((req, res, next) => {
-    req.authorized = safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies));
-
-    if (!req.authorized) {
-
-        if (req.url === '/login' && (req.method.toLowerCase() === 'get'
-            || req.method.toLowerCase() === 'post')) {
-            next();
-        } else if (req.url === '/' && req.method.toLowerCase() === 'get') {
-            res.status(statuses.unauthorized).redirect(statuses.found, '/login');
-        }
-
-    } else {
-
-        if (req.url === '/login') {
-            res.redirect(statuses.found, '/');
-        } else {
-            next();
-        }
-
-    }
-});
-
-router.get('/login', (req, res) => {
-    res.status(statuses.unauthorized).render('initialization', {});
-});
-
-router.post('/login', (req, res) => {
-    const login = RequestHandler.retrieveLogin(req.body);
-    const password = RequestHandler.retrievePassword(req.body);
-
-    const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
-
-    if (!doesUserExist) {
-
-        const userData = requestHandler.createUser(login, password);
-        if (userData === null) {
-            res.status(statuses.unprocessableEntity).end();
-        } else {
-            userWorker.updateJsonStorage();
-            safetyWorker.setCookie(res, userData);
-            res.status(statuses.ok).end();
-        }
-
-    } else {
-
-        const userData = requestHandler.checkUserCredentials(login, password);
-        if (userData === null) {
-            res.status(statuses.forbidden).end();
-        } else {
-            safetyWorker.setCookie(res, userData);
-            res.status(statuses.ok).end();
-        }
-
-    }
-});
-
+// router.use((req, res, next) => {
+//     req.authorized = safetyWorker.isJwtTokenValid(safetyWorker.getJwtTokenFromCookie(req.cookies));
 //
-// after authorization
+//     if (!req.authorized) {
 //
+//         if (req.url === '/login' && (req.method.toLowerCase() === 'get'
+//             || req.method.toLowerCase() === 'post')) {
+//             next();
+//         } else if (req.url === '/' && req.method.toLowerCase() === 'get') {
+//             res.status(statuses.unauthorized).redirect(statuses.found, '/login');
+//         }
+//
+//     } else {
+//
+//         if (req.url === '/login') {
+//             res.redirect(statuses.found, '/');
+//         } else {
+//             next();
+//         }
+//
+//     }
+//
+// });
+//
+// router.get('/login', (req, res) => {
+//     res.status(statuses.unauthorized).render('initialization', {});
+// });
+//
+// router.post('/login', (req, res) => {
+//
+//     res.sendStatus(statuses.ok).end();
+//
+//     // try {
+//     //     const login = RequestHandler.retrieveLogin(req.body);
+//     //     const password = RequestHandler.retrievePassword(req.body);
+//     //
+//     //     const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
+//     //
+//     //     if (!doesUserExist) {
+//     //
+//     //         const userData = requestHandler.createUser(login, password);
+//     //         if (userData === null) {
+//     //             res.status(statuses.unprocessableEntity).end();
+//     //         } else {
+//     //             userWorker.updateJsonStorage();
+//     //             safetyWorker.setCookie(res, userData);
+//     //             res.status(statuses.ok).end();
+//     //         }
+//     //
+//     //     } else {
+//     //
+//     //         const userData = requestHandler.checkUserCredentials(login, password);
+//     //         if (userData === null) {
+//     //             res.status(statuses.forbidden).end();
+//     //         } else {
+//     //             safetyWorker.setCookie(res, userData);
+//     //             res.status(statuses.ok).end();
+//     //         }
+//     //
+//     //     }
+//     // } catch (e) {
+//     //     console.log(e);
+//     // }
+// });
+//
+// //
+// // after authorization
+// //
+
+
+
 
 router.param('id', (req, res, next, id) => {
     if (RequestHandler.retrieveIndexOfRequestedElement(id) === null) {
@@ -122,6 +133,8 @@ router.get('/api/tasks', (req, res) => {
         res.status(statuses.ok).json([]);
     }
 });
+
+///api/tasks/0
 
 // gets 1 task
 router.get('/api/tasks/:id', (req, res) => {

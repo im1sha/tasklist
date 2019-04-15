@@ -13,7 +13,7 @@ class UserWorker {
         return './users';
     }
     getStoragePath(){
-        return path.join(this.getUsersDirectory(), './users.dat');
+        return path.join(this.getUsersDirectory(), 'users.dat');
     }
 
     updateJsonStorage() {

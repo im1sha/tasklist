@@ -42,7 +42,7 @@ class RequestHandler {
     }
 
     static retrieveIndexOfRequestedElement(str){
-        if(Utils.isPositiveInt(str)){
+        if(Utils.isPositiveInt(str) || str === "0"){
             return Number(str);
         }
         return null;
@@ -74,8 +74,8 @@ class RequestHandler {
 
         // check whether complete request 've been passed
         if ((Object.keys(body).length === 1)
-            && body.hasOwnProperty(ClientUtils.getTaskCompletedPropertyName())
-            && (body[ClientUtils.getTaskCompletedPropertyName()] === true)) {
+                && body.hasOwnProperty(ClientUtils.getTaskCompletedPropertyName())
+                && (body[ClientUtils.getTaskCompletedPropertyName()] === true)) {
             return this.completeTask(Number(id));
         }
 
@@ -101,10 +101,10 @@ class RequestHandler {
     }
 
     createUser(login, password) {
-        const loginString = String(login).length > RequestHandler.getCredentialsMinimalLength()
+        const loginString = String(login).length >= RequestHandler.getCredentialsMinimalLength()
             ? String(login)
             : null;
-        const passwordString = String(password).length > RequestHandler.getCredentialsMinimalLength()
+        const passwordString = String(password).length >= RequestHandler.getCredentialsMinimalLength()
             ? String(password)
             : null;
 

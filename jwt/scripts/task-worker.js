@@ -22,7 +22,7 @@ class TaskWorker {
     constructor() {
         this.tasks = [];
         this.initializeJsonStorage();
-        this.initializeAttachmentsStorage()
+        this.initializeAttachmentsStorage();
     }
 
     ///
