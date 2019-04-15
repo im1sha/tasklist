@@ -4,6 +4,14 @@ body {
 }
 
 
+.exit {
+    float: right;
+}
+
+.header {
+    font: 30px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
 .expired * {
    color: #ff0000;
 }

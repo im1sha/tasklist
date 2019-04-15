@@ -45,6 +45,11 @@ class ClientPageConstructor {
 
             interactionInstance.loadTable(ClientPageConstructor.getFilters(interactionInstance));
         });
+
+        $("[name='logout']").click(function(event) {
+
+            interactionInstance.logOut();
+        });
     }
 
     static getFilters(interactionInstance) {

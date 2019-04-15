@@ -50,6 +50,11 @@ router.use((req, res, next) => {
 
 });
 
+router.get('/logout', (req, res) => {
+    safetyWorker.deleteCookie(res);
+    res.sendStatus(statuses.ok).end();
+});
+
 router.get('/login', (req, res) => {
     res.status(statuses.unauthorized).render('initialization', {});
 });

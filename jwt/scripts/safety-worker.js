@@ -49,6 +49,12 @@ class SafetyWorker {
         );
     }
 
+    deleteCookie(res) {
+        res.cookie(
+            this.getJwtTokenName(), "", {httpOnly: true, maxAge: -1}
+        );
+    }
+
     isJwtTokenValid(token) {
         const decoded = this.getUserDataFromJwtToken(token);
         if (decoded === null) {

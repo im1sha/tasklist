@@ -247,6 +247,23 @@ class ClientInteraction {
             },
         });
     }
+
+    logOut(){
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:3000/logout",
+            success: function (data, textStatus, jqXHR) {
+                if (jqXHR.status === ClientUtils.getStatusCodes().ok) {
+                    window.location.replace("http://localhost:3000/");
+                } else {
+                    ClientLoginPageConstructor.showError(textStatus);
+                }
+            },
+            error: (jqXHR, textStatus, errorThrown) => {
+                ClientPageConstructor.showError(jqXHR.statusText);
+            },
+        });
+    }
 }
 
 
