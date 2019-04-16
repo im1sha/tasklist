@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/tasks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/tasks.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/users.dat" beforeDir="false" afterPath="$PROJECT_DIR$/users/users.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jwt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../jwt/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jwt/tasks/tasks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../jwt/tasks/tasks.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jwt/users/users.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../jwt/users/users.dat" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -132,8 +132,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="978" />
+    <option name="x" value="-10" />
+    <option name="width" value="979" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -144,79 +144,68 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
               <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
-              <item name="tasks" type="462c0819:PsiDirectoryNode" />
-              <item name="attachments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="jwt" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jwt" type="462c0819:PsiDirectoryNode" />
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -371,11 +360,12 @@
       <workItem from="1555352260898" duration="8934000" />
       <workItem from="1555361278374" duration="10972000" />
       <workItem from="1555390318874" duration="38000" />
+      <workItem from="1555390428710" duration="103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="465523000" />
+    <option name="totallyTimeSpent" value="465626000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -405,10 +395,31 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.23066755" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.21810971" />
       <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32402235" />
+      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.40642458" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.31424582" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.5009914" side_tool="true" weight="0.30167598" />
+      <window_info anchor="bottom" id="Favorites" order="8" sideWeight="0.5009914" side_tool="true" weight="0.36731842" />
+      <window_info anchor="bottom" auto_hide="true" id="TODO" order="9" sideWeight="0.5009914" side_tool="true" weight="0.36871508" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.5009914" side_tool="true" weight="0.36871508" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50537634" side_tool="true" weight="0.46751413" />
+      <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32960895" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.21810971" />
+      <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
+      <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -606,12 +617,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/bootstrap.min.css.map">
+      <provider editor-type-id="sourcemapFileViewerProvider" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret column="3894" lean-forward="true" selection-start-column="3894" selection-end-column="3894" />
         </state>
       </provider>
-      <provider editor-type-id="sourcemapFileViewerProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/tableContent.ejs" />
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/application.js" />
