@@ -73,7 +73,7 @@ class ClientPageConstructor {
 
     static registerTableHandlers(interactionInstance){
 
-        // working with all the tasks
+        // working with task
         $("td input").click(function() {
 
             const id = this.getAttribute("data-id");

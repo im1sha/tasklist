@@ -13,7 +13,6 @@ class ClientCore {
 
     static getConstructorUrl() { return "http://localhost:3000/scripts/client-page-constructor.js"; }
     static getEjsUrl() { return 'http://localhost:3000/scripts/ejs.min.js'; }
-    static getSocketUrl() { return 'http://localhost:3000/scripts/socket.io.js'; }
     static getUtilsUrl() { return 'http://localhost:3000/scripts/client-utils.js'; }
     static getInteractionUrl() { return 'http://localhost:3000/scripts/client-interaction.js'; }
     static getPageStructureUrl() { return 'http://localhost:3000/scripts/client-page-structure.js'; }
@@ -22,9 +21,7 @@ class ClientCore {
             ClientCore.getUtilsUrl(),
             ClientCore.getConstructorUrl(),
             ClientCore.getInteractionUrl(),
-            ClientCore.getPageStructureUrl(),
-            ClientCore.getSocketUrl(),
-        ];
+            ClientCore.getPageStructureUrl(),];
     }
 
     //

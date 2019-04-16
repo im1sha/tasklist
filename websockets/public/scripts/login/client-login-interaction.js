@@ -23,7 +23,11 @@ class ClientLoginInteraction {
                 }
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                 ClientLoginPageConstructor.showError(errorThrown);
+                if (jqXHR.status === ClientUtils.getStatusCodes().forbidden) {
+                    window.location.replace("http://localhost:3000/login");
+                } else {
+                    ClientLoginPageConstructor.showError(errorThrown);
+                }
             }
         });
     }

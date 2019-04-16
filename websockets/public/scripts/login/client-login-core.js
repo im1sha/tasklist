@@ -15,14 +15,12 @@ class ClientLoginCore {
     static getInteractionUrl() { return 'http://localhost:3000/scripts/login/client-login-interaction.js'; }
     static getEjsUrl() { return 'http://localhost:3000/scripts/ejs.min.js'; }
     static getUtils() { return 'http://localhost:3000/scripts/client-utils.js'; }
-    static getSocketUrl() { return 'http://localhost:3000/scripts/socket.io.js'; }
     static getRequiredScriptsUrls() {
         return [
             ClientLoginCore.getPageConstructorUrl(),
             ClientLoginCore.getInteractionUrl(),
             ClientLoginCore.getUtils(),
             ClientLoginCore.getEjsUrl(),
-            ClientLoginCore.getSocketUrl(),
         ];
     }
 
