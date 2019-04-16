@@ -35,6 +35,8 @@ router.use((req, res, next) => {
             next();
         } else if (req.url === '/' && req.method.toLowerCase() === 'get') {
             res.status(statuses.unauthorized).redirect(statuses.found, '/login');
+        } else {
+            res.sendStatus(statuses.forbidden).end()
         }
     } else {
 
@@ -66,7 +68,8 @@ router.post('/login', (req, res) => {
     const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
 
     if (!doesUserExist) {
-        const userData = requestHandler.createUser(login, password);        if (userData === null) {
+        const userData = requestHandler.createUser(login, password);
+        if (userData === null) {
             res.status(statuses.unprocessableEntity).end();
         } else {
             userWorker.updateJsonStorage();

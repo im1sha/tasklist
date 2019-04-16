@@ -12,8 +12,8 @@ const fileUpload = require('express-fileupload');
 // const monk = require('monk');
 // const db = monk('localhost:27017/tasklist');
 
-const indexModule = require('./routes/index');
-const index = indexModule.router;
+// const indexModule = require('./routes/index');
+// const index = indexModule.router;
 
 const app = express();
 
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     next();
 // });
 
-app.use('/', index);
+//app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

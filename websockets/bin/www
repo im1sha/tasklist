@@ -20,6 +20,9 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+const Core = require('../core');
+const core = new Core(server);
+
 
 /**
  * Listen on provided port, on all network interfaces.
