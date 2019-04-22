@@ -11,30 +11,49 @@ const safetyWorker = new SafetyWorker(userWorker);
 const requestHandler = new RequestHandler(taskWorker, userWorker);
 const ClientUtils = require('./public/scripts/client-utils');
 const statuses = ClientUtils.getStatusCodes();
-let io;
 const fs  = require('fs');
 
 
 // todo move Constructor.getPlaceholders() to client
 //  and call when render index
 
-///=======================================================================
-
-//socket.request.headers.cookie;
 
 class Core {
+
     constructor(httpServer) {
-        io = require('socket.io')(httpServer);
+        this.io = require('socket.io')(httpServer);
     }
 
-    //createJwtToken
-
     initialize() {
-        io.on('connection', socket => {
+        this.io.on('connection', socket => {
             socket.on('authenticate', (jwt) => {
                 let userId = null, userHash = null, userLogin = null;
+                if (!safetyWorker.isJwtTokenValid(jwt)) {
 
-                if (safetyWorker.isJwtTokenValid(jwt)) {
+                    socket.emit('notAuthenticated');
+
+                    socket.on('logIn', (login, password) => {
+                        const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
+                        if (!doesUserExist) {
+                            const userData = requestHandler.createUser(login, password);
+                            if (userData === null) {
+                                socket.emit('notLoggedIn', 'unprocessableEntity');
+                            } else {
+                                userWorker.updateJsonStorage();
+                                socket.emit('loggedIn', safetyWorker.createJwtToken(userData));
+                            }
+                        } else {
+                            const userData = requestHandler.checkUserCredentials(login, password);
+                            if (userData === null) {
+                                socket.emit('notLoggedIn', 'forbidden');
+                            } else {
+                                socket.emit('loggedIn', safetyWorker.createJwtToken(userData));
+                            }
+                        }
+                    });
+
+                } else {
+
                     socket.emit('authenticated');
 
                     const userData = safetyWorker.getUserDataFromJwtToken(jwt);
@@ -42,7 +61,7 @@ class Core {
                     userHash = userData.userHash;
                     userLogin = userData.userLogin;
 
-                    socket.on('logout', () => { });
+                    socket.on('logOut', () => { });
 
 
                     // todo parse ID as middleware
@@ -127,33 +146,14 @@ class Core {
                         socket.emit('getAllTasks', tasksToSend);
                     });
 
-                } else {
-                    socket.emit('notAuthenticated');
 
-                    socket.on('login', (login, password) => {
-                        const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
-                        if (!doesUserExist) {
-                            const userData = requestHandler.createUser(login, password);
-                            if (userData === null) {
-                                socket.emit('notLoggedIn', 'unprocessableEntity');
-                            } else {
-                                userWorker.updateJsonStorage();
-                                socket.emit('loggedIn', safetyWorker.createJwtToken(userData));
-                            }
-                        } else {
-                            const userData = requestHandler.checkUserCredentials(login, password);
-                            if (userData === null) {
-                                socket.emit('notLoggedIn', 'forbidden');
-                            } else {
-                                socket.emit('loggedIn', safetyWorker.createJwtToken(userData));
-                            }
-                        }
-                    });
                 }
             });
         });
     }
 }
+
+module.exports = Core;
 
 
 // io.on('connection', socket => {
@@ -162,6 +162,4 @@ class Core {
 //     //
 //     // });
 // });
-
-module.exports = Core;
 

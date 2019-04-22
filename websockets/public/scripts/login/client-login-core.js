@@ -85,7 +85,7 @@ class ClientLoginCore {
             //  (new ClientLoginInteraction(new ClientLoginPageConstructor(this.template))).startInteraction();
 
 
-            let token = localStorage.getItem("jwt1");
+            let token = localStorage.getItem("jwt33");
 
             const socket = io.connect('http://localhost:3000');
 
@@ -100,11 +100,11 @@ class ClientLoginCore {
                     alert('authenticated');
                 });
                 socket.on('notAuthenticated', () => {
-                    socket.emit('login', login, password);
+                    socket.emit('logIn', login, password);
                 });
                 socket.on('loggedIn', (token) => {
-                    console.log('loggedIn: token: ' + `${token}`);
-                    localStorage.setItem("jwt1", token);
+                    localStorage.setItem("jwt33", token);
+                    alert('loggedIn');
                 });
                 socket.on('notLoggedIn', () => {
                     alert('notLoggedIn');

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/safety-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/safety-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,50 +19,23 @@
     <favorites_list name="tasklist" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.53469926">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+                <state relative-caret-position="320">
+                  <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#1181#1480#0" />
-                    <element signature="e#1384#1424#0" />
-                    <element signature="e#2746#2793#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="230">
-                  <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
-                  <folding>
-                    <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
-                    <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
-                    <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
-                    <element signature="n#!!block;n#getTaskDataById#0;n#TaskWorker#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="259">
-                  <caret line="45" selection-start-line="45" selection-end-line="45" />
-                  <folding>
-                    <element signature="n#!!block;n#constructor#0;n#SafetyWorker#0" />
-                    <element signature="n#!!block;n#initializeKey#0;n#SafetyWorker#0" />
-                    <element signature="n#!!block;n#createJwtToken#0;n#SafetyWorker#0" />
-                    <element signature="n#!!block;n#isJwtTokenValid#0;n#SafetyWorker#0" />
-                    <element signature="n#!!block;n#getUserDataFromJwtToken#0;n#SafetyWorker#0" />
+                    <element signature="e#1590#1637#0" />
+                    <element signature="e#2429#2954#0" />
+                    <element signature="e#3042#3191#0" />
+                    <element signature="e#3285#3598#0" />
+                    <element signature="e#3704#4207#0" />
+                    <element signature="e#4406#4812#0" />
+                    <element signature="e#4916#5160#0" />
                   </folding>
                 </state>
               </provider>
@@ -74,8 +48,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="322">
-                  <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
+                <state relative-caret-position="298">
+                  <caret line="106" column="38" lean-forward="true" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
                   <folding>
                     <element signature="n#!!block;n#constructor#0;n#ClientLoginCore#0" />
                   </folding>
@@ -185,9 +159,9 @@
         <option value="$PROJECT_DIR$/public/scripts/login/client-login-interaction.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/public/scripts/login/client-login-core.js" />
         <option value="$PROJECT_DIR$/scripts/safety-worker.js" />
         <option value="$PROJECT_DIR$/core.js" />
+        <option value="$PROJECT_DIR$/public/scripts/login/client-login-core.js" />
       </list>
     </option>
   </component>
@@ -228,6 +202,13 @@
               <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
@@ -414,12 +395,12 @@
       <workItem from="1555390318874" duration="38000" />
       <workItem from="1555404382208" duration="824000" />
       <workItem from="1555408879716" duration="2504000" />
-      <workItem from="1555917481086" duration="23942000" />
+      <workItem from="1555917481086" duration="25246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="495519000" />
+    <option name="totallyTimeSpent" value="496823000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -436,7 +417,7 @@
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32402235" />
-      <window_info active="true" anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" visible="true" weight="0.20810056" />
+      <window_info active="true" anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" visible="true" weight="0.23184358" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.31424582" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -519,15 +500,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/core.js</url>
-          <line>33</line>
+          <line>28</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/core.js</url>
-          <line>124</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -845,13 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="643">
@@ -942,20 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="n#!!block;n#constructor#0;n#SafetyWorker#0" />
-            <element signature="n#!!block;n#initializeKey#0;n#SafetyWorker#0" />
-            <element signature="n#!!block;n#createJwtToken#0;n#SafetyWorker#0" />
-            <element signature="n#!!block;n#isJwtTokenValid#0;n#SafetyWorker#0" />
-            <element signature="n#!!block;n#getUserDataFromJwtToken#0;n#SafetyWorker#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/request-handler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -983,25 +937,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
+    <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="100" column="19" lean-forward="true" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
+        <state relative-caret-position="259">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
-            <element signature="n#!!block;n#constructor#0;n#ClientLoginCore#0" />
+            <element signature="n#!!block;n#constructor#0;n#SafetyWorker#0" />
+            <element signature="n#!!block;n#initializeKey#0;n#SafetyWorker#0" />
+            <element signature="n#!!block;n#createJwtToken#0;n#SafetyWorker#0" />
+            <element signature="n#!!block;n#isJwtTokenValid#0;n#SafetyWorker#0" />
+            <element signature="n#!!block;n#getUserDataFromJwtToken#0;n#SafetyWorker#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-48">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+        <state relative-caret-position="320">
+          <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1181#1480#0" />
-            <element signature="e#1384#1424#0" />
-            <element signature="e#2746#2793#0" />
+            <element signature="e#1590#1637#0" />
+            <element signature="e#2429#2954#0" />
+            <element signature="e#3042#3191#0" />
+            <element signature="e#3285#3598#0" />
+            <element signature="e#3704#4207#0" />
+            <element signature="e#4406#4812#0" />
+            <element signature="e#4916#5160#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="106" column="38" lean-forward="true" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#ClientLoginCore#0" />
           </folding>
         </state>
       </provider>
