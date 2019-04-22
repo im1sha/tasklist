@@ -43,24 +43,8 @@ class SafetyWorker {
         });
     }
 
-    setCookie(res, userData) {
-        res.cookie(
-            this.getJwtTokenName(),
-            this.createJwtToken(userData),
-            {
-                httpOnly: true,
-                maxAge: MINUTE_TO_SECONDS * this.getJwtTokenExpirationTimeInMinutes()  //<max-age-in-seconds>
-            }
-        );
-    }
 
-    deleteCookie(res) {
-        res.cookie(
-            this.getJwtTokenName(),
-            "",
-            {httpOnly: true, maxAge: -1},
-        );
-    }
+
 
     isJwtTokenValid(token) {
         const decoded = this.getUserDataFromJwtToken(token);
@@ -83,9 +67,6 @@ class SafetyWorker {
         }
     }
 
-    getJwtTokenFromCookie(cookies) {
-        return cookies[this.getJwtTokenName()];
-    }
 }
 
 
