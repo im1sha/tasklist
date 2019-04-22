@@ -85,12 +85,12 @@ class ClientLoginCore {
             //  (new ClientLoginInteraction(new ClientLoginPageConstructor(this.template))).startInteraction();
 
 
-            let token = localStorage.getItem("jwt33");
+            let token = localStorage.getItem("jwt34");
 
             const socket = io.connect('http://localhost:3000');
 
-            const login = 'qazswed';
-            const password = '123456';
+            const login = 'qazswed1';
+            const password = '1234567';
 
             socket.on('connect', () => {
 
@@ -98,24 +98,37 @@ class ClientLoginCore {
 
                 socket.on('authenticated', () => {
                     alert('authenticated');
+
+                    socket.emit('getTask', 1);
                 });
                 socket.on('notAuthenticated', () => {
                     socket.emit('logIn', login, password);
                 });
                 socket.on('loggedIn', (token) => {
-                    localStorage.setItem("jwt33", token);
+                    localStorage.setItem("jwt34", token);
                     alert('loggedIn');
                 });
-                socket.on('notLoggedIn', () => {
-                    alert('notLoggedIn');
+                socket.on('notLoggedIn', (reason) => {
+                    alert(`notLoggedIn:: ${reason}`);
                 });
 
+                socket.on('error', (error) => {
+                    alert(error);
+                });
 
             });
 
         }
     }
 }
+
+        // const reader = new FileReader();
+        // reader.onload = (e) =>
+        // {
+        //     socket.emit('createTask',  e.target.result, file.files[0].name, (error) => {
+        //         updateTable();
+        //     });
+        // };
 
 
         //

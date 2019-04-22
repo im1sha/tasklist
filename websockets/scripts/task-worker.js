@@ -117,12 +117,12 @@ class TaskWorker {
 
     deleteTask(id) {
         if (!this.isItemExists(id)) {
-            return {status:statuses.notFound};
+            return false;
         }
 
         this.tasks[id] = null;
         AttachmentsHelper.deleteFolderWithAttachment(path.join(this.getAttachmentsDirectory(), String(id)));
-        return {status:statuses.successNoContent};
+        return true;
     }
 
     // properties is { },
@@ -164,7 +164,7 @@ class TaskWorker {
     createTask(ownerId, properties, attachment) {
 
         if (!Task.isValidObject(properties, false)) {
-            return {status: statuses.unprocessableEntity, newItemIndex: null};
+            return null;
         }
 
         const taskId = this.getNewItemIndex();
@@ -186,7 +186,7 @@ class TaskWorker {
             properties[taskProperties.taskCompleted]
         );
 
-        return {status: statuses.created, newItemIndex: taskId};
+        return this.tasks[taskId].getData();
     }
 
     doesExist(taskId){

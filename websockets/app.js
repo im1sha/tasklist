@@ -5,13 +5,6 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload');
 
-//
-// "mongodb": "^3.0.15",
-// "monk": "^6.0.5"
-//const mongo = require('mongodb');
-// const monk = require('monk');
-// const db = monk('localhost:27017/tasklist');
-
 const indexModule = require('./routes/index');
 const index = indexModule.router;
 
@@ -28,11 +21,6 @@ app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use(function(req, res, next){
-//     req.db = db;
-//     next();
-// });
 
 app.use('/', index);
 

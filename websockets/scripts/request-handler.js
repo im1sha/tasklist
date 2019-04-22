@@ -42,35 +42,35 @@ class RequestHandler {
     }
 
     static retrieveIndexOfRequestedElement(str){
-        if(Utils.isPositiveInt(str) || str === "0"){
+        if(Utils.isNonNegativeInt(str) || str === "0"){
             return Number(str);
         }
         return null;
     }
 
-    createTask(ownerId, properties, files){
-        this.changePropertiesUsingFiles(properties, files);
-        return this.taskWorker.createTask(ownerId, properties, RequestHandler.retrieveAttachment(files));
+    createTask(ownerId, props, file) {
+        this.changeProperties(props);
+        return this.taskWorker.createTask(ownerId, props, file);
     }
 
-    updateTask(props, files, id){
-        this.changePropertiesUsingFiles(props, files);
-        return this.taskWorker.changeTask(props, RequestHandler.retrieveAttachment(files), Number(id));
+    updateTask(props, file, id) {
+        this.changeProperties(props);
+        return this.taskWorker.changeTask(props, file, Number(id));
     }
 
     // private use only
-    changePropertiesUsingFiles(properties, files) {
+    changeProperties(properties) {
         const checkboxesNames = ClientPageStructure.getCheckboxesNames();
         properties.taskCompleted = Boolean(properties[checkboxesNames.completeCheckbox]);
         properties.taskShouldUpdateAttachment = Boolean(properties[checkboxesNames.updateCheckbox]);
-        properties.taskAttachmentFileName = RequestHandler.getAttachmentName(files);
     }
 
+    // returns Boolean
     deleteTask(id) {
         return this.taskWorker.deleteTask(Number(id));
     }
 
-    patchTask(body, files, id) {
+    patchTask(body, id) {
 
         // check whether complete request 've been passed
         if ((Object.keys(body).length === 1)

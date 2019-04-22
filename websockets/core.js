@@ -12,7 +12,7 @@ const requestHandler = new RequestHandler(taskWorker, userWorker);
 const ClientUtils = require('./public/scripts/client-utils');
 const statuses = ClientUtils.getStatusCodes();
 const fs  = require('fs');
-
+const Utils = require('./scripts/utils');
 
 // todo move Constructor.getPlaceholders() to client
 //  and call when render index
@@ -27,7 +27,7 @@ class Core {
     initialize() {
         this.io.on('connection', socket => {
             socket.on('authenticate', (jwt) => {
-                let userId = null, userHash = null, userLogin = null;
+                let userId = null; //, userHash = null, userLogin = null;
                 if (!safetyWorker.isJwtTokenValid(jwt)) {
 
                     socket.emit('notAuthenticated');
@@ -58,95 +58,114 @@ class Core {
 
                     const userData = safetyWorker.getUserDataFromJwtToken(jwt);
                     userId = userData.userId;
-                    userHash = userData.userHash;
-                    userLogin = userData.userLogin;
+                    // userHash = userData.userHash;
+                    // userLogin = userData.userLogin;
 
-                    socket.on('logOut', () => { });
-
-
-                    // todo parse ID as middleware
-                    // todo CHECK ID ownership as middleware
-
-                    // router.param('id', (req, res, next, id) => {
                     //
-                    //     if (!taskWorker.doesExist(id)) {
-                    //         res.sendStatus(statuses.notFound).end();
-                    //     } else if (!taskWorker.isOwner(req.ownerId, id)) {
-                    //         res.sendStatus(statuses.forbidden).end();
-                    //     } else {
-                    //         if (RequestHandler.retrieveIndexOfRequestedElement(id) === null) {
-                    //             res.sendStatus(statuses.badRequest).end();
-                    //         } else {
-                    //             next();
-                    //         }
-                    //     }
-                    // });
+                    // no need to check ownership
+                    //
+
+                    //  todo SET AT CLIENT SIDE: task.taskAttachmentFileName === filename
+
+                    // creates 1 task
+                    socket.on('createTask', (task, file) => {
+                        //  todo should return task | null
+                        const result = requestHandler.createTask(userId, task, file);
+
+                        if (result !== null) {
+                            taskWorker.updateJsonStorage();
+                        }
+
+                        socket.emit('createTask', result);
+
+                    });
+
+                    // gets all the tasks
+                    // todo
+                    //  filters is { filter1: "all", filter2: "all" }
+                    //  emit('getAllTasks', arg) where arg is null | []
+                    socket.on('getAllTasks', (filters) => {
+                        const tasksToSend = requestHandler.getFilteredTask(userId, filters);
+                        socket.emit('getAllTasks', tasksToSend);
+                    });
+
+                    socket.use((packet, next) => {
+                        const id = Number(packet[1]); // arg0 of client-side emit() call
+
+                        if (Utils.isNonNegativeInt(id)){
+                            if (!taskWorker.doesExist(id)) {
+                                next(new Error('notFound'));
+                            } else if (!taskWorker.isOwner(userId, id)) {
+                                next(new Error('forbidden'));
+                            } else {
+                                return next();
+                            }
+                        } else {
+                            next(new Error('badRequest'));
+                        }
+                    });
 
                     // downloads 1 attachment
                     socket.on('downloadTask', (id) => {
                         const pathToAttachment = taskWorker.getAttachmentPathById(id);
 
-                        //pathToAttachment === null | string
+                        // pathToAttachment === null | string
                         if (pathToAttachment === null) {
                             socket.emit('downloadTask', null);
                         } else {
                             fs.readFile(pathToAttachment, (err, data) => {
-                                socket.emit('downloadTask', data);
+                                if (err) {
+                                    socket.emit('downloadTask', null);
+                                } else {
+                                    socket.emit('downloadTask', data);
+                                }
                             });
                         }
                     });
 
                     // gets 1 task
                     socket.on('getTask', (id) => {
-                        // task is null | { }
+                        // task is null | task
                         socket.emit('getTask', taskWorker.getTaskDataById(id));
                     });
 
                     // removes 1 task
                     socket.on('deleteTask', (id) => {
-                        const status = requestHandler.deleteTask(id).status;
-                        socket.emit('deleteTask', status);
-                        if (statuses.successNoContent === status) {
+                        const status = requestHandler.deleteTask(id); // status is Boolean
+
+                        if (true === status) {
                             taskWorker.updateJsonStorage();
                         }
+
+                        socket.emit('deleteTask', status);
                     });
 
                     // changes 1 task
-                    socket.on('updateTask', (task, file, id) => {
+                    socket.on('updateTask', (id, task, file) => {
 
                         //todo
                         // rewrite requestHandler.updateTask
-                        // merge requestHandler.patchTask to requestHandler.updateTask
-                        const status = requestHandler.patchTask(task, file, id).status;
-                        socket.emit('patchTask', status);
+
+                        const status = requestHandler.updateTask(task, file, id).status;
+
                         if (statuses.successNoContent === status) {
                             taskWorker.updateJsonStorage();
                         }
+
+                        socket.emit('updateTask', status);
                     });
 
-                    //
-                    // no need to check ownership
-                    //
+                    // complete 1 task
+                    socket.on('completeTask', (id) => {
 
-                    // creates 1 task
-                    socket.on('createTask', (task, file) => {
-                        // todo rewrite requestHandler.createTask
-                        //  should return task
-                        const result = requestHandler.createTask(task, file);
-                        socket.emit('createTask', result);
-                        if (result !== null) {
+                        const status = requestHandler.patchTask(id).status;
+
+                        if (statuses.successNoContent === status) {
                             taskWorker.updateJsonStorage();
                         }
+
+                        socket.emit('completeTask', status);
                     });
-
-                    // gets all the tasks
-                    socket.on('getAllTasks', (filters) => {
-                        // todo rewrite requestHandler.getFilteredTask
-                        const tasksToSend = requestHandler.getFilteredTask(filters);
-                        socket.emit('getAllTasks', tasksToSend);
-                    });
-
-
                 }
             });
         });

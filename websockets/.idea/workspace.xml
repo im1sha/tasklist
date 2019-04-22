@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/core.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/request-handler.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/request-handler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/task-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/task-worker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/users.dat" beforeDir="false" afterPath="$PROJECT_DIR$/users/users.dat" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,47 +24,50 @@
     <favorites_list name="tasklist" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/core.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#1590#1637#0" />
-                    <element signature="e#2429#2954#0" />
-                    <element signature="e#3042#3191#0" />
-                    <element signature="e#3285#3598#0" />
-                    <element signature="e#3704#4207#0" />
-                    <element signature="e#4406#4812#0" />
-                    <element signature="e#4916#5160#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="298">
-                  <caret line="106" column="38" lean-forward="true" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
-                  <folding>
-                    <element signature="n#!!block;n#constructor#0;n#ClientLoginCore#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#1211#2270#0" />
+                <element signature="e#2872#3233#0" />
+                <element signature="e#3507#3688#0" />
+                <element signature="e#3745#4441#0" />
+                <element signature="e#4750#5469#0" />
+                <element signature="e#5557#5707#0" />
+                <element signature="e#5801#6109#0" />
+                <element signature="e#6215#6634#0" />
+                <element signature="e#6731#7046#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1197">
+              <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
+              <folding>
+                <element signature="n#!!block;n#constructor#0;n#ClientLoginCore#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -128,11 +136,9 @@
         <option value="$PROJECT_DIR$/public/views/task.ejs" />
         <option value="$PROJECT_DIR$/public/scripts/client-page-structure.js" />
         <option value="$PROJECT_DIR$/public/scripts/client-core.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/scripts/tasks-processing.js" />
         <option value="$PROJECT_DIR$/scripts/JsonParser.js" />
         <option value="$PROJECT_DIR$/scripts/json-parser.js" />
-        <option value="$PROJECT_DIR$/scripts/utils.js" />
         <option value="$PROJECT_DIR$/scripts/attachments-helper.js" />
         <option value="$PROJECT_DIR$/scripts/requeset-handler.js" />
         <option value="$PROJECT_DIR$/scripts/page-constructor.js" />
@@ -150,8 +156,6 @@
         <option value="$PROJECT_DIR$/scripts/user.js" />
         <option value="$PROJECT_DIR$/scripts/user-worker.js" />
         <option value="$PROJECT_DIR$/scripts/task.js" />
-        <option value="$PROJECT_DIR$/scripts/request-handler.js" />
-        <option value="$PROJECT_DIR$/scripts/task-worker.js" />
         <option value="$PROJECT_DIR$/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/public/scripts/client-interaction.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
@@ -160,8 +164,12 @@
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/scripts/safety-worker.js" />
-        <option value="$PROJECT_DIR$/core.js" />
+        <option value="$PROJECT_DIR$/scripts/utils.js" />
         <option value="$PROJECT_DIR$/public/scripts/login/client-login-core.js" />
+        <option value="$PROJECT_DIR$/scripts/task-worker.js" />
+        <option value="$PROJECT_DIR$/scripts/request-handler.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/core.js" />
       </list>
     </option>
   </component>
@@ -173,7 +181,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
-    <option name="width" value="979" />
+    <option name="width" value="980" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -395,12 +403,12 @@
       <workItem from="1555390318874" duration="38000" />
       <workItem from="1555404382208" duration="824000" />
       <workItem from="1555408879716" duration="2504000" />
-      <workItem from="1555917481086" duration="25246000" />
+      <workItem from="1555917481086" duration="31925000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="496823000" />
+    <option name="totallyTimeSpent" value="503502000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -417,7 +425,7 @@
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32402235" />
-      <window_info active="true" anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" visible="true" weight="0.23184358" />
+      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.2611732" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.31424582" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -431,7 +439,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" weight="0.2538004" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.3086583" />
       <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout>
@@ -474,35 +482,21 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/scripts/request-handler.js</url>
-          <line>55</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/scripts/request-handler.js</url>
-          <line>72</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/scripts/request-handler.js</url>
-          <line>68</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/task-worker.js</url>
           <line>102</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/request-handler.js</url>
-          <line>31</line>
-          <option name="timeStamp" value="55" />
+          <line>55</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/core.js</url>
-          <line>28</line>
+          <url>file://$PROJECT_DIR$/scripts/request-handler.js</url>
+          <line>72</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="56" />
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -701,50 +695,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="14" column="71" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
-          <folding>
-            <element signature="n#!!block;n#isDate#0;n#Utils#0" />
-            <element signature="n#!!block;n#isNumberInteger#0;n#Utils#0" />
-            <element signature="n#!!block;n#isNumberPositiveInteger#0;n#Utils#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/task.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
-          <folding>
-            <element signature="n#!!block;n#getAttachmentPath#0;n#Task#0" />
-            <element signature="n#!!block;n#getAttachmentFileName#0;n#Task#0" />
-            <element signature="n#!!block;n#getExpireDate#0;n#Task#0" />
-            <element signature="n#!!block;n#isCompleted#0;n#Task#0" />
-            <element signature="n#!!block;n#isExpired#0;n#Task#0" />
-            <element signature="n#!!block;n#changeCompleteness#0;n#Task#0" />
-            <element signature="n#!!block;n#changeDate#0;n#Task#0" />
-            <element signature="n#!!block;n#changeName#0;n#Task#0" />
-            <element signature="n#!!block;n#changeAttachment#0;n#Task#0" />
-            <element signature="n#!!block;n#getPropertiesNamesAsList#0;n#Task#0" />
-            <element signature="n#!!block;n#hasValidLocalProperties#0;n#Task#0" />
-            <element signature="n#!!block;n#fromObject#0;n#Task#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/attachments-helper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-312">
           <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/page-constructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1027">
-          <caret line="47" column="41" lean-forward="true" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -758,13 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1649">
-          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tasks/attachments/10/NormalDistribution.exe.config">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -772,13 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="76" selection-start-column="76" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -820,16 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="43" column="61" lean-forward="true" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-          <folding>
-            <element signature="n#!!block;n#getFilters#0;n#ClientPageConstructor#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-page-constructor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -858,31 +788,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/initialization.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="15" column="17" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/users.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="471" selection-start-column="464" selection-end-column="471" />
         </state>
       </provider>
     </entry>
@@ -910,30 +819,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/request-handler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="117" column="39" lean-forward="true" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/user-worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="57" column="36" lean-forward="true" selection-start-line="57" selection-end-line="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
-          <folding>
-            <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#getTaskDataById#0;n#TaskWorker#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -958,29 +847,132 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core.js">
+    <entry file="file://$PROJECT_DIR$/users/users.dat">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="36" column="39" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+        <state>
+          <caret column="571" selection-start-column="571" selection-end-column="571" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1536">
+          <caret line="64" column="28" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="32" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1590#1637#0" />
-            <element signature="e#2429#2954#0" />
-            <element signature="e#3042#3191#0" />
-            <element signature="e#3285#3598#0" />
-            <element signature="e#3704#4207#0" />
-            <element signature="e#4406#4812#0" />
-            <element signature="e#4916#5160#0" />
+            <element signature="n#!!block;n#isDate#0;n#Utils#0" />
+            <element signature="n#!!block;n#isNumberInteger#0;n#Utils#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="68" column="11" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!block;n#getAttachmentPath#0;n#Task#0" />
+            <element signature="n#!!block;n#getAttachmentFileName#0;n#Task#0" />
+            <element signature="n#!!block;n#getExpireDate#0;n#Task#0" />
+            <element signature="n#!!block;n#isCompleted#0;n#Task#0" />
+            <element signature="n#!!block;n#isExpired#0;n#Task#0" />
+            <element signature="n#!!block;n#changeCompleteness#0;n#Task#0" />
+            <element signature="n#!!block;n#changeDate#0;n#Task#0" />
+            <element signature="n#!!block;n#changeName#0;n#Task#0" />
+            <element signature="n#!!block;n#changeAttachment#0;n#Task#0" />
+            <element signature="n#!!block;n#getPropertiesNamesAsList#0;n#Task#0" />
+            <element signature="n#!!block;n#hasValidLocalProperties#0;n#Task#0" />
+            <element signature="n#!!block;n#fromObject#0;n#Task#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="134" column="4" selection-start-line="134" selection-start-column="4" selection-end-line="134" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#createTask#0;n#TaskWorker#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/page-constructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/initialization.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/request-handler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="43" column="11" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="106" column="38" lean-forward="true" selection-start-line="106" selection-start-column="38" selection-end-line="106" selection-end-column="38" />
+        <state relative-caret-position="1197">
+          <caret line="132" lean-forward="true" selection-start-line="132" selection-end-line="132" />
           <folding>
             <element signature="n#!!block;n#constructor#0;n#ClientLoginCore#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#1211#2270#0" />
+            <element signature="e#2872#3233#0" />
+            <element signature="e#3507#3688#0" />
+            <element signature="e#3745#4441#0" />
+            <element signature="e#4750#5469#0" />
+            <element signature="e#5557#5707#0" />
+            <element signature="e#5801#6109#0" />
+            <element signature="e#6215#6634#0" />
+            <element signature="e#6731#7046#0" />
           </folding>
         </state>
       </provider>

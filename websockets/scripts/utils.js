@@ -8,19 +8,19 @@ class Utils {
             && !isNaN(date.valueOf())
     }
 
-    static isPositiveInt(any) {
+    static isNonNegativeInt(any) {
         if(any === undefined || any === null || any === '') {
             return false;
         }
-        return isFinite(Number(any)) && Utils.isNumberPositiveInteger(any);
+        return isFinite(Number(any)) && Utils.isNumberNonNegativeInteger(any);
     }
 
     static isNumberInteger(number) {
         return number % 1 === 0;
     }
 
-    static isNumberPositiveInteger(number) {
-        return Utils.isNumberInteger(number) && (number > 0);
+    static isNumberNonNegativeInteger(number) {
+        return Utils.isNumberInteger(number) && (number >= 0);
     }
 }
 
