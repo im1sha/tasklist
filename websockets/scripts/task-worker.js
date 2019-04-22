@@ -4,7 +4,7 @@ const Task = require('./task');
 const AttachmentsHelper = require('./attachments-helper');
 const StorageHelper = require('./storage-helper');
 
-const ClientUtils = require('../public/scripts/client-utils');
+const ClientUtils = require('../public/scripts/common/client-utils');
 
 const taskProperties = Task.getPropertiesNamesAsList();
 const statuses = ClientUtils.getStatusCodes();

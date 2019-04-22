@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const ClientUtils = require('../public/scripts/client-utils');
+const ClientUtils = require('../public/scripts/common/client-utils');
 
 const statuses = ClientUtils.getStatusCodes();
 

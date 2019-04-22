@@ -70,6 +70,27 @@ class ClientPageStructure {
             updateCheckbox:'updateCheckbox'
         }
     }
+
+    // todo check use
+
+    static getRadiosPlaceholdersNames() {
+        return {
+            completenessAllStyle: 'completenessAllStyle',
+            completenessIncompleteStyle: 'completenessIncompleteStyle',
+            completenessCompletedStyle:'completenessCompletedStyle',
+            dateAllStyle:'dateAllStyle',
+            dateUpcomingStyle:'dateUpcomingStyle',
+            dateExpiredStyle:'dateExpiredStyle',
+        }
+    };
+
+    static getStaticPlaceholders(){
+        return {
+            titleText: "[tasklist]",
+            nameText: "Task",
+            dateText: "Date",
+        }
+    };
 }
 
 try {

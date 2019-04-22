@@ -1,8 +1,8 @@
 const PageConstructor = require('./page-constructor');
 const Utils = require('./utils');
 
-const ClientPageStructure = require( "../public/scripts/client-page-structure");
-const ClientUtils = require( "../public/scripts/client-utils");
+const ClientPageStructure = require( "../public/scripts/main/client-page-structure");
+const ClientUtils = require( "../public/scripts/common/client-utils");
 
 const attachmentProperty = 'taskAttachment';
 const credentialsMinimalLength = 6;
@@ -12,17 +12,6 @@ class RequestHandler {
     constructor(taskWorker, userWorker) {
         this.taskWorker = taskWorker;
         this.userWorker = userWorker;
-    }
-
-
-    static retrieveAttachment(files) {
-        return (files === undefined)
-            ? undefined
-            : files[attachmentProperty];
-    }
-
-    static getAttachmentName(files){
-        return files[attachmentProperty] ? files[attachmentProperty].name : "No file";
     }
 
     getFilteredTask(ownerId, query) {
@@ -41,13 +30,6 @@ class RequestHandler {
         return tasksToShow;
     }
 
-    static retrieveIndexOfRequestedElement(str){
-        if(Utils.isNonNegativeInt(str) || str === "0"){
-            return Number(str);
-        }
-        return null;
-    }
-
     createTask(ownerId, props, file) {
         this.changeProperties(props);
         return this.taskWorker.createTask(ownerId, props, file);
@@ -58,7 +40,7 @@ class RequestHandler {
         return this.taskWorker.changeTask(props, file, Number(id));
     }
 
-    // private use only
+    // _private use only
     changeProperties(properties) {
         const checkboxesNames = ClientPageStructure.getCheckboxesNames();
         properties.taskCompleted = Boolean(properties[checkboxesNames.completeCheckbox]);
@@ -92,13 +74,6 @@ class RequestHandler {
 
     static getCredentialsMinimalLength() { return credentialsMinimalLength; }
 
-    static retrieveLogin(body) {
-        return body['login'] ? String(body['login']) : null;
-    }
-
-    static retrievePassword(body) {
-        return body['password'] ? String(body['password']) : null;
-    }
 
     createUser(login, password) {
         const loginString = String(login).length >= RequestHandler.getCredentialsMinimalLength()

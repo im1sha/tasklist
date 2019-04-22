@@ -1,49 +1,9 @@
-const ClientUtils = require("../public/scripts/client-utils");
-const ClientPageStructure = require('../public/scripts/client-page-structure');
-
-const radiosPlaceholdersNames = {
-    completenessAllStyle: 'completenessAllStyle',
-    completenessIncompleteStyle: 'completenessIncompleteStyle',
-    completenessCompletedStyle:'completenessCompletedStyle',
-    dateAllStyle:'dateAllStyle',
-    dateUpcomingStyle:'dateUpcomingStyle',
-    dateExpiredStyle:'dateExpiredStyle',
-};
-const styles = ClientPageStructure.getStyles();
+const ClientUtils = require("../public/scripts/common/client-utils");
+const ClientPageStructure = require('../public/scripts/main/client-page-structure');
 const filters = ClientPageStructure.getFilters();
-const staticPlaceholders = {
-    titleText: "[tasklist]",
-    nameText: "Task",
-    dateText: "Date",
-};
-const defaultMainFormPlaceholders = ClientPageStructure.getDefaultMainFormPlaceholders();
-const defaultCheckboxesStyles = ClientPageStructure.getDefaultCheckboxesStyles();
-const tasksProperties = ClientUtils.getTaskPropertiesNamesAsList(); // use when forming table header
+const tasksProperties = ClientUtils.getTaskPropertiesNamesAsList();
 
 class PageConstructor {
-    static getPlaceholdersForRadioButtons() {
-        let result = {};
-
-        result[radiosPlaceholdersNames.completenessAllStyle] = styles.checked;
-        result[radiosPlaceholdersNames.completenessIncompleteStyle] = '';
-        result[radiosPlaceholdersNames.completenessCompletedStyle] = '';
-        result[radiosPlaceholdersNames.dateAllStyle] = styles.checked;
-        result[radiosPlaceholdersNames.dateExpiredStyle] = '';
-        result[radiosPlaceholdersNames.dateUpcomingStyle] = '';
-
-        return result;
-    }
-
-    static getPlaceholders() {
-        let placeholdersForRadioButtons = PageConstructor.getPlaceholdersForRadioButtons();
-
-        return {
-            ...staticPlaceholders,
-            ...defaultCheckboxesStyles,
-            ...defaultMainFormPlaceholders,
-            ...placeholdersForRadioButtons,
-        };
-    }
 
     static shouldItemToShow(item, query) {
         let result = true;

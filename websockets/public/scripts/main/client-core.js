@@ -1,6 +1,7 @@
 class ClientCore {
 
-    constructor() {
+    constructor(socket) {
+        this.socket = socket;
         this.totalLoaded = 0;
         this.expectedFiles = ClientCore.getRequiredScriptsUrls().length + 1;
     }
@@ -8,6 +9,8 @@ class ClientCore {
     //
     // Urls
     //
+
+
 
     static getTaskTemplateUrl() { return "http://localhost:3000/views/task.ejs"; }
 

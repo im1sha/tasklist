@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Utils = require("./utils");
-const ClientUtils =require('../public/scripts/client-utils');
+const ClientUtils =require('../public/scripts/common/client-utils');
 
 class Task {
     constructor(taskId,

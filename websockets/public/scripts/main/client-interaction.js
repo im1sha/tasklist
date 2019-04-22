@@ -5,6 +5,19 @@
 ///     calls page elements to update;
 ///
 
+
+
+//todo add uploading
+// const reader = new FileReader();
+// reader.onload = (e) =>
+// {
+//     socket.emit('createTask',  e.target.result, file.files[0].name, (error) => {
+//         updateTable();
+//     });
+// };
+
+
+
 class ClientInteraction {
 
     constructor(pageConstructor) {

@@ -32,7 +32,7 @@ class AttachmentsHelper {
         const attachmentName = file.name;
         const attachmentPath = path.join(attachmentDir, attachmentName);
 
-        // mv() - A function to move the file elsewhere on your server
+        // mv() - A function to move the file elsewhere on the server
         file.mv(attachmentPath);
 
         return {

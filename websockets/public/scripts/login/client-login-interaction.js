@@ -1,9 +1,51 @@
 class ClientLoginInteraction {
-    constructor(pageConstructor) {
+    constructor(socket, pageConstructor) {
+        this.socket = socket;
         this.pageConstructor = pageConstructor;
     }
 
     startInteraction() {
+
+
+
+
+
+        // socket.on('connect', () => {
+        //
+        //     socket.emit('authenticate', token);
+        //
+        //     socket.on('authenticated', () => {
+        //         alert('authenticated');
+        //
+        //         socket.emit('getTask', 1);
+        //     });
+        //     socket.on('notAuthenticated', () => {
+        //         socket.emit('logIn', login, password);
+        //     });
+        //     socket.on('loggedIn', (token) => {
+        //         localStorage.setItem("jwt34", token);
+        //         alert('loggedIn');
+        //     });
+        //     socket.on('notLoggedIn', (reason) => {
+        //         alert(`notLoggedIn:: ${reason}`);
+        //     });
+        //
+        //     socket.on('error', (error) => {
+        //         alert(error);
+        //     });
+        //
+        // });
+
+
+
+
+
+
+
+
+
+
+
         this.pageConstructor.showForm();
         this.pageConstructor.registerGlobalHandlers(this);
     }
