@@ -3,6 +3,8 @@ const random = require ('secure-random');
 const jwt = require ('jsonwebtoken');
 // const User = require ('./user');
 
+const MINUTE_TO_SECONDS = 60;
+
 let key = '';
 
 class SafetyWorker {
@@ -27,7 +29,7 @@ class SafetyWorker {
 
     getJwtTokenName() { return 'token'; }
 
-    getJwtTokenExpirationTimeInSeconds() { return 1000000; }
+    getJwtTokenExpirationTimeInMinutes() { return 60; }
 
     // userData is
     //  {
@@ -37,7 +39,7 @@ class SafetyWorker {
     //  }
     createJwtToken(userData) {
         return jwt.sign(userData, this.getKey(), {
-            expiresIn: this.getJwtTokenExpirationTimeInSeconds()
+            expiresIn: MINUTE_TO_SECONDS *  this.getJwtTokenExpirationTimeInMinutes()
         });
     }
 
@@ -45,13 +47,18 @@ class SafetyWorker {
         res.cookie(
             this.getJwtTokenName(),
             this.createJwtToken(userData),
-            {httpOnly: true, maxAge: this.getJwtTokenExpirationTimeInSeconds()}
+            {
+                httpOnly: true,
+                maxAge: MINUTE_TO_SECONDS * this.getJwtTokenExpirationTimeInMinutes()  //<max-age-in-seconds>
+            }
         );
     }
 
     deleteCookie(res) {
         res.cookie(
-            this.getJwtTokenName(), "", {httpOnly: true, maxAge: -1}
+            this.getJwtTokenName(),
+            "",
+            {httpOnly: true, maxAge: -1},
         );
     }
 
