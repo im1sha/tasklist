@@ -1,7 +1,8 @@
 class ClientPageConstructor {
 
-    constructor(template) {
-        this.template = template;
+    constructor(indexTemplate, taskTemplate) {
+        this.taskTemplate = taskTemplate;
+        this.indexTemplate = indexTemplate;
         this.maxDisplayedLength = 25;
         this.decorationChar = String.fromCharCode(9679);
         this.styles = ClientPageStructure.getStyles();
@@ -136,7 +137,7 @@ class ClientPageConstructor {
     renderTable(jsonData) {
         let table = '';
         for (let i = 0; i < jsonData.length; i++) {
-            table += ejs.render(this.template, this.createTaskEntry(jsonData[i]));
+            table += ejs.render(this.taskTemplate, this.createTaskEntry(jsonData[i]));
         }
         $('tbody').html(table);
     }
@@ -185,8 +186,13 @@ class ClientPageConstructor {
     }
 
     addTaskToTable(jsonData) {
-        $("tbody").append(ejs.render(this.template,
+        $("tbody").append(ejs.render(this.taskTemplate,
             this.createTaskEntry(jsonData)));
+    }
+
+    static renderIndex() {
+
+
     }
 
     createTaskEntry(task) {

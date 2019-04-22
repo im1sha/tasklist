@@ -10,6 +10,7 @@ class ClientInitialCore {
             ClientScriptDownloader.getClientCoreUrl(),
             ClientScriptDownloader.getClientLoginCoreUrl(),
             ClientScriptDownloader.getSocketIoUrl(),
+            ClientScriptDownloader.getStorageWorkerUrl(),
         ];
     }
 

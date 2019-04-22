@@ -6,7 +6,6 @@
 ///
 
 
-
 //todo add uploading
 // const reader = new FileReader();
 // reader.onload = (e) =>
@@ -20,12 +19,16 @@
 
 class ClientInteraction {
 
-    constructor(pageConstructor) {
+    constructor(socket, pageConstructor) {
+        this.socket = socket;
         this.pageConstructor = pageConstructor;
         this.filters = ClientPageStructure.getFilters();
     }
 
     startInteraction() {
+
+        this.loadIndex();
+
         this.loadTable(ClientPageStructure.getDefaultFilters());
         this.pageConstructor.registerGlobalHandlers(this);
     }
@@ -276,6 +279,10 @@ class ClientInteraction {
                 ClientPageConstructor.showError(jqXHR.statusText);
             },
         });
+    }
+
+    loadIndex() {
+
     }
 }
 
