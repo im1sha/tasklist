@@ -3,19 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/login/client-login-interaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/login/client-login-interaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/tasks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/tasks.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/users.dat" beforeDir="false" afterPath="$PROJECT_DIR$/users/users.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../websockets/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/public/scripts/client-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/public/scripts/client-core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/public/scripts/client-page-constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/public/scripts/client-page-constructor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/public/scripts/login/client-login-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/public/scripts/login/client-login-core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../websockets/routes/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../websockets/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../websockets/public/scripts/main/client-interaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/public/scripts/main/client-interaction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../websockets/public/scripts/main/client-page-constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/public/scripts/main/client-page-constructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../websockets/public/scripts/main/client-page-structure.js" beforeDir="false" afterPath="$PROJECT_DIR$/../websockets/public/scripts/main/client-page-structure.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../websockets/tasks/tasks.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../websockets/users/users.dat" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,11 +34,41 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="696">
+              <caret line="29" column="61" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1032">
+              <caret line="43" column="61" lean-forward="true" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+              <folding>
+                <element signature="n#!!block;n#getFilters#0;n#ClientPageConstructor#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="49" column="46" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -52,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+            <state relative-caret-position="96">
+              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -173,9 +197,9 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="977" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-10" />
+    <option name="width" value="979" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -186,6 +210,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,7 +272,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -404,11 +428,13 @@
       <workItem from="1555390318874" duration="38000" />
       <workItem from="1555404382208" duration="824000" />
       <workItem from="1555408879716" duration="2504000" />
+      <workItem from="1556015565960" duration="38000" />
+      <workItem from="1556015973764" duration="633000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="468856000" />
+    <option name="totallyTimeSpent" value="469527000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -420,7 +446,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="848" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
@@ -439,7 +465,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" weight="0.290152" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.290152" />
       <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout>
@@ -640,12 +666,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/bootstrap.min.css.map">
-      <provider editor-type-id="sourcemapFileViewerProvider" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret column="3894" lean-forward="true" selection-start-column="3894" selection-end-column="3894" />
         </state>
       </provider>
+      <provider editor-type-id="sourcemapFileViewerProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/tableContent.ejs" />
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/application.js" />
@@ -801,13 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1649">
-          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tasks/attachments/10/NormalDistribution.exe.config">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -815,13 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -867,39 +879,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/client-interaction.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="643">
           <caret line="253" column="48" selection-start-line="253" selection-start-column="48" selection-end-line="253" selection-end-column="48" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="43" column="61" lean-forward="true" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-          <folding>
-            <element signature="n#!!block;n#getFilters#0;n#ClientPageConstructor#0" />
           </folding>
         </state>
       </provider>
@@ -973,10 +958,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/safety-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="696">
+          <caret line="29" column="61" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-constructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1032">
+          <caret line="43" column="61" lean-forward="true" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+          <folding>
+            <element signature="n#!!block;n#getFilters#0;n#ClientPageConstructor#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-page-structure.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/client-core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="49" column="46" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="46" />
         </state>
       </provider>
     </entry>

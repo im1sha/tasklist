@@ -41,11 +41,11 @@ class ClientCore {
     // should take
     //   this as additionalParams
     static successHandlerForTaskTemplate(template, textStatus, jqXHR, additionalParams) {
-        additionalParams.indexTemplate = template;
+        additionalParams.taskTemplate = template;
         ClientCore.tryRender(null, null, null, additionalParams);
     }
     static successHandlerForIndexTemplate(template, textStatus, jqXHR, additionalParams) {
-        additionalParams.taskTemplate = template;
+        additionalParams.indexTemplate = template;
         ClientCore.tryRender(null, null, null, additionalParams);
     }
 
@@ -55,11 +55,15 @@ class ClientCore {
     // successHandlerParams === ClientCore instance
     // successHandler(data, textStatus, jqXHR, successHandlerParams);
     static tryRender(arg0, arg1, arg2, additionalParams) {
+
         additionalParams.totalLoaded++;
+
         if (additionalParams.totalLoaded === additionalParams.expectedFiles) {
+
             (new ClientInteraction(additionalParams.socket,
                 new ClientPageConstructor(additionalParams.indexTemplate,
                     additionalParams.taskTemplate))).startInteraction();
+
         }
     }
 }

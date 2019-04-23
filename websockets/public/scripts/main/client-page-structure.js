@@ -73,6 +73,9 @@ class ClientPageStructure {
 
     // todo check use
 
+
+
+
     static getRadiosPlaceholdersNames() {
         return {
             completenessAllStyle: 'completenessAllStyle',

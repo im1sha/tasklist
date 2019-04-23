@@ -28,8 +28,8 @@ class ClientInteraction {
     startInteraction() {
 
         this.loadIndex();
-
         this.loadTable(ClientPageStructure.getDefaultFilters());
+
         this.pageConstructor.registerGlobalHandlers(this);
     }
 
@@ -282,7 +282,7 @@ class ClientInteraction {
     }
 
     loadIndex() {
-
+        this.pageConstructor.renderIndex();
     }
 }
 

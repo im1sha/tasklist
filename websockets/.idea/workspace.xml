@@ -2,25 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../jwt/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../jwt/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/common/client-script-downloader.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/common/client-script-downloader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/initial/client-initial-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/initial/client-initial-core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/initial/client-initial-main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/initial/client-initial-main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/core.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/main/client-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/main/client-interaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-interaction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/main/client-page-structure.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-page-structure.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/10/NormalDistribution.exe.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/12/WriteableBitmapEx.Wpf.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/13/WriteableBitmapEx.Wpf.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/14/WriteableBitmapEx.Wpf.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/15/WriteableBitmapEx.Wpf.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/18/ghkvhr8f6g340hf9whe0fgr79ewyg34y8fewsfh-9y4gs89ywegfu0-y74r3hy7f07aewyfq0ew7fh2e7gf2re70foewy7gfoh973wo8gf2;vlsd.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/20/_DS_Store" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/attachments/21/Var0Kr2.v12.suo" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tasks/tasks.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/users/users.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/initialization.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/initialization.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,11 +26,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/scripts/main/client-core.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="63" column="68" lean-forward="true" selection-start-line="63" selection-start-column="68" selection-end-line="63" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/scripts/main/client-interaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+            <state relative-caret-position="912">
+              <caret line="92" selection-start-line="92" selection-end-line="92" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -51,26 +50,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-constructor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="173" selection-start-line="173" selection-end-line="173" />
+            <state relative-caret-position="641">
+              <caret line="165" column="19" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="19" />
+              <folding>
+                <element signature="n#!!block;n#registerGlobalHandlers#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#getFilters#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#registerTableHandlers#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#registerNewTaskHandlers#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#getPlaceholdersForRadioButtons#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#getPlaceholders#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#renderIndex#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#getMainFormId#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#getMainFormData#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#renderTable#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#completeTaskAtTable#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#deleteTaskFromTable#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#renderForm#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#addTaskToTable#0;n#ClientPageConstructor#0" />
+                <element signature="n#!!block;n#createTaskEntry#0;n#ClientPageConstructor#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-structure.js">
+        <entry file="file://$PROJECT_DIR$/core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-408">
-              <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/scripts/main/client-core.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-845">
-              <caret line="11" column="55" lean-forward="true" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
+            <state relative-caret-position="336">
+              <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,7 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>400</find>
       <find>json</find>
       <find>stringify</find>
       <find>new Tas</find>
@@ -116,6 +125,7 @@
       <find>loadTable</find>
       <find>clientpageConstr</find>
       <find>loginCore</find>
+      <find>entryStyle</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -158,7 +168,6 @@
         <option value="$PROJECT_DIR$/scripts/utils.js" />
         <option value="$PROJECT_DIR$/scripts/task-worker.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/core.js" />
         <option value="$PROJECT_DIR$/public/scripts/client-page-structure.js" />
         <option value="$PROJECT_DIR$/scripts/attachments-helper.js" />
         <option value="$PROJECT_DIR$/public/views/index.ejs" />
@@ -168,16 +177,17 @@
         <option value="$PROJECT_DIR$/public/scripts/login/client-login-main.js" />
         <option value="$PROJECT_DIR$/public/scripts/main/client-main.js" />
         <option value="$PROJECT_DIR$/public/scripts/login/client-login-interaction.js" />
-        <option value="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" />
-        <option value="$PROJECT_DIR$/public/scripts/main/client-interaction.js" />
-        <option value="$PROJECT_DIR$/public/scripts/main/client-page-structure.js" />
         <option value="$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js" />
         <option value="$PROJECT_DIR$/public/scripts/initial/client-initial-main.js" />
-        <option value="$PROJECT_DIR$/public/scripts/main/client-core.js" />
         <option value="$PROJECT_DIR$/public/scripts/common/client-script-downloader.js" />
         <option value="$PROJECT_DIR$/public/scripts/initial/client-initial-core.js" />
         <option value="$PROJECT_DIR$/views/initialization.ejs" />
         <option value="$PROJECT_DIR$/public/scripts/login/client-login-core.js" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-page-structure.js" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-interaction.js" />
+        <option value="$PROJECT_DIR$/core.js" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-core.js" />
       </list>
     </option>
   </component>
@@ -188,8 +198,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="1167" />
+    <option name="x" value="-10" />
+    <option name="width" value="979" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -223,7 +233,30 @@
               <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="websockets" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -388,12 +421,12 @@
       <workItem from="1555404382208" duration="824000" />
       <workItem from="1555408879716" duration="2504000" />
       <workItem from="1555917481086" duration="42493000" />
-      <workItem from="1556001789354" duration="6549000" />
+      <workItem from="1556001789354" duration="10896000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="520619000" />
+    <option name="totallyTimeSpent" value="524966000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -409,14 +442,14 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.31424582" />
-      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.3198324" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.31424582" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.5009914" side_tool="true" weight="0.30167598" />
-      <window_info anchor="bottom" id="Favorites" order="8" sideWeight="0.5009914" side_tool="true" weight="0.36731842" />
+      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="1" sideWeight="0.49462366" weight="0.18435754" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.4976867" weight="0.31424582" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.5009914" side_tool="true" weight="0.30167598" />
+      <window_info anchor="bottom" id="Favorites" order="7" sideWeight="0.5009914" side_tool="true" weight="0.36731842" />
+      <window_info anchor="bottom" id="Find" order="8" side_tool="true" weight="0.31424582" />
       <window_info anchor="bottom" auto_hide="true" id="TODO" order="9" sideWeight="0.5009914" side_tool="true" weight="0.36731842" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.5009914" side_tool="true" weight="0.36871508" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50537634" side_tool="true" weight="0.46751413" />
@@ -424,7 +457,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.17911434" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" weight="0.2742895" />
       <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout>
@@ -483,7 +516,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/scripts/main/client-page-constructor.js</url>
-          <line>3</line>
+          <line>4</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -705,13 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/attachments-helper.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
@@ -723,19 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
           <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3024">
-          <caret line="134" column="4" selection-start-line="134" selection-start-column="4" selection-end-line="134" selection-end-column="4" />
-          <folding>
-            <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
-            <element signature="n#!!block;n#createTask#0;n#TaskWorker#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -794,16 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -846,13 +849,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-main.js" />
     <entry file="file://$PROJECT_DIR$/public/scripts/main/client-main.js" />
-    <entry file="file://$PROJECT_DIR$/users/users.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="112" lean-forward="true" selection-start-column="112" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tasks/tasks.dat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -925,46 +921,100 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="-101">
           <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/users.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="70" selection-start-column="70" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/task-worker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="n#!!block;n#updateJsonStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#initializeAttachmentsStorage#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#isItemExists#0;n#TaskWorker#0" />
+            <element signature="n#!!block;n#createTask#0;n#TaskWorker#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-interaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-end-line="21" />
+        <state relative-caret-position="456">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-interaction.js">
+    <entry file="file://$PROJECT_DIR$/public/views/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        <state relative-caret-position="600">
+          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-constructor.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-interaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
+        <state relative-caret-position="912">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-structure.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        <state relative-caret-position="-68">
+          <caret line="39" column="29" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-constructor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="165" column="19" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="19" />
+          <folding>
+            <element signature="n#!!block;n#registerGlobalHandlers#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#getFilters#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#registerTableHandlers#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#registerNewTaskHandlers#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#getPlaceholdersForRadioButtons#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#getPlaceholders#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#renderIndex#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#getMainFormId#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#getMainFormData#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#renderTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#completeTaskAtTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#deleteTaskFromTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#renderForm#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#addTaskToTable#0;n#ClientPageConstructor#0" />
+            <element signature="n#!!block;n#createTaskEntry#0;n#ClientPageConstructor#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/main/client-core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-845">
-          <caret line="11" column="55" lean-forward="true" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
+        <state relative-caret-position="576">
+          <caret line="63" column="68" lean-forward="true" selection-start-line="63" selection-start-column="68" selection-end-line="63" selection-end-column="68" />
         </state>
       </provider>
     </entry>

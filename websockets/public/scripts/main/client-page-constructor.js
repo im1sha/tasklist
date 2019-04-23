@@ -1,20 +1,22 @@
 class ClientPageConstructor {
 
     constructor(indexTemplate, taskTemplate) {
+
         this.taskTemplate = taskTemplate;
         this.indexTemplate = indexTemplate;
+
         this.maxDisplayedLength = 25;
+
         this.decorationChar = String.fromCharCode(9679);
+
         this.styles = ClientPageStructure.getStyles();
         this.filters = ClientPageStructure.getFilters();
         this.entryStyles = ClientPageStructure.getEntryStyles();
         this.taskStatuses = ClientPageStructure.getTaskStatuses();
-    }
 
-    static showError(errorThrown) {
-        $('body').html(errorThrown);
+        this.staticPlaceholders = ClientPageStructure.getStaticPlaceholders();
+        this.radiosPlaceholdersNames = ClientPageStructure.getRadiosPlaceholdersNames();
     }
-
 
     //
     // click handlers
@@ -121,7 +123,47 @@ class ClientPageConstructor {
     }
 
     //
+    // INDEX
     //
+
+    getPlaceholdersForRadioButtons() {
+        let result = {};
+
+        result[this.radiosPlaceholdersNames.completenessAllStyle] = this.styles.checked;
+        result[this.radiosPlaceholdersNames.completenessIncompleteStyle] = '';
+        result[this.radiosPlaceholdersNames.completenessCompletedStyle] = '';
+        result[this.radiosPlaceholdersNames.dateAllStyle] = this.styles.checked;
+        result[this.radiosPlaceholdersNames.dateExpiredStyle] = '';
+        result[this.radiosPlaceholdersNames.dateUpcomingStyle] = '';
+
+        return result;
+    }
+
+    static getIndexPlaceholders(placeholdersForRadioButtons, defaultMainFormPlaceholders,
+                    defaultCheckboxesStyles, staticPlaceholders) {
+        return {
+            ...staticPlaceholders,
+            ...defaultCheckboxesStyles,
+            ...defaultMainFormPlaceholders,
+            ...placeholdersForRadioButtons,
+        };
+    }
+
+
+    renderIndex() {
+        $('body').html(ejs.render(
+            this.indexTemplate,
+            ClientPageConstructor.getIndexPlaceholders(
+                this.getPlaceholdersForRadioButtons(),
+                ClientPageStructure.getDefaultMainFormPlaceholders(),
+                ClientPageStructure.getDefaultCheckboxesStyles(),
+                this.staticPlaceholders
+            )
+        ));
+    }
+
+    //
+    // FORM & TABLE
     //
 
     getMainFormId(){
@@ -188,11 +230,6 @@ class ClientPageConstructor {
     addTaskToTable(jsonData) {
         $("tbody").append(ejs.render(this.taskTemplate,
             this.createTaskEntry(jsonData)));
-    }
-
-    static renderIndex() {
-
-
     }
 
     createTaskEntry(task) {

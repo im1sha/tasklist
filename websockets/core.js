@@ -14,14 +14,13 @@ const statuses = ClientUtils.getStatusCodes();
 const fs  = require('fs');
 const Utils = require('./scripts/utils');
 
-// todo move Constructor.getPlaceholders() to client
-//  and call when render index
-
-
 class Core {
 
     constructor(httpServer) {
-        this.io = require('socket.io')(httpServer);
+        this.io = require('socket.io')(httpServer,{
+            pingTimeout: 50000000, // todo FOR DEBUGGING ONLY
+            upgradeTimeout: 50000000
+        });
     }
 
     initialize() {
