@@ -26,10 +26,21 @@ class Core {
     initialize() {
         this.io.on('connection', socket => {
             socket.on('authenticate', (jwt) => {
+
+                socket.use((packet, next) => {
+                    console.log('after authenticate::');
+                    try {
+                        console.log(`LENGTH : ${packet[2].length}`);
+                    } catch {
+
+                    }
+                    console.log('====================');
+                    return next();
+                });
+
+
                 let userId = null; //, userHash = null, userLogin = null;
                 if (!safetyWorker.isJwtTokenValid(jwt)) {
-
-                    socket.emit('notAuthenticated');
 
                     socket.on('logIn', (login, password) => {
                         const doesUserExist = userWorker.getUserIdByLogin(login) !== null;
@@ -51,14 +62,15 @@ class Core {
                         }
                     });
 
+                    socket.emit('notAuthenticated');
+
                 } else {
 
-                    socket.emit('authenticated');
-
-                    const userData = safetyWorker.getUserDataFromJwtToken(jwt);
-                    userId = userData.userId;
-                    // userHash = userData.userHash;
-                    // userLogin = userData.userLogin;
+                    socket.use((packet, next) => {
+                        console.log('ELSE');
+                        console.log(packet);
+                        return next();
+                    });
 
                     //
                     // no need to check ownership
@@ -68,6 +80,10 @@ class Core {
 
                     // creates 1 task
                     socket.on('createTask', (task, file) => {
+
+
+                        console.log('###createTask');
+
                         //  todo should return task | null
                         const result = requestHandler.createTask(userId, task, file);
 
@@ -165,6 +181,14 @@ class Core {
 
                         socket.emit('completeTask', status);
                     });
+
+                    socket.emit('authenticated');
+                    console.log('authenticated');
+
+                    const userData = safetyWorker.getUserDataFromJwtToken(jwt);
+                    userId = userData.userId;
+                    // userHash = userData.userHash;
+                    // userLogin = userData.userLogin;
                 }
             });
         });

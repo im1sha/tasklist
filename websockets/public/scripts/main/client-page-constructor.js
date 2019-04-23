@@ -174,6 +174,7 @@ class ClientPageConstructor {
         return new FormData($('form')[0]);
     }
 
+
     // fills table with tasks
     // jsonData is [{}, {}, {} ...]
     renderTable(jsonData) {

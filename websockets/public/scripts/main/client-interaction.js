@@ -26,47 +26,9 @@ class ClientInteraction {
     }
 
     startInteraction() {
-
         this.loadIndex();
         this.loadTable(ClientPageStructure.getDefaultFilters());
-
         this.pageConstructor.registerGlobalHandlers(this);
-    }
-
-    static getFilteredTasksPath(allFilters, requiredFilters) {
-
-        // required format /api/tasks/?completeness=incomplete&date=expired
-
-        let path = "http://localhost:3000/api/tasks";
-        let appliedFilters = 0;
-
-        switch(requiredFilters.completeness) {
-            case allFilters.completeness.completed:
-                path += '/?completeness=completed';
-                appliedFilters++;
-                break;
-            case allFilters.completeness.incomplete:
-                path += '/?completeness=incomplete';
-                appliedFilters++;
-                break;
-        }
-        switch(requiredFilters.date) {
-            case allFilters.date.expired:
-                if (appliedFilters !== 0) {
-                    path += '&date=expired';
-                } else {
-                    path += '/?date=expired';
-                }
-                break;
-            case allFilters.date.upcoming:
-                if (appliedFilters !== 0) {
-                    path += '&date=upcoming';
-                } else {
-                    path += '/?date=upcoming';
-                }
-                break;
-        }
-        return path;
     }
 
     //
@@ -101,31 +63,51 @@ class ClientInteraction {
     //
 
     createTask() {
-        const thisInstance = this;
-        const pageConstructor = this.pageConstructor;
-        const formData = pageConstructor.getMainFormData();
 
-        // posts multipart/form-data content
-        $.ajax({
-            method: "POST",
-            url: "http://localhost:3000/api/tasks",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: 'JSON',
-            success: (data, textStatus, jqXHR) => {
-                if (jqXHR.status === ClientUtils.getStatusCodes().created) {
-                    pageConstructor.renderForm(true);
-                    thisInstance.addTaskToTable(JSON.parse(data));
-                } else {
-                    ClientPageConstructor.showError(jqXHR.statusText);
-                }
-            },
-            error: (jqXHR, textStatus, errorThrown) => {
-                ClientPageConstructor.showError(jqXHR.statusText);
-            },
+        const task = {
+            taskName: $("[name='taskName'][class='form-control']").val(),
+            taskDate: $("[name='taskDate'][class='form-control']").val(),
+            taskCompleted: $('[name="completeCheckbox"]').is(':checked'),
+            taskShouldUpdateAttachment: $('[name="updateCheckbox"]').is(':checked'),
+        };
+        const file = $("[name='taskAttachment'][class='form-control'][type='file']").prop('files')[0];
+
+        // console.log(task);
+        // console.log(file);
+
+
+        this.socket.on('createTask', (result) => {
+            // result === task | null
+
+            console.log(result);
         });
+
+
+        console.log('emit createTask');
+        this.socket.emit('createTask', task, file);
+
+
+
+
+        // const formData = this.pageConstructor.getMainFormData();
+        // alert(this.pageConstructor.getMainFormFile());
+
+        //
+        // success: (data, textStatus, jqXHR)
+        //     if (jqXHR.status === ClientUtils.getStatusCodes().created) {
+        //
+        //
+        //         pageConstructor.renderForm(true);
+        //         thisInstance.addTaskToTable(JSON.parse(data));
+        //
+        //     } else {
+        //         ClientPageConstructor.showError(jqXHR.statusText);
+        //     }
+        //
+        // error: (jqXHR, textStatus, errorThrown) => {
+        //     ClientPageConstructor.showError(jqXHR.statusText);
+        //     }
+
     }
 
     editTask() {
@@ -248,7 +230,7 @@ class ClientInteraction {
         const thisInstance = this;
         $.ajax({
             method: "GET",
-            url: ClientInteraction.getFilteredTasksPath(this.filters, filters),
+            url: 'http://localhost:3000/api/tasks',
             dataType: 'JSON',
             success: function (data, textStatus, jqXHR) {
                 if (jqXHR.status ===  ClientUtils.getStatusCodes().ok) {
