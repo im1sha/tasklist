@@ -28,7 +28,7 @@ class ClientScriptDownloader{
     // main scripts
     //
 
-    static getClientConstructorUrl() { return "http://localhost:3000/scripts/main/client-page-constructor.js"; }
+    static getClientPageConstructorUrl() { return "http://localhost:3000/scripts/main/client-page-constructor.js"; }
     static getClientInteractionUrl() { return 'http://localhost:3000/scripts/main/client-interaction.js'; }
     static getClientPageStructureUrl() { return 'http://localhost:3000/scripts/main/client-page-structure.js'; }
 
@@ -52,15 +52,16 @@ class ClientScriptDownloader{
     //
     //
 
-    static downloadScript(url, successHandler, errorHandler) {
+    //
+    static downloadScript(url, successHandler, successHandlerParams, errorHandler, errorHandlerParams) {
         $.ajax({
             method: "GET",
             url: url,
             success: (data, textStatus, jqXHR) => {
-                successHandler(data, textStatus, jqXHR);
+                successHandler(data, textStatus, jqXHR, successHandlerParams);
             },
             error: (jqXHR, textStatus, errorThrown) => {
-                errorHandler(jqXHR, textStatus, errorThrown);
+                errorHandler(jqXHR, textStatus, errorThrown, errorHandlerParams);
             }
         })
     }

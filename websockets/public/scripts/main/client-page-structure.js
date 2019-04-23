@@ -84,7 +84,7 @@ class ClientPageStructure {
         }
     };
 
-    static getStaticPlaceholders(){
+    static getStaticPlaceholders() {
         return {
             titleText: "[tasklist]",
             nameText: "Task",

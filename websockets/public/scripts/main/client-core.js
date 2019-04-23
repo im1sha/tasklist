@@ -3,14 +3,14 @@ class ClientCore {
     constructor(socket) {
         this.socket = socket;
         this.totalLoaded = 0;
-        this.expectedFiles = ClientCore.getRequiredScriptsUrls().length +    2;
+        this.expectedFiles = ClientCore.getRequiredScriptsUrls().length + 2; // 2 templates
     }
 
     static getRequiredScriptsUrls() {
         return [
             ClientScriptDownloader.getEjsUrl(),
             ClientScriptDownloader.getClientUtilsUrl(),
-            ClientScriptDownloader.getClientLoginPageConstructorUrl(),
+            ClientScriptDownloader.getClientPageConstructorUrl(),
             ClientScriptDownloader.getClientInteractionUrl(),
             ClientScriptDownloader.getClientPageStructureUrl(),
         ];
@@ -21,49 +21,45 @@ class ClientCore {
         // get scripts
         ClientCore.getRequiredScriptsUrls().forEach(scriptUrl =>
             ClientScriptDownloader.downloadScript(scriptUrl,
-                this.successHandlerForScript,
-                ClientCore.errorHandler)
+                ClientCore.tryRender, this,
+                ClientErrorPageRendering.showError, null)
         );
 
         // get templates
         ClientScriptDownloader.downloadScript(ClientScriptDownloader.getIndexTemplateUrl(),
-            this.successHandlerForIndexTemplate,
-            ClientCore.errorHandler);
+            ClientCore.successHandlerForIndexTemplate, this,
+            ClientErrorPageRendering.showError, null);
         ClientScriptDownloader.downloadScript(ClientScriptDownloader.getTaskTemplateUrl(),
-            this.successHandlerForTaskTemplate,
-            ClientCore.errorHandler);
+            ClientCore.successHandlerForTaskTemplate, this,
+            ClientErrorPageRendering.showError, null);
     }
 
     //
     // Handle GET response
     //
 
-    successHandlerForScript(data, textStatus, jqXHR) {
-        this.tryRender();
+    // should take
+    //   this as additionalParams
+    static successHandlerForTaskTemplate(template, textStatus, jqXHR, additionalParams) {
+        additionalParams.indexTemplate = template;
+        ClientCore.tryRender(null, null, null, additionalParams);
     }
-
-    successHandlerForTaskTemplate(template, textStatus, jqXHR) {
-        this.indexTemplate = template;
-        this.tryRender();
-    }
-    successHandlerForIndexTemplate(template, textStatus, jqXHR) {
-        this.taskTemplate = template;
-        this.tryRender();
-    }
-
-    static errorHandler(jqXHR, textStatus, errorThrown) {
-        ClientErrorPageRendering.showError(errorThrown);
+    static successHandlerForIndexTemplate(template, textStatus, jqXHR, additionalParams) {
+        additionalParams.taskTemplate = template;
+        ClientCore.tryRender(null, null, null, additionalParams);
     }
 
     //
     //
     //
-
-    tryRender() {
-        this.totalLoaded++;
-        if (this.totalLoaded === this.expectedFiles) {
-            (new ClientInteraction(this.socket,
-                new ClientPageConstructor(this.indexTemplate, this.taskTemplate))).startInteraction();
+    // successHandlerParams === ClientCore instance
+    // successHandler(data, textStatus, jqXHR, successHandlerParams);
+    static tryRender(arg0, arg1, arg2, additionalParams) {
+        additionalParams.totalLoaded++;
+        if (additionalParams.totalLoaded === additionalParams.expectedFiles) {
+            (new ClientInteraction(additionalParams.socket,
+                new ClientPageConstructor(additionalParams.indexTemplate,
+                    additionalParams.taskTemplate))).startInteraction();
         }
     }
 }

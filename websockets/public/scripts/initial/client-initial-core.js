@@ -8,31 +8,27 @@ class ClientInitialCore {
     static getRequiredScriptsUrls() {
         return [
             ClientScriptDownloader.getClientCoreUrl(),
-            ClientScriptDownloader.getClientLoginCoreUrl(),
             ClientScriptDownloader.getSocketIoUrl(),
             ClientScriptDownloader.getStorageWorkerUrl(),
+            ClientScriptDownloader.getClientLoginCoreUrl(),
         ];
     }
 
     onStart() {
         ClientInitialCore.getRequiredScriptsUrls().forEach(scriptUrl =>
             ClientScriptDownloader.downloadScript(scriptUrl,
-                this.successHandlerForScript,
-                ClientLoginCore.errorHandler)
+                this.start,
+                this,
+                ClientErrorPageRendering.showError,
+                null
+            )
         );
     }
 
-    successHandlerForScript(data, textStatus, jqXHR) {
-        this.start();
-    }
+    //successHandlerParams is ClientInitialCore instance
+    start(data, textStatus, jqXHR, successHandlerParams) {
 
-    static errorHandler(jqXHR, textStatus, errorThrown) {
-        ClientErrorPageRendering.showError(errorThrown);
-    }
-
-    start() {
-
-        if (this.requiredScripts > ++this.totalLoaded) {
+        if (successHandlerParams.requiredScripts > ++successHandlerParams.totalLoaded) {
             return;
         }
 

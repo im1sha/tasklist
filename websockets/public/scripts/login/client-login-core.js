@@ -10,46 +10,38 @@ class ClientLoginCore {
         return [
             ClientScriptDownloader.getClientLoginPageConstructorUrl(),
             ClientScriptDownloader.getClientLoginInteractionUrl(),
-
-            ClientScriptDownloader.getClientUtilsUrl(),
-
             ClientScriptDownloader.getEjsUrl(),
         ];
     }
 
     onStart() {
         ClientLoginCore.getRequiredScriptsUrls().forEach(scriptUrl =>
-            ClientScriptDownloader.downloadScript(scriptUrl,
-                this.successHandlerForScript,
-                ClientLoginCore.errorHandler)
+            ClientScriptDownloader.downloadScript(
+                scriptUrl,
+                ClientLoginCore.tryRender,
+                this,
+                ClientErrorPageRendering.showError,
+                null
+            )
         );
 
         ClientScriptDownloader.downloadScript(ClientScriptDownloader.getLoginTemplateUrl(),
-            this.successHandlerForTemplate,
-            ClientLoginCore.errorHandler);
+            ClientLoginCore.successHandlerForTemplate, this,
+            ClientErrorPageRendering.showError, null);
     }
 
-    //
-    // Handle responses
-    //
-
-    successHandlerForScript(data, textStatus, jqXHR) {
-        this.tryRender();
+    //successHandler(data, textStatus, jqXHR, successHandlerParams); // of client-script-downloader
+    //successHandlerParams === this
+    static successHandlerForTemplate(data, textStatus, jqXHR, successHandlerParams) {
+        successHandlerParams.template = data;
+        ClientLoginCore.tryRender(null, null, null, successHandlerParams);
     }
 
-    successHandlerForTemplate(template, textStatus, jqXHR) {
-        this.template = template;
-        this.tryRender();
-    }
-
-    static errorHandler(jqXHR, textStatus, errorThrown) {
-        ClientErrorPageRendering.showError(errorThrown);
-    }
-
-    tryRender() {
-        this.totalLoaded++;
-        if (this.totalLoaded === this.expectedFiles) {
-            (new ClientLoginInteraction(this.socket, new ClientLoginPageConstructor(this.template))).startInteraction();
+    static tryRender(arg0, arg1, arg2, additionalParams) {
+        additionalParams.totalLoaded++;
+        if (additionalParams.totalLoaded === additionalParams.expectedFiles) {
+            (new ClientLoginInteraction(additionalParams.socket,
+                new ClientLoginPageConstructor(additionalParams.template))).startInteraction();
         }
     }
 }

@@ -2,12 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1890831-5ecf-4f2c-9bfe-572ec667421b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/common/client-script-downloader.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/common/client-script-downloader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/initial/client-initial-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/initial/client-initial-core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/login/client-login-interaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/login/client-login-interaction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/initial/client-initial-main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/initial/client-initial-main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/login/client-login-core.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scripts/main/client-core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/main/client-interaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-interaction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scripts/main/client-page-structure.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/scripts/main/client-page-structure.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/10/NormalDistribution.exe.config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/12/WriteableBitmapEx.Wpf.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/13/WriteableBitmapEx.Wpf.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/14/WriteableBitmapEx.Wpf.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/15/WriteableBitmapEx.Wpf.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/18/ghkvhr8f6g340hf9whe0fgr79ewyg34y8fewsfh-9y4gs89ywegfu0-y74r3hy7f07aewyfq0ew7fh2e7gf2re70foewy7gfoh973wo8gf2;vlsd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/20/_DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/attachments/21/Var0Kr2.v12.suo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/tasks.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/users.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/initialization.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/initialization.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/scripts/main/client-interaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="253" column="35" selection-start-line="253" selection-start-column="20" selection-end-line="253" selection-end-column="35" />
+            <state relative-caret-position="24">
+              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -36,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-constructor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="194" column="8" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="8" />
+            <state relative-caret-position="643">
+              <caret line="173" selection-start-line="173" selection-end-line="173" />
             </state>
           </provider>
         </entry>
@@ -48,17 +60,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-structure.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2208">
-              <caret line="92" column="6" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
+            <state relative-caret-position="-408">
+              <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/scripts/main/client-core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="65" column="93" selection-start-line="65" selection-start-column="93" selection-end-line="65" selection-end-column="93" />
+            <state relative-caret-position="-845">
+              <caret line="11" column="55" lean-forward="true" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -74,8 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>parserFunction</find>
-      <find>post</find>
       <find>400</find>
       <find>json</find>
       <find>stringify</find>
@@ -104,6 +114,8 @@
       <find>++</find>
       <find>template</find>
       <find>loadTable</find>
+      <find>clientpageConstr</find>
+      <find>loginCore</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -115,7 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/scripts/client-side-page-constructor.js" />
         <option value="$PROJECT_DIR$/public/scripts/client-side-main.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/views/tableContent.ejs" />
@@ -153,19 +164,20 @@
         <option value="$PROJECT_DIR$/public/views/index.ejs" />
         <option value="$PROJECT_DIR$/scripts/page-constructor.js" />
         <option value="$PROJECT_DIR$/scripts/request-handler.js" />
-        <option value="$PROJECT_DIR$/public/scripts/initial/client-initial-main.js" />
-        <option value="$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js" />
         <option value="$PROJECT_DIR$/public/scripts/common/client-storage-worker.js" />
         <option value="$PROJECT_DIR$/public/scripts/login/client-login-main.js" />
         <option value="$PROJECT_DIR$/public/scripts/main/client-main.js" />
-        <option value="$PROJECT_DIR$/public/scripts/login/client-login-core.js" />
         <option value="$PROJECT_DIR$/public/scripts/login/client-login-interaction.js" />
-        <option value="$PROJECT_DIR$/views/initialization.ejs" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-interaction.js" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-page-structure.js" />
+        <option value="$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js" />
+        <option value="$PROJECT_DIR$/public/scripts/initial/client-initial-main.js" />
+        <option value="$PROJECT_DIR$/public/scripts/main/client-core.js" />
         <option value="$PROJECT_DIR$/public/scripts/common/client-script-downloader.js" />
         <option value="$PROJECT_DIR$/public/scripts/initial/client-initial-core.js" />
-        <option value="$PROJECT_DIR$/public/scripts/main/client-core.js" />
-        <option value="$PROJECT_DIR$/public/scripts/main/client-interaction.js" />
-        <option value="$PROJECT_DIR$/public/scripts/main/client-page-constructor.js" />
+        <option value="$PROJECT_DIR$/views/initialization.ejs" />
+        <option value="$PROJECT_DIR$/public/scripts/login/client-login-core.js" />
       </list>
     </option>
   </component>
@@ -176,8 +188,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="980" />
+    <option name="x" value="-8" />
+    <option name="width" value="1167" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -188,7 +200,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,38 +223,13 @@
               <item name="websockets" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
-              <item name="websockets" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="initial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
-              <item name="websockets" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
-              <item name="websockets" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="websockets" type="b2602c69:ProjectViewProjectNode" />
-              <item name="websockets" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -401,12 +387,13 @@
       <workItem from="1555390318874" duration="38000" />
       <workItem from="1555404382208" duration="824000" />
       <workItem from="1555408879716" duration="2504000" />
-      <workItem from="1555917481086" duration="42200000" />
+      <workItem from="1555917481086" duration="42493000" />
+      <workItem from="1556001789354" duration="6549000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="513777000" />
+    <option name="totallyTimeSpent" value="520619000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -422,8 +409,8 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32402235" />
-      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.2611732" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.31424582" />
+      <window_info anchor="bottom" auto_hide="true" x="11" y="281" width="1513" height="272" id="Run" order="2" sideWeight="0.49462366" weight="0.3198324" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4976867" weight="0.31424582" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -437,7 +424,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.21348314" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.37430167" visible="true" weight="0.17911434" />
       <window_info anchor="right" id="npm" order="4" sideWeight="0.6256983" side_tool="true" weight="0.13615334" />
       <window_info anchor="right" id="Structure" order="5" sideWeight="0.6243017" side_tool="true" weight="0.1764706" />
     </layout>
@@ -487,20 +474,22 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/request-handler.js</url>
           <line>37</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/request-handler.js</url>
           <line>54</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/scripts/main/client-page-constructor.js</url>
           <line>3</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/scripts/main/client-interaction.js</url>
+          <line>29</line>
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -664,13 +653,6 @@
     <entry file="file://$PROJECT_DIR$/tasks/attachments/10/NormalDistribution.exe.config">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/tasks.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="76" selection-start-column="76" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -713,13 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/users.dat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="571" selection-start-column="571" selection-end-column="571" />
         </state>
       </provider>
     </entry>
@@ -869,25 +844,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-main.js" />
+    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-main.js" />
+    <entry file="file://$PROJECT_DIR$/users/users.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="112" lean-forward="true" selection-start-column="112" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/tasks.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/common/client-error-page-rendering.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/common/client-utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="n#!!block;n#getTaskPropertiesNamesAsList#0;n#ClientUtils#0" />
-            <element signature="n#!!block;n#getTaskShouldUpdateAttachmentPropertyName#0;n#ClientUtils#0" />
-            <element signature="e#1247#1517#0" />
-            <element signature="n#!!block;n#formatDateForOutput#0;n#ClientUtils#0" />
-            <element signature="n#!!block;n#createDateInStandardFormat#0;n#ClientUtils#0" />
-            <element signature="n#!!block;n#getDateAsObjectOfStrings#0;n#ClientUtils#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,16 +874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-main.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-page-constructor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="408">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -918,69 +888,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-interaction.js">
+    <entry file="file://$PROJECT_DIR$/views/initialization.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="19" column="58" lean-forward="true" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-page-constructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        <state relative-caret-position="480">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/initial/client-initial-core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="13" column="10" lean-forward="true" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+        <state relative-caret-position="384">
+          <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/initialization.ejs">
+    <entry file="file://$PROJECT_DIR$/public/scripts/common/client-utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="24" column="10" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="24" selection-end-column="10" />
+        <state relative-caret-position="336">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
           <folding>
-            <element signature="n#!!block;n#getRequiredScriptsUrls#0;n#ClientLoginCore#0" />
+            <element signature="n#!!block;n#getTaskShouldUpdateAttachmentPropertyName#0;n#ClientUtils#0" />
+            <element signature="e#1247#1517#0" />
+            <element signature="n#!!block;n#formatDateForOutput#0;n#ClientUtils#0" />
+            <element signature="n#!!block;n#createDateInStandardFormat#0;n#ClientUtils#0" />
+            <element signature="n#!!block;n#getDateAsObjectOfStrings#0;n#ClientUtils#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/common/client-script-downloader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="6" selection-end-column="28" />
+        <state relative-caret-position="192">
+          <caret line="38" column="28" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-structure.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2208">
-          <caret line="92" column="6" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
+        <state relative-caret-position="336">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-core.js">
+    <entry file="file://$PROJECT_DIR$/public/scripts/login/client-login-interaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="65" column="93" selection-start-line="65" selection-start-column="93" selection-end-line="65" selection-end-column="93" />
+        <state relative-caret-position="480">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/main/client-interaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="253" column="35" selection-start-line="253" selection-start-column="20" selection-end-line="253" selection-end-column="35" />
+        <state relative-caret-position="24">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -989,8 +949,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-constructor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="194" column="8" selection-start-line="194" selection-start-column="8" selection-end-line="194" selection-end-column="8" />
+        <state relative-caret-position="643">
+          <caret line="173" selection-start-line="173" selection-end-line="173" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-page-structure.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/scripts/main/client-core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-845">
+          <caret line="11" column="55" lean-forward="true" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
         </state>
       </provider>
     </entry>

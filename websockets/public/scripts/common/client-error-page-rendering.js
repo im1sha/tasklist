@@ -1,6 +1,6 @@
 class ClientErrorPageRendering {
 
-    static showError(errorThrown) {
+    static showError(jqXHR, textStatus, errorThrown, additionalParams) {
         $('body').html(errorThrown);
     }
 
