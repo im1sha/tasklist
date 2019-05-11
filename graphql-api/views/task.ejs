@@ -1,0 +1,11 @@
+<tr class="<%= taskEntryClass %>">
+    <td class="task-name task-spec"><%= taskName %></td>
+    <td class="task-spec"><%= expectedCompleteDate %></td>
+    <td class="task-spec"><%= taskStatus %></td>
+    <td class="task-spec">
+        <input type="submit" value="<%= downloadAttachment %>" <%= downloadAttachmentDisabled %> onclick="downloadAttachment(<%= taskId %>)"/>
+    </td>
+    <td class="task-spec">
+        <input type="button" value="<%= completeTask %>" <%= completeTaskDisabled %> onclick="completeTaskAndUpdateTasks(<%= taskId %>)"/>
+    </td>
+</tr>
