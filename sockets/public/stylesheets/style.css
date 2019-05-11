@@ -1,0 +1,90 @@
+body.index {
+    text-align: center;
+    background-color: lightcyan;
+    font-family: sans-serif;
+}
+
+div.tasks-block, div.login-block {
+    display: flex;
+    background-color: aquamarine;
+    margin: 0 2em;
+    border-radius: 2em;
+}
+
+div.tasks-block {
+    flex-direction: row;
+}
+
+div.login-block {
+    flex-direction: column;
+    padding: 1em;
+}
+
+div.task-list, div.add-task-query {
+    margin: 1em;
+    border-radius: 1em;
+    background-color: mediumaquamarine;
+    padding: 1em;
+}
+
+div.task-list {
+    flex-grow: 2;
+}
+
+div.add-task-query {
+    flex-grow: 1;
+}
+
+td.task-input-description, td.task-input-field, td.task-spec, div.status-filter-element, td.login-input-description, td.login-input-field {
+    padding: 0.25em;
+}
+
+td.task-input-description {
+    text-align: right;
+}
+
+td.task-input-field {
+    text-align: left;
+}
+
+td.task-name {
+    width: 40%;
+}
+
+form.status-filter {
+    display: flex;
+    flex-direction: column;
+}
+
+div.status-filter-entries {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+form.add-task-query, form.login-query {
+    display: flex;
+    justify-content: center;
+}
+
+table.task-list, table.add-task-query {
+    width: 100%;
+}
+
+table.task-list {
+    margin-top: 0.5em;
+    border-collapse: collapse;
+}
+
+tr.task-entry:hover, tr.expired-task-entry:hover {
+    background-color: aquamarine;
+}
+
+tr.expired-task-entry {
+    color: red;
+}
+
+input.illegal-input {
+    border-style: solid;
+    border-color: red;
+}
